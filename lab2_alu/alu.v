@@ -22,14 +22,17 @@ module alu (
 	output reg br_out
 );
 
-reg [7:0] result;
+//reg [7:0] result;
 //reg [7:0] res_out = res;
 //reg branch_out = br_out;
 
+initial begin
+	br_out = 0;
+	res = 0;
+end
+
 always @(posedge clock) //SOMETHING HERE
 begin
-	result = 0;
-	br_out = 0;
 	case(func)
 		`add_op: res <= reg1 + reg2;
 		`sll_op: res <= reg1 << reg2;
@@ -37,16 +40,20 @@ begin
 		`be_op: begin
 			if (reg1 == reg2)	
 				br_out <= 1;
+			else
+				br_out <= 0;
 			end
 		`blt_op: begin
 			if (reg1 < reg2)	
 				br_out <= 1;
+			else
+				br_out <= 0;
 			end
 		`spec_op: begin
 			case (spec_fun)
 				`inc_op:	res <= reg1 + 8'b1;
 				`and1_op: res <= reg1 & 8'b1;
-				`sub8_op: res <= reg1 - 8'b1;	
+				`sub8_op: res <= reg1 - 8'b1000;	
 			endcase
 		end
 	endcase
