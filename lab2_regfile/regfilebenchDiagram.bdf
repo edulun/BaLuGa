@@ -23,7 +23,7 @@ applicable agreement for further details.
 	(input)
 	(rect 120 224 288 240)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "clock" (rect 5 0 31 12)(font "Arial" ))
+	(text "clock" (rect 5 0 30 12)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -39,7 +39,7 @@ applicable agreement for further details.
 	(input)
 	(rect 144 248 312 264)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "write_ctrl" (rect 5 0 49 12)(font "Arial" ))
+	(text "write_ctrl" (rect 5 0 48 12)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -55,7 +55,7 @@ applicable agreement for further details.
 	(input)
 	(rect 144 280 312 296)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "swap_ctrl" (rect 5 0 52 12)(font "Arial" ))
+	(text "swap_ctrl" (rect 5 0 51 12)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -71,7 +71,7 @@ applicable agreement for further details.
 	(input)
 	(rect 144 304 312 320)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "read_reg1[1..0]" (rect 5 0 80 12)(font "Arial" ))
+	(text "read_reg1[1..0]" (rect 5 0 79 12)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -87,7 +87,7 @@ applicable agreement for further details.
 	(input)
 	(rect 136 328 304 344)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "read_reg2[2..0]" (rect 5 0 80 12)(font "Arial" ))
+	(text "read_reg2[2..0]" (rect 5 0 79 12)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -103,7 +103,7 @@ applicable agreement for further details.
 	(input)
 	(rect 120 360 288 376)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "write_reg[2..0]" (rect 5 0 75 12)(font "Arial" ))
+	(text "write_reg[2..0]" (rect 5 0 74 12)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -119,7 +119,7 @@ applicable agreement for further details.
 	(input)
 	(rect 120 400 296 416)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
-	(text "write_val[7..0]" (rect 5 0 75 12)(font "Arial" ))
+	(text "write_val[7..0]" (rect 5 0 74 12)(font "Arial" ))
 	(pt 176 8)
 	(drawing
 		(line (pt 92 12)(pt 117 12))
@@ -135,7 +135,7 @@ applicable agreement for further details.
 	(output)
 	(rect 736 176 912 192)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
-	(text "reg_val1[7..0]" (rect 90 0 158 12)(font "Arial" ))
+	(text "read_val1[7..0]" (rect 90 0 164 12)(font "Arial" ))
 	(pt 0 8)
 	(drawing
 		(line (pt 0 8)(pt 52 8))
@@ -151,7 +151,7 @@ applicable agreement for further details.
 	(output)
 	(rect 752 256 928 272)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
-	(text "reg_val2[7..0]" (rect 90 0 158 12)(font "Arial" ))
+	(text "read_val2[7..0]" (rect 90 0 164 12)(font "Arial" ))
 	(pt 0 8)
 	(drawing
 		(line (pt 0 8)(pt 52 8))
@@ -164,7 +164,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 376 200 632 360)
+	(rect 376 200 640 360)
 	(text "register_file" (rect 5 0 62 12)(font "Arial" ))
 	(text "inst" (rect 8 144 25 156)(font "Arial" ))
 	(port
@@ -217,21 +217,21 @@ applicable agreement for further details.
 		(line (pt 0 128)(pt 16 128)(line_width 3))
 	)
 	(port
-		(pt 256 32)
+		(pt 264 32)
 		(output)
-		(text "reg_val1[7..0]" (rect 0 0 68 12)(font "Arial" ))
-		(text "reg_val1[7..0]" (rect 178 27 246 39)(font "Arial" ))
-		(line (pt 256 32)(pt 240 32)(line_width 3))
+		(text "read_val1[7..0]" (rect 0 0 74 12)(font "Arial" ))
+		(text "read_val1[7..0]" (rect 181 27 255 39)(font "Arial" ))
+		(line (pt 264 32)(pt 248 32)(line_width 3))
 	)
 	(port
-		(pt 256 48)
+		(pt 264 48)
 		(output)
-		(text "reg_val2[7..0]" (rect 0 0 68 12)(font "Arial" ))
-		(text "reg_val2[7..0]" (rect 178 43 246 55)(font "Arial" ))
-		(line (pt 256 48)(pt 240 48)(line_width 3))
+		(text "read_val2[7..0]" (rect 0 0 74 12)(font "Arial" ))
+		(text "read_val2[7..0]" (rect 181 43 255 55)(font "Arial" ))
+		(line (pt 264 48)(pt 248 48)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 240 144))
+		(rectangle (rect 16 16 248 144))
 	)
 )
 (connector
@@ -320,21 +320,21 @@ applicable agreement for further details.
 )
 (connector
 	(pt 736 184)
-	(pt 632 184)
+	(pt 640 184)
 	(bus)
 )
 (connector
-	(pt 632 184)
-	(pt 632 232)
+	(pt 640 184)
+	(pt 640 232)
 	(bus)
 )
 (connector
 	(pt 752 264)
-	(pt 632 264)
+	(pt 640 264)
 	(bus)
 )
 (connector
-	(pt 632 264)
-	(pt 632 248)
+	(pt 640 264)
+	(pt 640 248)
 	(bus)
 )

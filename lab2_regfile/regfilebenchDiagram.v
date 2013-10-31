@@ -12,9 +12,9 @@
 // Altera or its authorized distributors.  Please refer to the 
 // applicable agreement for further details.
 
-// PROGRAM		"Quartus II 64-Bit"
+// PROGRAM		"Quartus II 32-bit"
 // VERSION		"Version 12.0 Build 178 05/31/2012 SJ Full Version"
-// CREATED		"Wed Oct 30 23:06:29 2013"
+// CREATED		"Thu Oct 31 12:36:52 2013"
 
 module regfilebenchDiagram(
 	clock,
@@ -24,8 +24,8 @@ module regfilebenchDiagram(
 	read_reg2,
 	write_reg,
 	write_val,
-	reg_val1,
-	reg_val2
+	read_val1,
+	read_val2
 );
 
 
@@ -36,8 +36,8 @@ input wire	[1:0] read_reg1;
 input wire	[2:0] read_reg2;
 input wire	[2:0] write_reg;
 input wire	[7:0] write_val;
-output wire	[7:0] reg_val1;
-output wire	[7:0] reg_val2;
+output wire	[7:0] read_val1;
+output wire	[7:0] read_val2;
 
 
 
@@ -52,8 +52,8 @@ register_file	b2v_inst(
 	.read_reg2(read_reg2),
 	.write_reg(write_reg),
 	.write_val(write_val),
-	.reg_val1(reg_val1),
-	.reg_val2(reg_val2));
+	.read_val1(read_val1),
+	.read_val2(read_val2));
 
 
 endmodule
