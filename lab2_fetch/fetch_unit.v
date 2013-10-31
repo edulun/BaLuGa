@@ -1,37 +1,30 @@
 
-module FETCH_UNIT (
+module fetch_unit(
 	input clock,
 	input reset,
-	input branchFlag,
-	input [7:0] branchImm,  // value stored in the $branch register
-	output [7:0] instr_addr	
+	input branch_ctrl,
+	input [7:0] branch_val,  // value stored in the $branch register
+	output reg [7:0] instr_addr	
 );
 
-wire add1, addbranch
 reg [7:0] pc;
 
 initial begin 
     pc = 0;
 end
 
-always @(posedge clk)
+always @(posedge clock)
 begin
+	instr_addr <= pc;	
 	//Set program counter to 0 if reset = 1
-	if(reset == 1'b1) pc <= 0;
-	
-	//add1 = pc ++;
-	add1 <= pc + 8'b1;
-
-	//addBranch = address if branch flag is set to 1
-	addBranch <= pc + branchImm;
+	if(reset == 1) pc <= 0;
 	
 	//IF branch flag is set, set pc = addBranch
-	if(branchFlag == 1'b1)
-		pc = addBranch;
-	else pc <= add1;
+	else if(branch_ctrl == 1) pc = pc + branch_val;
+	else pc <= pc + 1'b1;
 
-	instr_addr <= pc;
 		
 	
 end
-		
+	
+endmodule
