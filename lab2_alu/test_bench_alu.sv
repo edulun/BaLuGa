@@ -20,7 +20,12 @@ initial begin
 	 */
 	#10 register_one = 8'b11;	// r1 = 3
 	register_two = 8'b10;		// r2 = 2
-	function_control = 4'b0;	// sum (3 + 2)
+	function_control = 4'b0;	// sum (3 + 2) = 5
+	
+	#10;
+	register_one = 8'b1111_1101;	// r1 = -3
+	register_two = 8'b1111_1101;	// r2 = -3
+									// sum (-3 + -3) = -6
 	
 	/*
 	 * Check the shift left operation
@@ -67,18 +72,22 @@ initial begin
 	function_control = 4'b0111;	// Access special function
 	spec_function = 3'b011;		// result = r1 - 8 = 4
 	
+	#10
+	register_one = 8'b1;		// r1 = 1
+								// result = r1 - 8 = -7
+	
 	/*
 	 * Check the branch on equal operation
 	 */
 	#10;
 	register_one = 8'b11;		// r1 = 3
 	register_two = 8'b11;		// r2 = 3
-	function_control = 4'b1011;	// if (r1 == r2) branch_out = 1
+	function_control = 4'b1100;	// if (r1 == r2) branch_out = 1
 	
 	#10;
 	register_one = 8'b11;		// r1 = 3
 	register_two = 8'b1;		// r2 = 1
-	function_control = 4'b1011;	// if (r1 != r2) branch_out = 0
+	function_control = 4'b1100;	// if (r1 != r2) branch_out = 0
 	
 	/*
 	 * Check the branch on less than operation
@@ -86,12 +95,41 @@ initial begin
 	#10;
 	register_one = 8'b10;		// r1 = 2
 	register_two = 8'b11;		// r2 = 3
-	function_control = 4'b1010;	// if (r1 < r2) branch_out = 1
+	function_control = 4'b1101;	// if (r1 < r2) branch_out = 1
 	
 	#10;
 	register_one = 8'b1_0000;	// r1 = 16
 	register_two = 8'b11;		// r2 = 3
-	function_control = 4'b1010;	// if (r1 > r2) branch_out = 0
+	function_control = 4'b1101;	// if (r1 > r2) branch_out = 0
+	
+	/*
+	 * Check the set to than operation
+	 */
+	#10;
+	function_control = 4'b0101; // result = r2
+	
+	/*
+	 * Check the set from than operation
+	 */
+	#10;
+	function_control = 4'b0110; // result = r1
+	
+	/*
+	 * Check the set low operation
+	 */
+	#10;
+	register_one = 8'b100;		// r1 = 4
+	register_two = 8'b1_0000;	// r2 = 16
+	function_control = 4'b1010; // result = 0001_0100 = 20
+	
+	/*
+	 * Check the set high operation
+	 */
+	#10;
+	register_one = 8'b100;		// r1 = 4
+	register_two = 8'b11;		// r2 = 3
+	function_control = 4'b1011; // result = 0100_0011 = 67
+	
 end
 
 // Clock generator
