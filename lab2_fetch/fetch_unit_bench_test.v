@@ -5,8 +5,7 @@ reg clock;
 reg reset;
 reg branch_ctrl;
 reg [7:0] branch_val;
-
-wire [7:0] instr_addr;
+wire [8:0] instruction_val;
 
 
 // Initialize all variables
@@ -17,10 +16,9 @@ initial begin
 	#10				//PC = 1
 	#10
 	#10
-	#10 reset = 1; //should reset instr_addr
+	#10 reset = 1; //should reset instruction_val
 	#10 reset = 0;
-	#10 branch_ctrl = 1; branch_val = 8'd10; 
-	#10 branch_ctrl = 1; branch_val = 8'd20; 
+	#10 branch_ctrl = 1; branch_val = 8'd3; 
 	#10 branch_ctrl = 0; 
 	#10
 	#10
@@ -43,6 +41,6 @@ fetch_unit	b2v_inst(
 	.reset(reset),
 	.branch_ctrl(branch_ctrl),
 	.branch_val(branch_val),
-	.instr_addr(instr_addr));
+	.instruction_val(instruction_val));
 
 endmodule

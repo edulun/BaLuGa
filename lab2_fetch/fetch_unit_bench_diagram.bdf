@@ -21,9 +21,9 @@ applicable agreement for further details.
 (header "graphic" (version "1.4"))
 (pin
 	(input)
-	(rect 200 232 368 248)
+	(rect 208 112 376 128)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "clock" (rect 5 0 31 12)(font "Arial" ))
+	(text "clock" (rect 5 0 30 12)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -37,9 +37,9 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 200 256 368 272)
+	(rect 208 128 376 144)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "reset" (rect 5 0 30 12)(font "Arial" ))
+	(text "reset" (rect 5 0 29 12)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -53,9 +53,9 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 200 280 368 296)
+	(rect 208 144 376 160)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "branch_ctrl" (rect 5 0 60 12)(font "Arial" ))
+	(text "branch_ctrl" (rect 5 0 59 12)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -69,9 +69,9 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 192 304 368 320)
+	(rect 200 160 376 176)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
-	(text "branch_val[7..0]" (rect 5 0 86 12)(font "Arial" ))
+	(text "branch_val[7..0]" (rect 5 0 85 12)(font "Arial" ))
 	(pt 176 8)
 	(drawing
 		(line (pt 92 12)(pt 117 12))
@@ -85,9 +85,9 @@ applicable agreement for further details.
 )
 (pin
 	(output)
-	(rect 768 224 944 240)
+	(rect 752 112 945 128)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
-	(text "instr_addr[7..0]" (rect 90 0 164 12)(font "Arial" ))
+	(text "instruction_val[8..0]" (rect 90 0 187 12)(font "Arial" ))
 	(pt 0 8)
 	(drawing
 		(line (pt 0 8)(pt 52 8))
@@ -100,7 +100,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 400 208 680 336)
+	(rect 408 88 720 216)
 	(text "fetch_unit" (rect 5 0 54 12)(font "Arial" ))
 	(text "inst" (rect 8 112 25 124)(font "Arial" ))
 	(port
@@ -132,57 +132,35 @@ applicable agreement for further details.
 		(line (pt 0 80)(pt 16 80)(line_width 3))
 	)
 	(port
-		(pt 280 32)
+		(pt 312 32)
 		(output)
-		(text "instr_addr[7..0]" (rect 0 0 74 12)(font "Arial" ))
-		(text "instr_addr[7..0]" (rect 197 27 271 39)(font "Arial" ))
-		(line (pt 280 32)(pt 264 32)(line_width 3))
+		(text "instruction_val[8..0]" (rect 0 0 97 12)(font "Arial" ))
+		(text "instruction_val[8..0]" (rect 209 27 306 39)(font "Arial" ))
+		(line (pt 312 32)(pt 296 32)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 264 112))
+		(rectangle (rect 16 16 296 112))
 	)
 )
 (connector
-	(pt 368 240)
-	(pt 400 240)
+	(pt 376 120)
+	(pt 408 120)
 )
 (connector
-	(pt 368 264)
-	(pt 400 264)
+	(pt 376 136)
+	(pt 408 136)
 )
 (connector
-	(pt 400 264)
-	(pt 400 256)
+	(pt 376 152)
+	(pt 408 152)
 )
 (connector
-	(pt 368 288)
-	(pt 384 288)
-)
-(connector
-	(pt 384 288)
-	(pt 384 272)
-)
-(connector
-	(pt 384 272)
-	(pt 400 272)
-)
-(connector
-	(pt 368 312)
-	(pt 400 312)
+	(pt 376 168)
+	(pt 408 168)
 	(bus)
 )
 (connector
-	(pt 400 288)
-	(pt 400 312)
-	(bus)
-)
-(connector
-	(pt 680 240)
-	(pt 768 240)
-	(bus)
-)
-(connector
-	(pt 768 240)
-	(pt 768 232)
+	(pt 752 120)
+	(pt 720 120)
 	(bus)
 )

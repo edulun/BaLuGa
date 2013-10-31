@@ -12,16 +12,16 @@
 // Altera or its authorized distributors.  Please refer to the 
 // applicable agreement for further details.
 
-// PROGRAM		"Quartus II 32-bit"
+// PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 12.0 Build 178 05/31/2012 SJ Full Version"
-// CREATED		"Thu Oct 31 13:13:05 2013"
+// CREATED		"Thu Oct 31 13:46:21 2013"
 
 module fetch_unit_bench_diagram(
 	clock,
 	reset,
 	branch_ctrl,
 	branch_val,
-	instr_addr
+	instruction_val
 );
 
 
@@ -29,7 +29,7 @@ input wire	clock;
 input wire	reset;
 input wire	branch_ctrl;
 input wire	[7:0] branch_val;
-output wire	[7:0] instr_addr;
+output wire	[8:0] instruction_val;
 
 
 
@@ -41,7 +41,7 @@ fetch_unit	b2v_inst(
 	.reset(reset),
 	.branch_ctrl(branch_ctrl),
 	.branch_val(branch_val),
-	.instr_addr(instr_addr));
+	.instruction_val(instruction_val));
 
 
 endmodule
