@@ -19,34 +19,24 @@ initial begin
 	write_ctrl = 0;
 	swap_ctrl = 0;
 	
-	/*INITIAL VALUES OF REGISTERS 
-	** zero 	= 0
-	** imm 	= 1
-	** t1 	= 2
-	**	t2		= 3
-	**	s1		= 4
-	**	s2		= 5
-	**	s3		= 6
-	**	br		= 7	
-	*/
-	
+	// 10 PS
+	// Write values to regs
+	// No output to read_regs
 	#10 write_val = 8'd1; write_reg = 3'd1;  write_ctrl = 1; // imm = 1
-	#10 write_val = 8'd2; write_reg = 3'd2;  write_ctrl = 1;	// t1 = 2
-	#10 write_val = 8'd3; write_reg = 3'd3;  write_ctrl = 1;	// t2 = 3
+	#10 write_val = 8'd2; write_reg = 3'd2;  write_ctrl = 1; // t1 = 2
+	#10 write_val = 8'd3; write_reg = 3'd3;  write_ctrl = 1; // t2 = 3
 	#10 write_val = 8'd4; write_reg = 3'd4;  write_ctrl = 1; // s1 = 4
 	#10 write_val = 8'd5; write_reg = 3'd5;  write_ctrl = 1; // s2 = 5
 	#10 write_val = 8'd6; write_reg = 3'd6;  write_ctrl = 1; // s3 = 6
 	#10 write_val = 8'd7; write_reg = 3'd7;  write_ctrl = 1; // branch = 7
 	
-	#10 write_ctrl = 0;
-	
+	// 80 PS
 	// Read values from regs
-	
-	#10 read_reg1 = 2'd0;	read_reg2 = 3'd4;  write_ctrl = 0; //zero && s1
-	#10 read_reg1 = 2'd1;	read_reg2 = 3'd5;  write_ctrl = 0; //imm && s2
+	#10 read_reg1 = 2'd0;	read_reg2 = 3'd4;  write_ctrl = 0; //read_val1 = 0[zero], read_val1 = 4[s1]
+	#10 read_reg1 = 2'd1;	read_reg2 = 3'd5;  write_ctrl = 0; //read_val1 = 1[imm], :w
 	#10 read_reg1 = 2'd2;	read_reg2 = 3'd6;  write_ctrl = 0; //t1 && s3
 	#10 read_reg1 = 2'd3;	read_reg2 = 3'd7;  write_ctrl = 0; //t2 && br
-	#10 swap_ctrl = 1; 		read_reg1 = 2'd1; 	read_reg2 = 3'd4;	  //swap imm <> s1
+	#10 swap_ctrl = 1; 	read_reg1 = 2'd1;  read_reg2 = 3'd4;	  //swap imm <> s1
 	
 	#10 swap_ctrl = 0;
 	
@@ -68,8 +58,10 @@ register_file	b2v_inst(
 	.read_reg2(read_reg2),
 	.write_reg(write_reg),
 	.write_val(write_val),
-	.read_val1(read_val1),
-	.read_val2(read_val2));
+	.reg_val1(reg_val1),
+	.reg_val2(reg_val2));
+
+
 
 
 endmodule
