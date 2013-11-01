@@ -11,17 +11,48 @@ wire [8:0] instruction_val;
 // Initialize all variables
 initial begin
 
-	clock = 1; 		// initial value of clock
+	clock = 1; 		
 	
-	#10				//PC = 1
+    /* 
+    * Go through first 10 instructions
+    * Instruction val  = pc - 1
+    */
 	#10
 	#10
-	#10 reset = 1; //should reset instruction_val
-	#10 reset = 0;
-	#10 branch_ctrl = 1; branch_val = 8'd3; 
-	#10 branch_ctrl = 0; 
 	#10
 	#10
+	#10
+	#10
+	#10
+	#10
+	#10
+	#10
+
+    //100 Ps
+    //Instruction val =  200
+    reset = 1; 
+
+    //Instruction val = 0
+	#10 
+    reset = 0;
+
+    //Testing out branch
+    //Instruction =  40  (memory slot 21)
+	#10 
+    branch_ctrl = 1; 
+    branch_val = 8'd20; 
+
+    //Instruction = 38 (memory slot 22)
+	#10 
+    branch_ctrl = 0; 
+
+    //Instruction = 31 (memory slot 12)
+    #10
+    branch_ctrl = 1;
+    branch_val = -8'd10;
+
+
+    // Instruction val = 0
 	#10 reset = 1;
 	#10 reset = 0;
 	
