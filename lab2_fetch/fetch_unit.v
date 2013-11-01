@@ -4,6 +4,8 @@ module fetch_unit(
 	input reset,
 	input branch_ctrl,
 	input [7:0] branch_val,  // value stored in the $branch register
+	input jump_ctrl,
+	input [7:0] jump_val,
 	output reg [8:0] instruction_val
 );
 
@@ -53,6 +55,7 @@ begin
 	
 	//IF branch flag is set, set pc = addBranch
 	else if(branch_ctrl == 1) pc = pc + branch_val;
+	else if(jump_ctrl == 1) pc = jump_val;
 	else pc <= pc + 1'b1;
 end
 	

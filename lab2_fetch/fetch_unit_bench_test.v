@@ -4,6 +4,8 @@ module fetch_unit_bench_test();
 reg clock;
 reg reset;
 reg branch_ctrl;
+reg jump_ctrl;
+reg [7:0] jump_val;
 reg [7:0] branch_val;
 wire [8:0] instruction_val;
 
@@ -53,8 +55,15 @@ initial begin
 
 
     // Instruction val = 0
-	#10 reset = 1;
-	#10 reset = 0;
+	#10 reset = 1; branch_ctrl = 0;
+	
+	// Testing jump
+	// Instruction  == 10
+	#10 
+	reset = 0; 
+	jump_val = 8'd10;
+	jump_ctrl = 1;
+	
 	
 	
 end
@@ -67,11 +76,14 @@ end
 
 
 
+
 fetch_unit	b2v_inst(
 	.clock(clock),
 	.reset(reset),
 	.branch_ctrl(branch_ctrl),
+	.jump_ctrl(jump_ctrl),
 	.branch_val(branch_val),
+	.jump_val(jump_val),
 	.instruction_val(instruction_val));
 
 endmodule
