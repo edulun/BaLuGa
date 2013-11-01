@@ -103,16 +103,16 @@ initial begin
 	function_control = 4'b1101;	// if (r1 > r2) branch_out = 0
 	
 	/*
-	 * Check the set to than operation
+	 * Check the set to operation
 	 */
 	#10;
-	function_control = 4'b0101; // result = r2
+	function_control = 4'b0101; // result = r2 = 3
 	
 	/*
-	 * Check the set from than operation
+	 * Check the set from operation
 	 */
 	#10;
-	function_control = 4'b0110; // result = r1
+	function_control = 4'b0110; // result = r1 = 16
 	
 	/*
 	 * Check the set low operation
