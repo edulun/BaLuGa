@@ -14,6 +14,13 @@ reg [7:0] zero, imm, t1, t2, s1, s2, s3, branch;
 
 initial begin
 	zero = 0;
+    imm = 0;
+    t1 = 0;
+    t2 = 0;
+    s1 = 0;
+    s2 = 0;
+    s3 = 0;
+    branch = 0;
 	read_val1 = 0;
 	read_val2 = 0;
 end

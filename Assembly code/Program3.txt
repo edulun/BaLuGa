@@ -1,0 +1,63 @@
+
+
+
+19.(a)
+# REGISTERS:
+# $imm - value in [$imm]
+# $s1 - current address in increment,
+# $s2 - starting address for array where entries are stored
+# $t1 - used for obtaining the number of times  $t1 has been found
+# $12 - holds the last position in the array
+MainProgram3:
+slw	 	0, 0			# Program starts at pos 128	
+shg  		0, 8			# $imm = 128	
+stf   	$imm, $s1		# $s1 =$imm
+	shg 		0, 12			# Array starts at 196
+	stf		$imm, $s2		# $t2 = 192 (Array)
+	shg 		1, -7			# go to Increment
+	slw 		1, -7 		# go to Increment
+Increment:
+	ld 		$imm, $s1		# $imm = Mem[$s1]
+	stf		$t1, $s2		# $t1 = $s2
+	add 		$t1, $imm		# $t1 += $imm			
+	ld  		$t2, $t1		# $t2 = Mem[$t1]
+	inc 		$t2			# $t2++
+	st  		$t2, $t1		#  Mem[$t1] = $t2	
+	inc 		$s1			# $s1++
+	bl 		$s1, $s2		# Start counting if we reach end of array
+
+	slw   	0, 15			
+	shg		0, 3			# $imm = 63
+	stf   	$imm, $s3		# $s3 = 63
+	stf   	$zero ,$s2		# $s2 = 0
+	stt  		$t1, $zero		# $t1 = 0
+	stt  		$t2, $zero		# $t2 = 0
+
+Count:
+	slw   	1, End		# $branch = End
+	shg    	1, End		# $branch = End
+swp		$imm, $s3		# $imm <-> $s3
+blt		$imm, $s2		# b if ($s2 > 63)
+swp		$imm, $s3		# $imm <->
+ld  		$imm, $s1		# $imm = Mem[s1]
+slw 		1, 3			# go to continue
+shg		1, 0			
+bl 		$imm, $t2		# go To end
+stt 		$t2, $s2		# $t2 = $s2
+set 		$t1, $imm		# $t1 = $imm
+
+Continue:
+inc		$s2			#increment value
+inc 		$s1			#increment memory position
+slw		$imm, ___		# set to count
+shg		$imm, ___		#set to count
+	jmp 		Count
+
+end:
+	slw 		$imm,	14		# $imm = 126
+	shg		$imm, 7		# $imm = 126
+	st 		$imm, $s1		# Mem[126] = highest value
+	inc		$imm			# $imm = 127
+	st 		$imm, $s2		# Mem[127] = value count
+
+

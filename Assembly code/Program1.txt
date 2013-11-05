@@ -1,0 +1,76 @@
+# Registers:
+# 2 bit:
+#	$imm -  temp variable
+#	$t1 low - stores the low bits
+#	$t2 high - stores the high bits
+# 3 bit:
+#	$s1 counter - helps keep track how many additions have been done
+#	$s2 op1 - first operand
+#	$s3 op2 - second operand
+#	$bran
+
+
+Start:
+slw		1, 1				# $branch = 1
+ld  	$imm, $bran		    # $imm = operand 1 (M[1])
+stf		$imm, $s2           # $s2 = operand 1
+inc     $bran				# $branch = 2
+ld  	$imm, $bran			# $imm = operand 2 (M[2])
+stf		$imm,  $s3			# $s3 = operand 2
+
+
+/*
+ * Determines if the next bit in operand 1 is a 1 or a 0.
+ * If it is a 1, operand 2 needs to be added to the temporary result
+ * Else, move to the next bit in operand 1 
+ * /
+
+MainLoop:
+
+stt   	$imm, $s2			# $imm = $s2  (Operand 1)
+slw		1, 5				# Set $branch = Continue
+shg		1, 0				# Set $branch = Continue
+aon 	$imm	   			# $imm = $imm[0] & 0x1
+be      $imm, $zero			# If ($imm == 0) branch to Continue
+
+
+/*
+ * Add operand 2 to the lower 8 bits of the result (by shifting left before
+ * adding), and to the higher 8 bits (by shifting right)
+ * /
+
+stf   	$imm, $s3			# $imm = $s3 (Operand 2)
+sll		$imm, $s1 			# Shift left by $s3(Counter) number of bits
+add     $t1, $imm			# $t1 (Low result bits) += $imm
+stt   	$imm, $s1			# $imm = $s1 (Counter)
+seg     $imm				# $imm = 8 - $imm (Counter)
+sw	   	$imm, $bran			# $imm <-> $branch
+stt   	$imm, $s3			# $imm  =  $s3 (Second Operand)
+slr     $imm, $bran			# Shift right by (8-Counter) number of bits
+add     $t2, $imm			# $t2 (High result bits) += $imm
+
+/*
+ * Add 1 to the counter of additions, and check if it's been done 8 times.
+ * Return to the mainloop if it hasn't.
+ */
+
+Continue:
+slw 	0, 1		        # $imm = 0 
+shg		0, 0			    
+
+slr    	$s2, $imm			# shift operand 1 right once
+inc		$s1	 			    # counter +=1
+
+slw	 	0, 8				# $imm = 8
+
+slw 	1, 0xA 			    # $branch = MainLoop (-21)
+shg 	1, 0xE			    # $branch = MainLoop (-21)
+bl  	$s1, $imm			# branch to MainLoop if counter < 8
+
+End:
+
+slw 	0, 3		
+shg 	0, 0				# $Imm = 3
+st 		$t1, $imm 			# Mem[3] = $t1 
+inc 	$imm				# $imm = 4
+st 		$t1, $imm 			# Mem[4] = $t2
