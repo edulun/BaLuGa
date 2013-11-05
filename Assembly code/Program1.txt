@@ -28,8 +28,8 @@ stf		$imm,  $s3			# $s3 = operand 2
 MainLoop:
 
 stt   	$imm, $s2			# $imm = $s2  (Operand 1)
-slw		1, 5				# Set $branch = Continue
-shg		1, 0				# Set $branch = Continue
+slw		1, 0x9				# Set $branch = Continue (+9)
+shg		1, 0x0				# Set $branch = Continue (+9)
 aon 	$imm	   			# $imm = $imm[0] & 0x1
 be      $imm, $zero			# If ($imm == 0) branch to Continue
 
