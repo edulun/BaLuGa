@@ -67,10 +67,13 @@ slw 	1, 0xA 			    # $branch = MainLoop (-21)
 shg 	1, 0xE			    # $branch = MainLoop (-21)
 bl  	$s1, $imm			# branch to MainLoop if counter < 8
 
+
+/* Save into memory 3 and 4 */
+
 End:
 
 slw 	0, 3		
-shg 	0, 0				# $Imm = 3
+shg 	0, 0				# $Imm = 0x3
 st 		$t1, $imm 			# Mem[3] = $t1 
 inc 	$imm				# $imm = 4
 st 		$t1, $imm 			# Mem[4] = $t2

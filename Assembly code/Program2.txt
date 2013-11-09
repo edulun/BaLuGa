@@ -1,66 +1,42 @@
-18 (a)
 # Registers:
 # 2 Bit:
-#	$imm	
-#	$t1	successful entries in memory
-#	$t2	current memory value
+#	$imm current	
+#	$t1	 number of succesful entries
+#	$t2	 current memory value
 # 3 Bit:
-#	$s1	current memory position
-#	$s2	how many 1’s have been found in a row in the current entry
+#	$s1	last memory position
+#	$s2	jump address
 #	$s3	counts the number of bits checked in the current entry
 
+#   need to add poker instruction
+
 Start:
-slw 		0, 0   		# start at position 32
-	shg 		0, 2 			# start at position 32
-	stt 		$imm, $s1		# $s1 = $imm
-MoveToNextEntry:
-	ld 		$t2, $s1		# $t2 = Mem[$s1]
-	stt 		$s2, $zero		# clear 1’s in a row
-stt 		$s3, $zero		# clear number of bits checked
-CheckBit:
-	inc 		$s3, 1		# increment number of bits checked
-	slw    	1, 3			# Set to 1wasfound
-	shg    	1, 1			# Set to 1wasfound
-	slw    	0, 9			# $imm = 9		
-	shg		0, 0			# $imm = 9
-	be		$imm, $s3		# reset if $s3 == 9
-stt 		$imm, $t2		# $imm = $t2
-	aon 		$imm			# check if bit 0 is 1
-slw 		1, 6			# $branch = 1 was found
-	shg	  	1, 0			# $branch = 1 was found
-	be		$zero, $imm		# if bit is 0, go to 1wasFound
-0wasFound:
-	stt 		$zero, $s2		#  clear consecutive 1s
-slw 		$imm, 1		#  $
-	slr  		$t2, $imm		#  Shift current value
-	slw   	1, ___		# go to next bit
-	shg    	1, ___		# go to next bit
-jmp		$bran			# jump always to CheckBit
+	shg 		0, 0x2 			# start at position 32
+	stt 		$imm, $s1		# $s1 = initial memory pos
 
-1wasFound:
-inc 		$s2,  1		# 1’s counter++
-slw 		1, ____		# go to CheckBit
-shg 		1, ____		# go to CheckBit
-slw 		$imm, 1		#  $imm = 1
-shg 		$imm, 0		#  $imm = 1
-	slr  		$t2, $imm		#  Shift current value
-	slw   	$imm, 4
-blt 		$imm, $s2		# go to Checkbit
-	inc 		$t1			# Adds entry to successful entry	
-Reset:
-	stt 		$zero, $s3		# Clear bits checked
-	inc 		$s1			# Increment memory address
-	slw 		0, 2			# $imm = 96
-	shg 		0, 6 			# 96, the last entry in memory
-	slw 		1, ____		# goto loop
-	shg 		1, ____		# goto loop
-bl 		$imm, $s1
+    shg         0, 0x0
+    slw         0, 0x6          # jump address = CheckEntry
+    stt         $imm, $s2       # $s2 = jump address
 
-End:
-stf	 	$zero, $imm
-slw 		0, 5 			# position 5 in memory
-	st 		$t1, $imm		# mem[5] = number of successful entries
+    slw         1, 0x2          # branch = +2 (skip next instruction) 
 
-(b)
-2051 is the instruction count
+CheckEntry:
 
+	ld 		    $imm, $t2	    # load next entry to $imm
+    pkr         $imm, $imm      # check entry with pkr instrc
+    beq         $imm, $zero     # skip inc if not a succesful entry
+    inc         $t1             # succesful entry
+
+CheckAndMoveToNext:
+
+    stf         $imm, $s2       # set imm = jump address
+    inc         $t2             # increment memory number
+    blt         $t2, $s1
+    jmp         $imm 
+
+End: 
+    stl         1, 0x_          # set imm = memory where the count of
+    sth         1, 0x_          # succesful entries will be stored. 
+
+    st          $t2, $branch     
+    halt 
