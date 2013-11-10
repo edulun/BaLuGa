@@ -50,7 +50,7 @@ always @(posedge clock) begin
     case(opcode) 
         //ADD 
        `add_op: begin
-            reg_write <= instruction[4:3];
+            reg_write_val <= instruction[4:3];
             alu_src <=   0;
             mem_write <= 0;
             mem_read <=  0;
@@ -62,7 +62,7 @@ always @(posedge clock) begin
         end
         //SHIFT RIGHT
         `slr_op: begin
-            reg_write <= instruction[4:3];
+            reg_write_val <= instruction[4:3];
             alu_src <=   0;
             mem_write <= 0;
             mem_read <=  0;
@@ -74,7 +74,7 @@ always @(posedge clock) begin
         end
         //SET TO
         `stt_op: begin
-            reg_write <= instruction[2:0];
+            reg_write_val <= instruction[2:0];
             alu_src <=   0;
             mem_write <= 0;
             mem_read <=  0;
@@ -86,7 +86,7 @@ always @(posedge clock) begin
         end
         //SET FROM 
         `stf_op: begin
-            reg_write <= instruction[4:3];
+            reg_write_val <= instruction[4:3];
             alu_src <=   0;
             mem_write <= 0;
             mem_read <=  0;
@@ -101,8 +101,8 @@ always @(posedge clock) begin
             case(spec_instr)
                 //INCREMENT
                 `inc_op: begin
-                    reg_write[2] <= 0;
-                    reg_write[1:0] <= instruction[2:0];
+                    reg_write_val[2] <= 0;
+                    reg_write_val[1:0] <= instruction[2:0];
                     alu_src <= 1'bx;
                     mem_write <= 0;
                     mem_read <=  0;
@@ -114,8 +114,8 @@ always @(posedge clock) begin
                 end
                 //AND ONE
                 `aon_op: begin
-                    reg_write[2] <= 0;
-                    reg_write[1:0] <= instruction[2:0];
+                    reg_write_val[2] <= 0;
+                    reg_write_val[1:0] <= instruction[2:0];
                     alu_src <= 1'bx;
                     mem_write <= 0;
                     mem_read <=  0;
@@ -127,8 +127,8 @@ always @(posedge clock) begin
                 end        
                 //SUBTRACT EIGHT
                 `seg_op: begin
-                    reg_write[2] <= 0;
-                    reg_write[1:0] <= instruction[2:0];
+                    reg_write_val[2] <= 0;
+                    reg_write_val[1:0] <= instruction[2:0];
                     alu_src <= 1'bx;
                     mem_write <= 0;
                     mem_read <=  0;
@@ -140,8 +140,8 @@ always @(posedge clock) begin
                 end
                 //POKER
                 `pkr_op: begin
-                    reg_write[2] <= 0;
-                    reg_write[1:0] <= instruction[2:0];
+                    reg_write_val[2] <= 0;
+                    reg_write_val[1:0] <= instruction[2:0];
                     alu_src <= 1'bx;
                     mem_write <= 0;
                     mem_read <=  0;
@@ -153,7 +153,7 @@ always @(posedge clock) begin
                 end
                 //HALT
                 `hlt_op: begin
-                    reg_write <= 3'bxxx;
+                    reg_write_val <= 3'bxxx;
                     alu_src <= 1'bx;
                     mem_write <= 1'bx;
                     mem_read <=  1'bx;
@@ -167,7 +167,7 @@ always @(posedge clock) begin
         end
         //SET LOW
         `stl_op: begin
-            reg_write <= instruction[5] == 0 ? 3'b001: 3'b111;
+            reg_write_val <= instruction[5] == 0 ? 3'b001: 3'b111;
             alu_src <= 1'b1;
             mem_write <= 0;
             mem_read <=  0;
@@ -179,7 +179,7 @@ always @(posedge clock) begin
         end
         //SET HIGH
         `sth_op: begin
-            reg_write <= instruction[5] == 0 ? 3'b001: 3'b111;
+            reg_write_val <= instruction[5] == 0 ? 3'b001: 3'b111;
             alu_src <= 1'b1;
             mem_write <= 0;
             mem_read <=  0;
@@ -191,7 +191,7 @@ always @(posedge clock) begin
         end
         //BRANCH EQUAL
         `beq_op: begin
-            reg_write <= 3'bxxx;
+            reg_write_val <= 3'bxxx;
             alu_src <= 1'b0;
             mem_write <= 0;
             mem_read <=  0;
@@ -203,7 +203,7 @@ always @(posedge clock) begin
         end
         //BRANCH LESS THAN
         `blt_op: begin
-            reg_write <= 3'bxxx;
+            reg_write_val <= 3'bxxx;
             alu_src <= 1'b0;
             mem_write <= 0;
             mem_read <=  0;
@@ -215,7 +215,7 @@ always @(posedge clock) begin
         end
         //LOAD
         `ld_op: begin
-            reg_write <= instruction[4:3];
+            reg_write_val <= instruction[4:3];
             alu_src <= 1'bx;
             mem_write <= 0;
             mem_read <=  1;
@@ -227,7 +227,7 @@ always @(posedge clock) begin
         end
         //STORE
         `st_op: begin
-            reg_write <= 3'bxxx;
+            reg_write_val <= 3'bxxx;
             alu_src <= 1'bx;
             mem_write <= 0;
             mem_read <=  1;
@@ -239,7 +239,7 @@ always @(posedge clock) begin
         end
         //SWAP
         `swp_op: begin
-            reg_write <= 3'bxxx;
+            reg_write_val <= 3'bxxx;
             alu_src <= 1'bx;
             mem_write <= 0;
             mem_read <=  0;
@@ -251,7 +251,7 @@ always @(posedge clock) begin
         end
         //JUMP
         `jmp_op: begin
-            reg_write <= 3'bxxx;
+            reg_write_val <= 3'bxxx;
             alu_src <= 1'bx;
             mem_write <= 0;
             mem_read <= 0;
