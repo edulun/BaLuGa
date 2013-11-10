@@ -23,20 +23,31 @@
 
 module control_unit (
 	input clock,
-    input [3:0] instruction,
-    input [2:0] spec_instr,
+    input [8:0] instruction,
+    //input [2:0] spec_instr,
+    output reg [6:0] alu_ctrl,
+    output reg [2:0] reg_write_val,
+    output reg alu_src,
+    output reg mem_write, 
+    output reg mem_read, 
+    output reg branch, 
+    output reg reg_write,
+    output reg swap_ctrl, 
+    output reg done_ctrl, 
+    output reg jmp_ctrl
 );
-
-output reg mem_write, mem_read, branch, reg_write;
-output reg swap_ctrl, done_ctrl, jump_ctrl;
 
 initial begin
 end
 
-always @(posedge clock) begin
-    opcode = instruction [8:5];
+reg [3:0] opcode;
+reg [2:0] spec_instr;
 
-    case(instruction) 
+always @(posedge clock) begin
+    opcode = instruction[8:5];
+    spec_instr = instruction[2:0];
+
+    case(opcode) 
         //ADD 
        `add_op: begin
             alu_src <=   0;
@@ -131,18 +142,18 @@ always @(posedge clock) begin
                 //HALT
                 `hlt_op: begin
                     alu_src <= 1'bx;
-                    mem_write <= x;
-                    mem_read <=  x;
-                    branch <=    x;
-                    reg_write <= x;
-                    swap_ctrl <= x;
+                    mem_write <= 1'bx;
+                    mem_read <=  1'bx;
+                    branch <=    1'bx;
+                    reg_write <= 1'bx;
+                    swap_ctrl <= 1'bx;
                     done_ctrl <= 1;
                     jmp_ctrl <= 0;
                 end
             endcase
         end
         //SET LOW
-        `slw_op: begin
+        `stl_op: begin
             alu_src <= 1'b1;
             mem_write <= 0;
             mem_read <=  0;
@@ -153,7 +164,7 @@ always @(posedge clock) begin
             jmp_ctrl <= 0;
         end
         //SET HIGH
-        `shg_op: begin
+        `sth_op: begin
             alu_src <= 1'b1;
             mem_write <= 0;
             mem_read <=  0;
