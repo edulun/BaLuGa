@@ -15,6 +15,8 @@
  `define inc_op 	3'b000		// increment
  `define and1_op 	3'b001		// and with 1
  `define sub8_op 	3'b011		// subtract 8
+ `define pkr_op 	3'b111		// poker
+
 
 module alu (
 	input clock,
@@ -29,7 +31,7 @@ module alu (
 //reg [7:0] result;
 //reg [7:0] res_out = res;
 //reg branch_out = br_out;
-
+   
 initial begin
 	br_out = 0;
 	res = 0;
@@ -61,6 +63,14 @@ begin
 				`inc_op:	res <= reg1 + 8'b1;
 				`and1_op: res <= reg1 & 8'b1;
 				`sub8_op: res <= reg1 - 8'b1000;	
+                `pkr_op: begin
+                    res[7:5] <= 3'b000;
+                    res[4] <= reg1[7:4] == 4'b1111;
+                    res[3] <= reg1[6:3] == 4'b1111;
+                    res[2] <= reg1[5:2] == 4'b1111;
+                    res[1] <= reg1[4:1] == 4'b1111;
+                    res[0] <= reg1[3:0] == 4'b1111;
+                end
 			endcase
 		end
 		`slw_op: begin
