@@ -25,12 +25,6 @@ module control_unit (
 	input clock,
     input [3:0] instruction,
     input [2:0] spec_instr,
-<<<<<<< HEAD
-    output reg [3:0] alu_func,
-    output reg [2:0] alu_spec_func,
-    output alu_src, mem_write, mem_read, branch, reg_write, swap_ctrl, done_ctrl
-=======
->>>>>>> 2017b1add2dcb0f42124aac42d50fb14273a1d84
 );
 
 output reg mem_write, mem_read, branch, reg_write;
@@ -40,21 +34,8 @@ initial begin
 end
 
 always @(posedge clock) begin
-<<<<<<< HEAD
     opcode = instruction [8:5];
 
-    case(opcode)
-        `add_op: begin
-            alu_func = 4'b0000;
-            alu_spec_func = 3'bxxx;
-            alu_src =   0;
-            mem_write = 0;
-            mem_read =  0;
-            branch =    0;
-            reg_write = 1;
-            swap_ctrl = 0;
-            done_ctrl = 0;
-=======
     case(instruction) 
         //ADD 
        `add_op: begin
@@ -66,7 +47,6 @@ always @(posedge clock) begin
             swap_ctrl <= 0;
             done_ctrl <= 0;
             jmp_ctrl <= 0;
->>>>>>> 2017b1add2dcb0f42124aac42d50fb14273a1d84
         end
         //SHIFT RIGHT
         `slr_op: begin
