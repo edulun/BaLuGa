@@ -20,7 +20,7 @@ module control_unit (
     input [2:0] spec_instr,
     output reg [3:0] alu_func,
     output reg [2:0] alu_spec_func,
-    output alu_src, mem_write, mem_read, branch, reg_write, swap_ctrl, done_ctrl;
+    output alu_src, mem_write, mem_read, branch, reg_write, swap_ctrl, done_ctrl
 );
 
 
@@ -30,7 +30,7 @@ end
 always @(posedge clock) begin
     opcode = instruction [8:5];
 
-    case(opcode) begin
+    case(opcode)
         `add_op: begin
             alu_func = 4'b0000;
             alu_spec_func = 3'bxxx;
