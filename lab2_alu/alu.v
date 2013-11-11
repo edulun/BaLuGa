@@ -15,7 +15,7 @@
  `define inc_op 	3'b000		// increment
  `define and1_op 	3'b001		// and with 1
  `define sub8_op 	3'b011		// subtract 8
- `define pkr_op 	3'b111		// poker
+ `define pkr_op 	3'b100		// poker
 
 
 module alu (
@@ -81,6 +81,9 @@ begin
 			res[7:4] <= reg1[3:0];
 			res[3:0] <= reg2[3:0];
 		end
+        default: begin
+            res <= 8'bxxxxxxxx;
+        end
 	endcase
 end
 

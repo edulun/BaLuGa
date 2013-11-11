@@ -1,0 +1,23 @@
+# Current time Sun Nov 10 16:36:26 2013
+# ModelSim Stack Trace
+# Program = vish
+# Id = "6.4a"
+# Version = "2008.08"
+# Date = "Oct 22 2008"
+# Platform = win32pe
+
+Exception c0000005 has occurred at address 0047e750. Traceback:
+# 0    0x0047e750: 'Mtirpc_Init + 0x1c300'
+# 1    0x00446600: '<unknown (@0x446600)>'
+# 2    0x100583ea: 'TclServiceIdle + 0x4a'
+# 3    0x1004b834: 'Tcl_DoOneEvent + 0x124'
+# 4    0x10262446: 'Tk_MainLoop + 0x16'
+# 5    0x00471c94: 'Mtirpc_Init + 0xf844'
+# 6    0x00472d3f: 'Mtirpc_Init + 0x108ef'
+# 7    0x0065d843: 'Ucdb_Init + 0x1115b3'
+# 8    0x76f1336a: 'BaseThreadInitThunk + 0x12'
+# 9    0x774e9f72: 'RtlInitializeExceptionChain + 0x63'
+# 10   0x774e9f45: 'RtlInitializeExceptionChain + 0x36'
+StackWalk failed 0
+# End of Stack Trace
+
