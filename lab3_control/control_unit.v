@@ -1,31 +1,32 @@
- `define add_op 	4'b0000	
- `define ld_op 	    4'b0001	
- `define st_op 	    4'b0010	
- `define sll_op 	4'b0011	
- `define slr_op 	4'b0100	
- `define stt_op 	4'b0101	
- `define stf_op 	4'b0110	
- `define spec_op 	4'b0100	
- `define swp_op 	4'b1001	
- `define stl_op 	4'b1010	
- `define sth_op 	4'b1001	
- `define beq_op 	4'b1100	
- `define blt_op 	4'b1101	
- `define jmp_op 	4'b1110	
- `define unk_op 	4'b1111	
+ `define add_op 	4'b0000		// add
+ `define ld_op 	    4'b0001		// load
+ `define st_op 	    4'b0010		// store
+ `define sl_op 		4'b0011		// shift left
+ `define sr_op 		4'b0100		// shift right
+ `define stt_op 	4'b0101		// set to	
+ `define stf_op 	4'b0110		// set from
+ `define spec_op 	4'b0111		// special operation
+ `define swp_op 	4'b1001		// swap
+ `define stl_op 	4'b1010		// set low	
+ `define sth_op 	4'b1011		// set high	
+ `define beq_op 	4'b1100		// branch on equal
+ `define blt_op 	4'b1101		// branch on less than	
+ `define jmp_op 	4'b1110		// jump
+ //`define unk_op 	4'b1111	
 
- `define inc_op 	3'b000	
- `define aon_op 	3'b001	
- `define seg_op 	3'b011	
- `define hlt_op 	3'b100	
- `define pkr_op 	3'b111	
+ // Special operations
+ `define inc_op 	3'b000		// increment
+ `define aon_op 	3'b001		// and with one
+ `define hlt_op 	3'b010		// halt
+ `define seg_op 	3'b011		// subtract 8
+ `define pkr_op 	3'b100		// poker	
 
 
 module control_unit (
 	input clock,
     input [8:0] instruction,
-    //input [2:0] spec_instr,
-    output reg [6:0] alu_ctrl,
+    output reg [3:0] alu_func,
+    output reg [2:0] alu_spec_func,
     output reg [2:0] reg_write_val,
     output reg alu_src,
     output reg mem_write, 
@@ -50,7 +51,23 @@ always @(posedge clock) begin
     case(opcode) 
         //ADD 
        `add_op: begin
-            reg_write <= instruction[4:3];
+            reg_write_val <= instruction[4:3];
+            alu_func <= 4'b0000;
+            alu_spec_func <= 3'bxxx;
+            alu_src <=   0;
+            mem_write <= 0;
+            mem_read <=  0;
+            branch <=    0;
+            reg_write <= 1;
+            swap_ctrl <= 0;
+            done_ctrl <= 0;
+            jmp_ctrl <= 0;
+        end
+        //SHIFT LEFT
+        `sl_op: begin
+            reg_write_val <= instruction[4:3];
+            alu_func <= 4'b0011;
+            alu_spec_func <= 3'bxxx;
             alu_src <=   0;
             mem_write <= 0;
             mem_read <=  0;
@@ -61,8 +78,10 @@ always @(posedge clock) begin
             jmp_ctrl <= 0;
         end
         //SHIFT RIGHT
-        `slr_op: begin
-            reg_write <= instruction[4:3];
+        `sr_op: begin
+            reg_write_val <= instruction[4:3];
+            alu_func <= 4'b0100;
+            alu_spec_func <= 3'bxxx;
             alu_src <=   0;
             mem_write <= 0;
             mem_read <=  0;
@@ -74,7 +93,9 @@ always @(posedge clock) begin
         end
         //SET TO
         `stt_op: begin
-            reg_write <= instruction[2:0];
+            reg_write_val <= instruction[4:3];
+            alu_func <= 4'b0101;
+            alu_spec_func <= 3'bxxx;
             alu_src <=   0;
             mem_write <= 0;
             mem_read <=  0;
@@ -86,7 +107,9 @@ always @(posedge clock) begin
         end
         //SET FROM 
         `stf_op: begin
-            reg_write <= instruction[4:3];
+            reg_write_val <= instruction[2:0];
+            alu_func <= 4'b0110;
+            alu_spec_func <= 3'bxxx;
             alu_src <=   0;
             mem_write <= 0;
             mem_read <=  0;
@@ -101,8 +124,10 @@ always @(posedge clock) begin
             case(spec_instr)
                 //INCREMENT
                 `inc_op: begin
-                    reg_write[2] <= 0;
-                    reg_write[1:0] <= instruction[2:0];
+                    reg_write_val[2] <= 0;
+                    reg_write_val[1:0] <= instruction[4:3];
+                    alu_func <= 4'b0111;
+					alu_spec_func <= 3'b000;
                     alu_src <= 1'bx;
                     mem_write <= 0;
                     mem_read <=  0;
@@ -114,8 +139,10 @@ always @(posedge clock) begin
                 end
                 //AND ONE
                 `aon_op: begin
-                    reg_write[2] <= 0;
-                    reg_write[1:0] <= instruction[2:0];
+                    reg_write_val[2] <= 0;
+                    reg_write_val[1:0] <= instruction[4:3];
+                    alu_func <= 4'b0111;
+					alu_spec_func <= 3'b001;
                     alu_src <= 1'bx;
                     mem_write <= 0;
                     mem_read <=  0;
@@ -127,8 +154,10 @@ always @(posedge clock) begin
                 end        
                 //SUBTRACT EIGHT
                 `seg_op: begin
-                    reg_write[2] <= 0;
-                    reg_write[1:0] <= instruction[2:0];
+                    reg_write_val[2] <= 0;
+                    reg_write_val[1:0] <= instruction[4:3];
+                    alu_func <= 4'b0111;
+					alu_spec_func <= 3'b011;
                     alu_src <= 1'bx;
                     mem_write <= 0;
                     mem_read <=  0;
@@ -140,8 +169,10 @@ always @(posedge clock) begin
                 end
                 //POKER
                 `pkr_op: begin
-                    reg_write[2] <= 0;
-                    reg_write[1:0] <= instruction[2:0];
+                    reg_write_val[2] <= 0;
+                    reg_write_val[1:0] <= instruction[4:3];
+                    alu_func <= 4'b0111;
+					alu_spec_func <= 3'b100;
                     alu_src <= 1'bx;
                     mem_write <= 0;
                     mem_read <=  0;
@@ -153,13 +184,15 @@ always @(posedge clock) begin
                 end
                 //HALT
                 `hlt_op: begin
-                    reg_write <= 3'bxxx;
+                    reg_write_val <= 3'bxxx;
+                    alu_func <= 4'bxxxx;
+					alu_spec_func <= 3'bxxx;
                     alu_src <= 1'bx;
-                    mem_write <= 1'bx;
-                    mem_read <=  1'bx;
-                    branch <=    1'bx;
-                    reg_write <= 1'bx;
-                    swap_ctrl <= 1'bx;
+                    mem_write <= 1'b0;
+                    mem_read <=  1'b0;
+                    branch <=    1'b0;
+                    reg_write <= 1'b0;
+                    swap_ctrl <= 1'b0;
                     done_ctrl <= 1;
                     jmp_ctrl <= 0;
                 end
@@ -167,7 +200,9 @@ always @(posedge clock) begin
         end
         //SET LOW
         `stl_op: begin
-            reg_write <= instruction[5] == 0 ? 3'b001: 3'b111;
+            reg_write_val <= instruction[4] == 0 ? 3'b001: 3'b111;
+            alu_func <= 4'b1010;
+            alu_spec_func <= 3'bxxx;
             alu_src <= 1'b1;
             mem_write <= 0;
             mem_read <=  0;
@@ -179,7 +214,9 @@ always @(posedge clock) begin
         end
         //SET HIGH
         `sth_op: begin
-            reg_write <= instruction[5] == 0 ? 3'b001: 3'b111;
+            reg_write_val <= instruction[4] == 0 ? 3'b001: 3'b111;
+            alu_func <= 4'b1011;
+            alu_spec_func <= 3'bxxx;
             alu_src <= 1'b1;
             mem_write <= 0;
             mem_read <=  0;
@@ -191,7 +228,9 @@ always @(posedge clock) begin
         end
         //BRANCH EQUAL
         `beq_op: begin
-            reg_write <= 3'bxxx;
+            reg_write_val <= 3'bxxx;
+            alu_func <= 4'b1100;
+            alu_spec_func <= 3'bxxx;
             alu_src <= 1'b0;
             mem_write <= 0;
             mem_read <=  0;
@@ -203,7 +242,9 @@ always @(posedge clock) begin
         end
         //BRANCH LESS THAN
         `blt_op: begin
-            reg_write <= 3'bxxx;
+            reg_write_val <= 3'bxxx;
+            alu_func <= 4'b1101;
+            alu_spec_func <= 3'bxxx;
             alu_src <= 1'b0;
             mem_write <= 0;
             mem_read <=  0;
@@ -215,22 +256,26 @@ always @(posedge clock) begin
         end
         //LOAD
         `ld_op: begin
-            reg_write <= instruction[4:3];
+            reg_write_val <= instruction[4:3];
+            alu_func <= 4'bxxxx;
+            alu_spec_func <= 3'bxxx;
             alu_src <= 1'bx;
             mem_write <= 0;
             mem_read <=  1;
             branch <=    0;
-            reg_write <= 0;
+            reg_write <= 1;
             swap_ctrl <= 0;
             done_ctrl <= 0;
             jmp_ctrl <= 0;
         end
         //STORE
         `st_op: begin
-            reg_write <= 3'bxxx;
+            reg_write_val <= 3'bxxx;
+            alu_func <= 4'bxxxx;
+            alu_spec_func <= 3'bxxx;
             alu_src <= 1'bx;
-            mem_write <= 0;
-            mem_read <=  1;
+            mem_write <= 1;
+            mem_read <=  0;
             branch <=    0;
             reg_write <= 0;
             swap_ctrl <= 0;
@@ -239,7 +284,9 @@ always @(posedge clock) begin
         end
         //SWAP
         `swp_op: begin
-            reg_write <= 3'bxxx;
+            reg_write_val <= 3'bxxx;
+            alu_func <= 4'bxxxx;
+            alu_spec_func <= 3'bxxx;
             alu_src <= 1'bx;
             mem_write <= 0;
             mem_read <=  0;
@@ -251,8 +298,10 @@ always @(posedge clock) begin
         end
         //JUMP
         `jmp_op: begin
-            reg_write <= 3'bxxx;
+            reg_write_val <= 3'bxxx;
             alu_src <= 1'bx;
+            alu_func <= 4'bxxxx;
+            alu_spec_func <= 3'bxxx;
             mem_write <= 0;
             mem_read <= 0;
             branch <= 0;
