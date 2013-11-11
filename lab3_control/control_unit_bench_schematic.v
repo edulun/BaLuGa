@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II"
 // VERSION		"Version 9.0 Build 235 06/17/2009 Service Pack 2 SJ Web Edition"
-// CREATED ON	"Sun Nov 10 14:50:51 2013"
+// CREATED ON	"Sun Nov 10 20:02:16 2013"
 
 module control_unit_bench_schematic(
 	clock,
@@ -27,7 +27,8 @@ module control_unit_bench_schematic(
 	swap_ctrl,
 	done_ctrl,
 	jump_ctrl,
-	alu_ctrl,
+	alu_func_ctrl,
+	alu_spec_func_ctrl,
 	reg_to_write
 );
 
@@ -42,7 +43,8 @@ output	reg_write;
 output	swap_ctrl;
 output	done_ctrl;
 output	jump_ctrl;
-output	[6:0] alu_ctrl;
+output	[3:0] alu_func_ctrl;
+output	[2:0] alu_spec_func_ctrl;
 output	[2:0] reg_to_write;
 
 
@@ -50,7 +52,7 @@ output	[2:0] reg_to_write;
 
 
 
-control_unit	b2v_inst(
+control_unit	b2v_inst11(
 	.clock(clock),
 	.instruction(instr),
 	.alu_src(alu_mux_ctrl),
@@ -61,7 +63,8 @@ control_unit	b2v_inst(
 	.swap_ctrl(swap_ctrl),
 	.done_ctrl(done_ctrl),
 	.jmp_ctrl(jump_ctrl),
-	.alu_ctrl(alu_ctrl),
+	.alu_func(alu_func_ctrl),
+	.alu_spec_func(alu_spec_func_ctrl),
 	.reg_write_val(reg_to_write));
 
 
