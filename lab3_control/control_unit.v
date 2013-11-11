@@ -93,7 +93,7 @@ always @(posedge clock) begin
         end
         //SET TO
         `stt_op: begin
-            reg_write_val <= instruction[2:0];
+            reg_write_val <= instruction[4:3];
             alu_func <= 4'b0101;
             alu_spec_func <= 3'bxxx;
             alu_src <=   0;
@@ -107,7 +107,7 @@ always @(posedge clock) begin
         end
         //SET FROM 
         `stf_op: begin
-            reg_write_val <= instruction[4:3];
+            reg_write_val <= instruction[2:0];
             alu_func <= 4'b0110;
             alu_spec_func <= 3'bxxx;
             alu_src <=   0;
@@ -200,7 +200,7 @@ always @(posedge clock) begin
         end
         //SET LOW
         `stl_op: begin
-            reg_write_val <= instruction[5] == 0 ? 3'b001: 3'b111;
+            reg_write_val <= instruction[4] == 0 ? 3'b001: 3'b111;
             alu_func <= 4'b1010;
             alu_spec_func <= 3'bxxx;
             alu_src <= 1'b1;
@@ -214,7 +214,7 @@ always @(posedge clock) begin
         end
         //SET HIGH
         `sth_op: begin
-            reg_write_val <= instruction[5] == 0 ? 3'b001: 3'b111;
+            reg_write_val <= instruction[4] == 0 ? 3'b001: 3'b111;
             alu_func <= 4'b1011;
             alu_spec_func <= 3'bxxx;
             alu_src <= 1'b1;

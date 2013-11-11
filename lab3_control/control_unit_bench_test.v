@@ -120,7 +120,7 @@ initial begin
 	// alu_func_ctrl = 0101
 	// alu_spec_func_ctrl = xxx
 	// alu_mux_ctrl = 0
-	// reg_to_write = 011  <-------------- check this output
+	// reg_to_write = 011
 	// mem_write = 0
 	// mem_read = 0
 	// branch = 0
@@ -138,7 +138,7 @@ initial begin
 	// alu_func_ctrl = 0110
 	// alu_spec_func_ctrl = xxx
 	// alu_mux_ctrl = 0
-	// reg_to_write = 111 <--------------- check this
+	// reg_to_write = 111
 	// mem_write = 0
 	// mem_read = 0
 	// branch = 0
@@ -243,9 +243,9 @@ initial begin
 	#10; 
 	instr = 9'b1001_10_110;		// swp  $2, $6
 	// Expected ouput:
-	// alu_func_ctrl = 1001
+	// alu_func_ctrl = xxxx
 	// alu_spec_func_ctrl = xxx
-	// alu_mux_ctrl = 0
+	// alu_mux_ctrl = x
 	// reg_to_write = xxx
 	// mem_write = 0
 	// mem_read = 0
@@ -333,17 +333,17 @@ initial begin
 	#10; 
 	instr = 9'b1110_10_101;		// <----- Do we use any register or a special register?
 	// Expected ouput:
-	// alu_func_ctrl = 1101
+	// alu_func_ctrl = xxxx
 	// alu_spec_func_ctrl = xxx
-	// alu_mux_ctrl = 0
+	// alu_mux_ctrl = x
 	// reg_to_write = xxx
 	// mem_write = 0
 	// mem_read = 0
-	// branch = 1
+	// branch = 0
 	// reg_write = 0
 	// swap_ctrl = 0
 	// done_ctrl = 0
-	// jump_ctrl = 0
+	// jump_ctrl = 1
 end
 
 // Clock generator
