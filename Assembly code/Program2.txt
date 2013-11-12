@@ -32,8 +32,8 @@ CheckAndMoveToNext:
     jmp         $imm 
 
 End: 
-    stl         1, 0101          # set imm = memory where the count of
-    sth         1, 0000          # succesful entries will be stored. 
+    slw         1, 0101          # set imm = memory where the count of
+    shg         1, 0000          # succesful entries will be stored. 
 
     st          $t2, $branch     
     halt 

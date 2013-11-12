@@ -49,11 +49,11 @@ CheckAndMoveToNext:
 	1110 01 000
 
 End: 
-    stl         1, 0x_          # set imm = memory where the count of
-	1010 1 ---
-    sth         1, 0x_          # succesful entries will be stored. 
-	1011 1 ---
+    slw        1, 0x0101       # set imm = memory where the count of
+	1010 1 0101
+    shg        1, 0x0000          # succesful entries will be stored. 
+	1011 1 0000
     st          $t2, $branch     
-	0010 11 #check
+	0010 11 0111
     halt 
 	0111 00 010
