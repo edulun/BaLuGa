@@ -77,13 +77,14 @@ begin
                 end
 			endcase
 		end
+        //result = low bits from reg2 (imm)
 		`slw_op: begin
-			res[3:0] <= reg1[3:0];
-			res[7:4] <= reg2[7:4];
+			res[3:0] <= reg2[3:0];
+			res[7:4] <= reg1[7:4];
 		end
 		`shg_op: begin
-			res[7:4] <= reg1[3:0];
-			res[3:0] <= reg2[3:0];
+			res[3:0] <= reg1[3:0];
+			res[7:4] <= reg2[3:0];
 		end
         default: begin
             res <= 8'bxxxxxxxx;

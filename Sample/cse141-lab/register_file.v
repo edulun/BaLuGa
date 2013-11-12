@@ -3,6 +3,7 @@ module register_file (
 	input write_ctrl,	
 	input carry_out,
 	input swap_ctrl,
+    input [1:0] set_ctrl,
 	input [1:0] read_reg1,	
 	input [2:0] read_reg2,
 	input [2:0] write_reg,
@@ -30,12 +31,18 @@ end
 
 always @ (*)
 begin
-	case (read_reg1)
-		2'b00:	read_val1 <= zero;
-		2'b01:	read_val1 <= imm;
-		2'b10:	read_val1 <= t1;
-		2'b11:	read_val1 <= t2;
-	endcase
+    if(set_ctrl == 2'b1x) begin
+        if (set_ctrl[0] == 0) read_val1 <= imm;
+        else read_val1 <= branch;
+    end
+    else begin
+        case (read_reg1)
+            2'b00:	read_val1 <= zero;
+            2'b01:	read_val1 <= imm;
+            2'b10:	read_val1 <= t1;
+            2'b11:	read_val1 <= t2;
+        endcase
+    end
 	case (read_reg2)
 		3'b000:	read_val2 <= zero;
 		3'b001:	read_val2 <= imm;
