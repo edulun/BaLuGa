@@ -54,6 +54,6 @@ End:
     shg        1, 0x0000          # succesful entries will be stored. 
 	1011 1 0000
     st          $t2, $branch     
-	0010 11 0111
+	0010 11 111
     halt 
 	0111 00 010
