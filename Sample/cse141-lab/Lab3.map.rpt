@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Lab3
-Tue Nov 12 13:22:58 2013
+Tue Nov 12 14:06:52 2013
 Quartus II Version 9.0 Build 235 06/17/2009 Service Pack 2 SJ Web Edition
 
 
@@ -9,7 +9,15 @@ Quartus II Version 9.0 Build 235 06/17/2009 Service Pack 2 SJ Web Edition
   1. Legal Notice
   2. Analysis & Synthesis Summary
   3. Analysis & Synthesis Settings
-  4. Analysis & Synthesis Messages
+  4. Analysis & Synthesis Source Files Read
+  5. Analysis & Synthesis Resource Usage Summary
+  6. Analysis & Synthesis Resource Utilization by Entity
+  7. User-Specified and Inferred Latches
+  8. Registers Removed During Synthesis
+  9. General Register Statistics
+ 10. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 11. Analysis & Synthesis Messages
+ 12. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -35,20 +43,20 @@ applicable agreement for further details.
 +-----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                      ;
 +------------------------------------+----------------------------------------------+
-; Analysis & Synthesis Status        ; Failed - Tue Nov 12 13:22:58 2013            ;
+; Analysis & Synthesis Status        ; Successful - Tue Nov 12 14:06:52 2013        ;
 ; Quartus II Version                 ; 9.0 Build 235 06/17/2009 SP 2 SJ Web Edition ;
 ; Revision Name                      ; Lab3                                         ;
 ; Top-level Entity Name              ; Lab3                                         ;
 ; Family                             ; Cyclone II                                   ;
-; Total logic elements               ; N/A until Partition Merge                    ;
-;     Total combinational functions  ; N/A until Partition Merge                    ;
-;     Dedicated logic registers      ; N/A until Partition Merge                    ;
-; Total registers                    ; N/A until Partition Merge                    ;
-; Total pins                         ; N/A until Partition Merge                    ;
-; Total virtual pins                 ; N/A until Partition Merge                    ;
-; Total memory bits                  ; N/A until Partition Merge                    ;
-; Embedded Multiplier 9-bit elements ; N/A until Partition Merge                    ;
-; Total PLLs                         ; N/A until Partition Merge                    ;
+; Total logic elements               ; 148                                          ;
+;     Total combinational functions  ; 124                                          ;
+;     Dedicated logic registers      ; 55                                           ;
+; Total registers                    ; 55                                           ;
+; Total pins                         ; 19                                           ;
+; Total virtual pins                 ; 0                                            ;
+; Total memory bits                  ; 0                                            ;
+; Embedded Multiplier 9-bit elements ; 0                                            ;
+; Total PLLs                         ; 0                                            ;
 +------------------------------------+----------------------------------------------+
 
 
@@ -127,18 +135,145 @@ applicable agreement for further details.
 +--------------------------------------------------------------+--------------------+--------------------+
 
 
++-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                    ;
++----------------------------------+-----------------+------------------------------------+-----------------------------------------------------------------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                          ; File Name with Absolute Path                                    ;
++----------------------------------+-----------------+------------------------------------+-----------------------------------------------------------------+
+; Lab3.bdf                         ; yes             ; User Block Diagram/Schematic File  ; C:/Users/Diego/Google Drive/cse141-lab/Lab3.bdf                 ;
+; Instruction_rom_sample.v         ; yes             ; User Verilog HDL File              ; C:/Users/Diego/Google Drive/cse141-lab/Instruction_rom_sample.v ;
+; fetch_unit.v                     ; yes             ; User Verilog HDL File              ; C:/Users/Diego/Google Drive/cse141-lab/fetch_unit.v             ;
+; mux_alu.v                        ; yes             ; User Verilog HDL File              ; C:/Users/Diego/Google Drive/cse141-lab/mux_alu.v                ;
+; control_unit.v                   ; yes             ; Auto-Found Verilog HDL File        ; C:/Users/Diego/Google Drive/cse141-lab/control_unit.v           ;
+; alu.v                            ; yes             ; Auto-Found Verilog HDL File        ; C:/Users/Diego/Google Drive/cse141-lab/alu.v                    ;
+; register_file.v                  ; yes             ; Auto-Found Verilog HDL File        ; C:/Users/Diego/Google Drive/cse141-lab/register_file.v          ;
++----------------------------------+-----------------+------------------------------------+-----------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary         ;
++---------------------------------------------+-------+
+; Resource                                    ; Usage ;
++---------------------------------------------+-------+
+; Estimated Total logic elements              ; 148   ;
+;                                             ;       ;
+; Total combinational functions               ; 124   ;
+; Logic element usage by number of LUT inputs ;       ;
+;     -- 4 input functions                    ; 57    ;
+;     -- 3 input functions                    ; 47    ;
+;     -- <=2 input functions                  ; 20    ;
+;                                             ;       ;
+; Logic elements by mode                      ;       ;
+;     -- normal mode                          ; 111   ;
+;     -- arithmetic mode                      ; 13    ;
+;                                             ;       ;
+; Total registers                             ; 55    ;
+;     -- Dedicated logic registers            ; 55    ;
+;     -- I/O registers                        ; 0     ;
+;                                             ;       ;
+; I/O pins                                    ; 19    ;
+; Maximum fan-out node                        ; clock ;
+; Maximum fan-out                             ; 55    ;
+; Total fan-out                               ; 566   ;
+; Average fan-out                             ; 2.86  ;
++---------------------------------------------+-------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                               ;
++-----------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------+--------------+
+; Compilation Hierarchy Node        ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                ; Library Name ;
++-----------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------+--------------+
+; |Lab3                             ; 124 (0)           ; 55 (0)       ; 0           ; 0            ; 0       ; 0         ; 19   ; 0            ; |Lab3                              ; work         ;
+;    |Instruction_rom_sample:inst7| ; 14 (14)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Lab3|Instruction_rom_sample:inst7 ; work         ;
+;    |alu:inst3|                    ; 58 (58)           ; 16 (16)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Lab3|alu:inst3                    ; work         ;
+;    |control_unit:inst|            ; 4 (4)             ; 7 (7)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Lab3|control_unit:inst            ; work         ;
+;    |fetch_unit:inst6|             ; 8 (8)             ; 8 (8)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Lab3|fetch_unit:inst6             ; work         ;
+;    |mux_alu:inst8|                ; 19 (19)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Lab3|mux_alu:inst8                ; work         ;
+;    |register_file:inst1|          ; 21 (21)           ; 24 (24)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Lab3|register_file:inst1          ; work         ;
++-----------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                                                ;
++----------------------------------------------------+--------------------------------------+------------------------+
+; Latch Name                                         ; Latch Enable Signal                  ; Free of Timing Hazards ;
++----------------------------------------------------+--------------------------------------+------------------------+
+; Instruction_rom_sample:inst7|instruction_out[8]    ; Instruction_rom_sample:inst7|WideOr0 ; yes                    ;
+; Instruction_rom_sample:inst7|instruction_out[5]    ; Instruction_rom_sample:inst7|WideOr0 ; yes                    ;
+; Instruction_rom_sample:inst7|instruction_out[6]    ; Instruction_rom_sample:inst7|WideOr0 ; yes                    ;
+; Instruction_rom_sample:inst7|instruction_out[4]    ; Instruction_rom_sample:inst7|WideOr0 ; yes                    ;
+; Instruction_rom_sample:inst7|instruction_out[3]    ; Instruction_rom_sample:inst7|WideOr0 ; yes                    ;
+; Instruction_rom_sample:inst7|instruction_out[1]    ; Instruction_rom_sample:inst7|WideOr0 ; yes                    ;
+; Instruction_rom_sample:inst7|instruction_out[0]    ; Instruction_rom_sample:inst7|WideOr0 ; yes                    ;
+; Number of user-specified and inferred latches = 7  ;                                      ;                        ;
++----------------------------------------------------+--------------------------------------+------------------------+
+Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
+
+
++-----------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                      ;
++----------------------------------------+------------------------------------------------+
+; Register name                          ; Reason for Removal                             ;
++----------------------------------------+------------------------------------------------+
+; register_file:inst1|s1[0..7]           ; Lost fanout                                    ;
+; register_file:inst1|s2[0..7]           ; Lost fanout                                    ;
+; register_file:inst1|s3[0..7]           ; Lost fanout                                    ;
+; register_file:inst1|branch[0..7]       ; Lost fanout                                    ;
+; control_unit:inst|alu_spec_func[1..2]  ; Merged with control_unit:inst|alu_spec_func[0] ;
+; control_unit:inst|alu_spec_func[0]     ; Stuck at GND due to stuck port data_in         ;
+; control_unit:inst|done_ctrl            ; Stuck at GND due to stuck port data_in         ;
+; control_unit:inst|alu_func[2]          ; Stuck at GND due to stuck port data_in         ;
+; control_unit:inst|alu_src              ; Merged with control_unit:inst|alu_func[3]      ;
+; control_unit:inst|reg_write            ; Stuck at VCC due to stuck port data_in         ;
+; control_unit:inst|mem_write            ; Stuck at GND due to stuck port data_in         ;
+; control_unit:inst|swap_ctrl            ; Stuck at GND due to stuck port data_in         ;
+; Total Number of Removed Registers = 41 ;                                                ;
++----------------------------------------+------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 55    ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 32    ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                    ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output          ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------+
+; 8:1                ; 4 bits    ; 20 LEs        ; 16 LEs               ; 4 LEs                  ; Yes        ; |Lab3|control_unit:inst|mem_write   ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 6 LEs                ; 3 LEs                  ; Yes        ; |Lab3|control_unit:inst|alu_func[0] ;
+; 6:1                ; 4 bits    ; 16 LEs        ; 12 LEs               ; 4 LEs                  ; Yes        ; |Lab3|alu:inst3|res[3]              ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |Lab3|register_file:inst1|t2[0]     ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |Lab3|register_file:inst1|t1[1]     ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |Lab3|register_file:inst1|imm[6]    ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |Lab3|alu:inst3|res[5]              ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 8 LEs                ; 2 LEs                  ; Yes        ; |Lab3|alu:inst3|res[6]              ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |Lab3|register_file:inst1|Mux0      ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |Lab3|register_file:inst1|Mux8      ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------+
+
+
 +-------------------------------+
 ; Analysis & Synthesis Messages ;
 +-------------------------------+
 Info: *******************************************************************
 Info: Running Quartus II Analysis & Synthesis
     Info: Version 9.0 Build 235 06/17/2009 Service Pack 2 SJ Web Edition
-    Info: Processing started: Tue Nov 12 13:22:58 2013
+    Info: Processing started: Tue Nov 12 14:06:50 2013
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Lab3 -c Lab3
-Warning: Can't analyze file -- file C:/Users/Diego/Google Drive/GitHub/BaLuGa/lab3_control/control_unit.v is missing
-Warning: Can't analyze file -- file C:/Users/Diego/Google Drive/GitHub/BaLuGa/lab2_regfile/register_file.v is missing
-Warning: Can't analyze file -- file C:/Users/Diego/Google Drive/GitHub/BaLuGa/lab2_fetch/fetch_unit.v is missing
-Warning: Can't analyze file -- file C:/Users/Diego/Google Drive/GitHub/BaLuGa/lab2_alu/alu.v is missing
 Info: Found 1 design units, including 1 entities, in source file Lab3.bdf
     Info: Found entity 1: Lab3
 Info: Found 1 design units, including 1 entities, in source file Instruction_rom_sample.v
@@ -149,30 +284,95 @@ Info: Found 1 design units, including 1 entities, in source file mux_alu.v
     Info: Found entity 1: mux_alu
 Info: Found 1 design units, including 1 entities, in source file test_sample.v
     Info: Found entity 1: test_sample
-Warning (10236): Verilog HDL Implicit Net warning at test_sample.v(41): created implicit net for "instruction"
-Warning (10236): Verilog HDL Implicit Net warning at test_sample.v(42): created implicit net for "SYNTHESIZED_WIRE_14"
-Warning (10236): Verilog HDL Implicit Net warning at test_sample.v(45): created implicit net for "SYNTHESIZED_WIRE_4"
-Warning (10236): Verilog HDL Implicit Net warning at test_sample.v(46): created implicit net for "SYNTHESIZED_WIRE_0"
-Warning (10236): Verilog HDL Implicit Net warning at test_sample.v(47): created implicit net for "SYNTHESIZED_WIRE_1"
-Warning (10236): Verilog HDL Implicit Net warning at test_sample.v(48): created implicit net for "SYNTHESIZED_WIRE_10"
-Warning (10236): Verilog HDL Implicit Net warning at test_sample.v(49): created implicit net for "SYNTHESIZED_WIRE_12"
-Warning (10236): Verilog HDL Implicit Net warning at test_sample.v(50): created implicit net for "SYNTHESIZED_WIRE_6"
-Warning (10236): Verilog HDL Implicit Net warning at test_sample.v(51): created implicit net for "SYNTHESIZED_WIRE_9"
-Warning (10236): Verilog HDL Implicit Net warning at test_sample.v(52): created implicit net for "SYNTHESIZED_WIRE_2"
-Warning (10236): Verilog HDL Implicit Net warning at test_sample.v(62): created implicit net for "SYNTHESIZED_WIRE_3"
-Warning (10236): Verilog HDL Implicit Net warning at test_sample.v(63): created implicit net for "SYNTHESIZED_WIRE_7"
-Warning (10236): Verilog HDL Implicit Net warning at test_sample.v(64): created implicit net for "SYNTHESIZED_WIRE_15"
-Warning (10236): Verilog HDL Implicit Net warning at test_sample.v(66): created implicit net for "SYNTHESIZED_WIRE_11"
-Warning (10236): Verilog HDL Implicit Net warning at test_sample.v(73): created implicit net for "SYNTHESIZED_WIRE_8"
-Warning (10236): Verilog HDL Implicit Net warning at test_sample.v(75): created implicit net for "SYNTHESIZED_WIRE_5"
-Warning (10236): Verilog HDL Implicit Net warning at test_sample.v(84): created implicit net for "SYNTHESIZED_WIRE_13"
-Error (10053): Verilog HDL error at test_sample.v(59): can't index object "instruction" with zero packed or unpacked array dimensions File: C:/Users/Diego/Google Drive/cse141-lab/test_sample.v Line: 59
-Error (10053): Verilog HDL error at test_sample.v(60): can't index object "instruction" with zero packed or unpacked array dimensions File: C:/Users/Diego/Google Drive/cse141-lab/test_sample.v Line: 60
-Error (10053): Verilog HDL error at test_sample.v(94): can't index object "instruction" with zero packed or unpacked array dimensions File: C:/Users/Diego/Google Drive/cse141-lab/test_sample.v Line: 94
-Error: Quartus II Analysis & Synthesis was unsuccessful. 3 errors, 21 warnings
-    Error: Peak virtual memory: 211 megabytes
-    Error: Processing ended: Tue Nov 12 13:22:59 2013
-    Error: Elapsed time: 00:00:01
-    Error: Total CPU time (on all processors): 00:00:01
+Info: Elaborating entity "Lab3" for the top level hierarchy
+Warning: Using design file control_unit.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info: Found entity 1: control_unit
+Info: Elaborating entity "control_unit" for hierarchy "control_unit:inst"
+Info: Elaborating entity "Instruction_rom_sample" for hierarchy "Instruction_rom_sample:inst7"
+Warning (10270): Verilog HDL Case Statement warning at Instruction_rom_sample.v(11): incomplete case statement has no default case item
+Warning (10240): Verilog HDL Always Construct warning at Instruction_rom_sample.v(9): inferring latch(es) for variable "instruction_out", which holds its previous value in one or more paths through the always construct
+Info (10041): Inferred latch for "instruction_out[0]" at Instruction_rom_sample.v(9)
+Info (10041): Inferred latch for "instruction_out[1]" at Instruction_rom_sample.v(9)
+Info (10041): Inferred latch for "instruction_out[2]" at Instruction_rom_sample.v(9)
+Info (10041): Inferred latch for "instruction_out[3]" at Instruction_rom_sample.v(9)
+Info (10041): Inferred latch for "instruction_out[4]" at Instruction_rom_sample.v(9)
+Info (10041): Inferred latch for "instruction_out[5]" at Instruction_rom_sample.v(9)
+Info (10041): Inferred latch for "instruction_out[6]" at Instruction_rom_sample.v(9)
+Info (10041): Inferred latch for "instruction_out[7]" at Instruction_rom_sample.v(9)
+Info (10041): Inferred latch for "instruction_out[8]" at Instruction_rom_sample.v(9)
+Info: Elaborating entity "fetch_unit" for hierarchy "fetch_unit:inst6"
+Warning (10230): Verilog HDL assignment warning at fetch_unit.v(34): truncated value with size 32 to match size of target (8)
+Warning: Using design file alu.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info: Found entity 1: alu
+Info: Elaborating entity "alu" for hierarchy "alu:inst3"
+Warning: Using design file register_file.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info: Found entity 1: register_file
+Info: Elaborating entity "register_file" for hierarchy "register_file:inst1"
+Info: Elaborating entity "mux_alu" for hierarchy "mux_alu:inst8"
+Info: Duplicate LATCH primitives merged into single LATCH primitive
+    Info: Duplicate LATCH primitive "Instruction_rom_sample:inst7|instruction_out[6]" merged with LATCH primitive "Instruction_rom_sample:inst7|instruction_out[8]"
+Warning: Latch Instruction_rom_sample:inst7|instruction_out[8] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal fetch_unit:inst6|pc_out[7]
+Warning: Latch Instruction_rom_sample:inst7|instruction_out[5] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal fetch_unit:inst6|pc_out[7]
+Warning: Latch Instruction_rom_sample:inst7|instruction_out[4] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal fetch_unit:inst6|pc_out[7]
+Warning: Latch Instruction_rom_sample:inst7|instruction_out[3] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal fetch_unit:inst6|pc_out[7]
+Warning: Latch Instruction_rom_sample:inst7|instruction_out[1] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal fetch_unit:inst6|pc_out[7]
+Warning: Latch Instruction_rom_sample:inst7|instruction_out[0] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal fetch_unit:inst6|pc_out[7]
+Warning: Output pins are stuck at VCC or GND
+    Warning (13410): Pin "mem_write_ctrl" is stuck at GND
+Info: 32 registers lost all their fanouts during netlist optimizations. The first 32 are displayed below.
+    Info: Register "register_file:inst1|s1[0]" lost all its fanouts during netlist optimizations.
+    Info: Register "register_file:inst1|s1[1]" lost all its fanouts during netlist optimizations.
+    Info: Register "register_file:inst1|s1[2]" lost all its fanouts during netlist optimizations.
+    Info: Register "register_file:inst1|s1[3]" lost all its fanouts during netlist optimizations.
+    Info: Register "register_file:inst1|s1[4]" lost all its fanouts during netlist optimizations.
+    Info: Register "register_file:inst1|s1[5]" lost all its fanouts during netlist optimizations.
+    Info: Register "register_file:inst1|s1[6]" lost all its fanouts during netlist optimizations.
+    Info: Register "register_file:inst1|s1[7]" lost all its fanouts during netlist optimizations.
+    Info: Register "register_file:inst1|s2[0]" lost all its fanouts during netlist optimizations.
+    Info: Register "register_file:inst1|s2[1]" lost all its fanouts during netlist optimizations.
+    Info: Register "register_file:inst1|s2[2]" lost all its fanouts during netlist optimizations.
+    Info: Register "register_file:inst1|s2[3]" lost all its fanouts during netlist optimizations.
+    Info: Register "register_file:inst1|s2[4]" lost all its fanouts during netlist optimizations.
+    Info: Register "register_file:inst1|s2[5]" lost all its fanouts during netlist optimizations.
+    Info: Register "register_file:inst1|s2[6]" lost all its fanouts during netlist optimizations.
+    Info: Register "register_file:inst1|s2[7]" lost all its fanouts during netlist optimizations.
+    Info: Register "register_file:inst1|s3[0]" lost all its fanouts during netlist optimizations.
+    Info: Register "register_file:inst1|s3[1]" lost all its fanouts during netlist optimizations.
+    Info: Register "register_file:inst1|s3[2]" lost all its fanouts during netlist optimizations.
+    Info: Register "register_file:inst1|s3[3]" lost all its fanouts during netlist optimizations.
+    Info: Register "register_file:inst1|s3[4]" lost all its fanouts during netlist optimizations.
+    Info: Register "register_file:inst1|s3[5]" lost all its fanouts during netlist optimizations.
+    Info: Register "register_file:inst1|s3[6]" lost all its fanouts during netlist optimizations.
+    Info: Register "register_file:inst1|s3[7]" lost all its fanouts during netlist optimizations.
+    Info: Register "register_file:inst1|branch[0]" lost all its fanouts during netlist optimizations.
+    Info: Register "register_file:inst1|branch[1]" lost all its fanouts during netlist optimizations.
+    Info: Register "register_file:inst1|branch[2]" lost all its fanouts during netlist optimizations.
+    Info: Register "register_file:inst1|branch[3]" lost all its fanouts during netlist optimizations.
+    Info: Register "register_file:inst1|branch[4]" lost all its fanouts during netlist optimizations.
+    Info: Register "register_file:inst1|branch[5]" lost all its fanouts during netlist optimizations.
+    Info: Register "register_file:inst1|branch[6]" lost all its fanouts during netlist optimizations.
+    Info: Register "register_file:inst1|branch[7]" lost all its fanouts during netlist optimizations.
+Info: Generated suppressed messages file C:/Users/Diego/Google Drive/cse141-lab/Lab3.map.smsg
+Info: Implemented 170 device resources after synthesis - the final resource count might be different
+    Info: Implemented 1 input pins
+    Info: Implemented 18 output pins
+    Info: Implemented 151 logic cells
+Info: Quartus II Analysis & Synthesis was successful. 0 errors, 20 warnings
+    Info: Peak virtual memory: 218 megabytes
+    Info: Processing ended: Tue Nov 12 14:06:52 2013
+    Info: Elapsed time: 00:00:02
+    Info: Total CPU time (on all processors): 00:00:02
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in C:/Users/Diego/Google Drive/cse141-lab/Lab3.map.smsg.
 
 

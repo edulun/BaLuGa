@@ -14,13 +14,14 @@
 
 // PROGRAM		"Quartus II"
 // VERSION		"Version 9.0 Build 235 06/17/2009 Service Pack 2 SJ Web Edition"
-// CREATED ON	"Tue Nov 12 13:11:50 2013"
+// CREATED ON	"Tue Nov 12 13:56:35 2013"
 
 module Lab3(
 	clock,
 	mem_write_ctrl,
 	mem_read_ctrl,
-	alu_result
+	alu_result,
+	pc_out
 );
 
 
@@ -28,6 +29,7 @@ input	clock;
 output	mem_write_ctrl;
 output	mem_read_ctrl;
 output	[7:0] alu_result;
+output	[7:0] pc_out;
 
 wire	[8:0] instruction;
 wire	SYNTHESIZED_WIRE_0;
@@ -48,6 +50,7 @@ wire	SYNTHESIZED_WIRE_14;
 wire	[7:0] SYNTHESIZED_WIRE_15;
 
 assign	alu_result = SYNTHESIZED_WIRE_3;
+assign	pc_out = SYNTHESIZED_WIRE_13;
 
 
 
