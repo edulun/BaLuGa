@@ -13,7 +13,7 @@
 Start:
 
 slw     $imm, 0001
-1010 00001
+1010 1 001
 ld      $t1, $imm
 0001 10 001
 stf     $t1, $s1
@@ -96,16 +96,16 @@ swp     $imm, $s1
 sr    	$imm, $s1 			# shift operand 1 right once
 0100 01 100
 swp     $imm, $s1
-1001 01 100	#error was 110
+1001 01 100						#error was 110
 swp     $imm, $s3
-1001 01 110 #error was 000
+1001 01 110 					#error was 000
 inc		$imm	 			    # counter +=1
-1001 01 110
+1001 01 110						#check this
 swp     $imm, $s3
-1010 01 011
+1010 01 110
 
 slw     1, 0011
-1010 00 101
+1010 1 0011
 shg     1, 1100
 1011 1 1100
 
