@@ -27,30 +27,41 @@ Start:
 	stt 		$imm, $s1		# $s1 = initial memory pos
 	0101 01 100
     shg         0, 0000 
-	1010 00 000
+	1011 00 000
     slw         0, 0111          # jump address = CheckEntry
-	0110 00 111
+	1010 00 111
     stt         $imm, $s2       # $s2 = jump address
-	1010 01 101
+	0101 01 101
     slw         1, 0010          # branch = +2 (skip next instruction) 
 	1010 01 010
 
 CheckEntry:
 	ld 		    $imm, $t2	    # load next entry to $imm
+	0001 01 101
     pkr         $imm            # check entry with pkr instrc
+	0111 01 100
     beq         $imm, $zero     # skip inc if not a succesful entry
+	1100 01 000
     inc         $t1             # succesful entry
+	0111 01 000
 
 CheckAndMoveToNext:
 
     stf         $imm, $s2       # set imm = jump address
+	0110 01 101
     inc         $t2             # increment memory number
-    blt         $t2, $s1
+	0111 11 000
+    bl        $t2, $s1
+	1101 11 100
     jmp         $imm 
+	1110 01 000
 
 End: 
     stl         1, 0x_          # set imm = memory where the count of
+	1010 1 ---
     sth         1, 0x_          # succesful entries will be stored. 
-
+	1011 1 ---
     st          $t2, $branch     
+	0010 11 #check
     halt 
+	0111 00 010

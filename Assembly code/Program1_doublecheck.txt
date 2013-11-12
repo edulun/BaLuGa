@@ -15,13 +15,13 @@ Start:
 slw     $imm, 0001
 1010 00001
 ld      $t1, $imm
-0001 10001
+0001 10 001
 stf     $t1, $s1
-0110 10100
+0110 10 100
 inc     $imm
-0111 01000
+0111 01 000
 ld      $t1, $imm
-0001 10001
+0001 10 001
 stf     $t1, $s2
 0110 10101
 stt     $t1, $zero
@@ -52,7 +52,7 @@ stf   	$imm, $s2			# $imm = $s2 (Operand 2)
 sll		$imm, $s3 			# Shift left by $s3(Counter) number of bits
 0011 01110
 add     $t1, $imm			# $t1 (Low result bits) += $imm (carryout in $imm)
-0000 10001
+0000 10 001
 
 _AddLow
 
