@@ -25,12 +25,11 @@ module alu (
 	input [3:0] func,
 	input [2:0] spec_fun,
 	output reg [7:0] res,
+   output reg carry_out,
 	output reg br_out
 );
 
-//reg [7:0] result;
-//reg [7:0] res_out = res;
-//reg branch_out = br_out;
+reg [8:0] result;
    
 initial begin
 	br_out = 0;
@@ -41,7 +40,12 @@ always @(posedge clock) //SOMETHING HERE
 begin
 	res = 0;
 	case(func)
-		`add_op: res <= reg1 + reg2;
+        `add_op: begin
+            result <= reg1 + reg2;
+            carry_out <= result[8];
+            res <= result[7:0];
+        end
+
 		`sl_op:  res <= reg1 << reg2;
 		`sr_op: res <= reg1 >> reg2;
 		`stt_op: res <= reg2;
