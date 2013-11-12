@@ -7,7 +7,8 @@ module register_file (
 	input [2:0] write_reg,
 	input [7:0] write_val,
 	output reg [7:0] read_val1,
-	output reg [7:0] read_val2
+	output reg [7:0] read_val2,
+    output reg [7:0] branch_val
 );
 	
 reg [7:0] zero, imm, t1, t2, s1, s2, s3, branch;
@@ -44,6 +45,8 @@ begin
 		3'b110:	read_val2 <= s3;
 		3'b111:	read_val2 <= branch;
 	endcase
+
+    branch_val <= branch;
 
 
 end
