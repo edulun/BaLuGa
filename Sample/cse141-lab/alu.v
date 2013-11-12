@@ -48,8 +48,8 @@ begin
 
 		`sl_op:  res <= reg1 << reg2;
 		`sr_op: res <= reg1 >> reg2;
-		`stt_op: res <= reg2;
-		`stf_op: res <= reg1;
+		`stt_op: res <= reg1;
+		`stf_op: res <= reg2;
 		`be_op: begin
 			if (reg1 == reg2)	
 				br_out <= 1;

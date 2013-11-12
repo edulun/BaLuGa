@@ -13,7 +13,7 @@ wire [8:0] instruction;
 // Initialize all variables
 initial begin
 
-	clock = 1; 		// initial value of clock
+	clock = 0; 		// initial value of clock
 	
 	/* 
 	 * Check the sum operation 
@@ -26,7 +26,8 @@ initial begin
 	#10;
 	//register_one = 8'b1111_1101;	// r1 = -3
 	//register_two = 8'b1111_1101;	// r2 = -3
-									// sum (-3 + -3) = -6
+	#10;
+    #10;// sum (-3 + -3) = -6
 	
 end
 
