@@ -1,6 +1,7 @@
 module register_file (
 	input clock,
-	input write_ctrl,		
+	input write_ctrl,	
+	input carry_out,
 	input swap_ctrl,
 	input [1:0] read_reg1,	
 	input [2:0] read_reg2,
@@ -55,7 +56,18 @@ end
 
 always @(negedge clock) begin
 	if(write_ctrl) begin
-		case(write_reg)
+        if(carry_out) begin
+            imm <= 8'b1;
+            case(write_reg)
+                3'b010:	t1 <= write_val;
+                3'b011:	t2 <= write_val;
+                3'b100:	s1 <= write_val;
+                3'b101:	s2 <= write_val;
+                3'b110:	s3 <= write_val;
+                3'b111:	branch <= write_val;
+            endcase
+        end
+		else case(write_reg)
 			3'b001:	imm <= write_val;
 			3'b010:	t1 <= write_val;
 			3'b011:	t2 <= write_val;
