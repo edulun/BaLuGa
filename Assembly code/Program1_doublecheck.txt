@@ -13,7 +13,7 @@
 Start:
 
 slw     $imm, 0001
-1010 1 0001
+1010 0 0001
 ld      $t1, $imm
 0001 10 001
 stf     $t1, $s1
@@ -32,14 +32,14 @@ _Start
 MainLoop (Instruction 8):
 
 stt   	$imm, $s1			# $imm = $s1  (Operand 1)
-0101 01100
+0101 0 1100
 aon 	$imm	   			# $imm = $imm[0] & 0x1
 0111 01001
 
 slw		1,0010 				# Set $branch = Continue (+2)
-1010 1 0010 #Check this one 11 111
+1010 1 0010 
 shg		1,0000  				# Set $branch = Continue (+2)
-1011 10 000
+1011 10 0000
 be      $imm, $zero			# If ($imm == 0) branch to Continue
 1100 01 000
 
@@ -74,7 +74,7 @@ swp     $t1, $s3            # swap with counter
 seg     $t1                 # counter = 8 - counter
 0111 10 011
 slr     $imm, $t1           # shift by 8 - counter
-010001010
+0100 01010
 seg     $t1                 # counter = 8 - counter
 0111 10 011
 swp     $t1, $s3            # swap counter <-> low bits
@@ -96,11 +96,11 @@ swp     $imm, $s1
 sr    	$imm, $s1 			# shift operand 1 right once
 0100 01 100
 swp     $imm, $s1
-1001 01 100						#error was 110
+1001 01 100						
 swp     $imm, $s3
-1001 01 110 					#error was 000
+1001 01 110 					
 inc		$imm	 			    # counter +=1
-1001 01 110						#check this
+1001 01 110						
 swp     $imm, $s3
 1010 01 110
 
@@ -117,18 +117,19 @@ _Continue
 End:
 
 slw 	0, 3	
-1010 10 001 # check this one
+1010 0 0011 
 
 shg 	0, 0
 1011 00 000					# $Imm = 0x3
 
 st 		$t1, $imm 			# Mem[3] = $t1 
-0111 01 000
+0010 10 001
 
 inc 	$imm				# $imm = 4
-0111 1 1010
+0111 01 000
 st 		$t2, $imm 			# Mem[4] = $t2
-0010 11 000 # check this one
-halt    
+0010 11 001 
+halt 
+0111 0 010
 
 _End
