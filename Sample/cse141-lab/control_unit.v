@@ -39,6 +39,8 @@ module control_unit (
     output reg jmp_ctrl
 );
 
+// TODO Add a 8-bit jump value output to be connected with the fetch unit
+
 initial begin
 end
 
