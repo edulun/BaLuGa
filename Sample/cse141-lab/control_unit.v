@@ -28,6 +28,7 @@ module control_unit (
     output reg [3:0] alu_func,
     output reg [2:0] alu_spec_func,
     output reg [2:0] reg_write_val,
+    output reg [1:0] set_ctrl,
     output reg alu_src,
     output reg mem_write, 
     output reg mem_read, 
@@ -54,6 +55,7 @@ always @(posedge clock) begin
             reg_write_val <= instruction[4:3];
             alu_func <= 4'b0000;
             alu_spec_func <= 3'bxxx;
+            set_ctrl <= 2'b00;
             alu_src <=   0;
             mem_write <= 0;
             mem_read <=  0;
@@ -68,6 +70,7 @@ always @(posedge clock) begin
             reg_write_val <= instruction[4:3];
             alu_func <= 4'b0011;
             alu_spec_func <= 3'bxxx;
+            set_ctrl <= 2'b00;
             alu_src <=   0;
             mem_write <= 0;
             mem_read <=  0;
@@ -82,6 +85,7 @@ always @(posedge clock) begin
             reg_write_val <= instruction[4:3];
             alu_func <= 4'b0100;
             alu_spec_func <= 3'bxxx;
+            set_ctrl <= 2'b00;
             alu_src <=   0;
             mem_write <= 0;
             mem_read <=  0;
@@ -96,6 +100,7 @@ always @(posedge clock) begin
             reg_write_val <= instruction[4:3];
             alu_func <= 4'b0101;
             alu_spec_func <= 3'bxxx;
+            set_ctrl <= 2'b00;
             alu_src <=   0;
             mem_write <= 0;
             mem_read <=  0;
@@ -110,6 +115,7 @@ always @(posedge clock) begin
             reg_write_val <= instruction[2:0];
             alu_func <= 4'b0110;
             alu_spec_func <= 3'bxxx;
+            set_ctrl <= 2'b00;
             alu_src <=   0;
             mem_write <= 0;
             mem_read <=  0;
@@ -129,6 +135,7 @@ always @(posedge clock) begin
                     alu_func <= 4'b0111;
 					alu_spec_func <= 3'b000;
                     alu_src <= 1'bx;
+                    set_ctrl <= 2'b00;
                     mem_write <= 0;
                     mem_read <=  0;
                     branch <=    0;
@@ -144,6 +151,7 @@ always @(posedge clock) begin
                     alu_func <= 4'b0111;
 					alu_spec_func <= 3'b001;
                     alu_src <= 1'bx;
+                    set_ctrl <= 2'b00;
                     mem_write <= 0;
                     mem_read <=  0;
                     branch <=    0;
@@ -159,6 +167,7 @@ always @(posedge clock) begin
                     alu_func <= 4'b0111;
 					alu_spec_func <= 3'b011;
                     alu_src <= 1'bx;
+                    set_ctrl <= 2'b00;
                     mem_write <= 0;
                     mem_read <=  0;
                     branch <=    0;
@@ -174,6 +183,7 @@ always @(posedge clock) begin
                     alu_func <= 4'b0111;
 					alu_spec_func <= 3'b100;
                     alu_src <= 1'bx;
+                    set_ctrl <= 2'b00;
                     mem_write <= 0;
                     mem_read <=  0;
                     branch <=    0;
@@ -188,6 +198,7 @@ always @(posedge clock) begin
                     alu_func <= 4'bxxxx;
 					alu_spec_func <= 3'bxxx;
                     alu_src <= 1'bx;
+                    set_ctrl <= 2'b00;
                     mem_write <= 1'b0;
                     mem_read <=  1'b0;
                     branch <=    1'b0;
@@ -204,6 +215,8 @@ always @(posedge clock) begin
             alu_func <= 4'b1010;
             alu_spec_func <= 3'bxxx;
             alu_src <= 1'b1;
+            set_ctrl[1] <= 1;
+            set_ctrl[0] <= instruction[4];
             mem_write <= 0;
             mem_read <=  0;
             branch <=    0;
@@ -218,6 +231,8 @@ always @(posedge clock) begin
             alu_func <= 4'b1011;
             alu_spec_func <= 3'bxxx;
             alu_src <= 1'b1;
+            set_ctrl[1] <= 1;
+            set_ctrl[0] <= instruction[4];
             mem_write <= 0;
             mem_read <=  0;
             branch <=    0;
@@ -232,6 +247,7 @@ always @(posedge clock) begin
             alu_func <= 4'b1100;
             alu_spec_func <= 3'bxxx;
             alu_src <= 1'b0;
+            set_ctrl <= 2'b00;
             mem_write <= 0;
             mem_read <=  0;
             branch <=    1;
@@ -246,6 +262,7 @@ always @(posedge clock) begin
             alu_func <= 4'b1101;
             alu_spec_func <= 3'bxxx;
             alu_src <= 1'b0;
+            set_ctrl <= 2'b00;
             mem_write <= 0;
             mem_read <=  0;
             branch <=    1;
@@ -260,6 +277,7 @@ always @(posedge clock) begin
             alu_func <= 4'bxxxx;
             alu_spec_func <= 3'bxxx;
             alu_src <= 1'bx;
+            set_ctrl <= 2'b00;
             mem_write <= 0;
             mem_read <=  1;
             branch <=    0;
@@ -274,6 +292,7 @@ always @(posedge clock) begin
             alu_func <= 4'bxxxx;
             alu_spec_func <= 3'bxxx;
             alu_src <= 1'bx;
+            set_ctrl <= 2'b00;
             mem_write <= 1;
             mem_read <=  0;
             branch <=    0;
@@ -288,6 +307,7 @@ always @(posedge clock) begin
             alu_func <= 4'bxxxx;
             alu_spec_func <= 3'bxxx;
             alu_src <= 1'bx;
+            set_ctrl <= 2'b00;
             mem_write <= 0;
             mem_read <=  0;
             branch <=    0;
@@ -302,6 +322,7 @@ always @(posedge clock) begin
             alu_src <= 1'bx;
             alu_func <= 4'bxxxx;
             alu_spec_func <= 3'bxxx;
+            set_ctrl <= 2'b00;
             mem_write <= 0;
             mem_read <= 0;
             branch <= 0;
