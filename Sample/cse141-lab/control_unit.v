@@ -46,7 +46,7 @@ end
 reg [3:0] opcode;
 reg [2:0] spec_instr;
 
-always @(posedge clock) begin
+always @(*) begin
     opcode = instruction[8:5];
     spec_instr = instruction[2:0];
 
@@ -87,7 +87,7 @@ always @(posedge clock) begin
             alu_func <= 4'b0100;
             alu_spec_func <= 3'bxxx;
             set_ctrl <= 2'b00;
-            alu_src <=   0;
+            alu_src <=   1'b0;
             mem_write <= 0;
             mem_read <=  0;
             branch <=    0;
@@ -102,7 +102,7 @@ always @(posedge clock) begin
             alu_func <= 4'b0101;
             alu_spec_func <= 3'bxxx;
             set_ctrl <= 2'b00;
-            alu_src <=   0;
+            alu_src <=   1'b0;
             mem_write <= 0;
             mem_read <=  0;
             branch <=    0;
@@ -117,7 +117,7 @@ always @(posedge clock) begin
             alu_func <= 4'b0110;
             alu_spec_func <= 3'bxxx;
             set_ctrl <= 2'b00;
-            alu_src <=   0;
+            alu_src <=   1'b0;
             mem_write <= 0;
             mem_read <=  0;
             branch <=    0;
@@ -135,7 +135,7 @@ always @(posedge clock) begin
                     reg_write_val[1:0] <= instruction[4:3];
                     alu_func <= 4'b0111;
 					alu_spec_func <= 3'b000;
-                    alu_src <= 1'bx;
+                    alu_src <= 1'b0;
                     set_ctrl <= 2'b00;
                     mem_write <= 0;
                     mem_read <=  0;
@@ -151,7 +151,7 @@ always @(posedge clock) begin
                     reg_write_val[1:0] <= instruction[4:3];
                     alu_func <= 4'b0111;
 					alu_spec_func <= 3'b001;
-                    alu_src <= 1'bx;
+                    alu_src <= 1'b0;
                     set_ctrl <= 2'b00;
                     mem_write <= 0;
                     mem_read <=  0;
@@ -167,7 +167,7 @@ always @(posedge clock) begin
                     reg_write_val[1:0] <= instruction[4:3];
                     alu_func <= 4'b0111;
 					alu_spec_func <= 3'b011;
-                    alu_src <= 1'bx;
+                    alu_src <= 1'b0;
                     set_ctrl <= 2'b00;
                     mem_write <= 0;
                     mem_read <=  0;
@@ -183,7 +183,7 @@ always @(posedge clock) begin
                     reg_write_val[1:0] <= instruction[4:3];
                     alu_func <= 4'b0111;
 					alu_spec_func <= 3'b100;
-                    alu_src <= 1'bx;
+                    alu_src <= 1'b0;
                     set_ctrl <= 2'b00;
                     mem_write <= 0;
                     mem_read <=  0;
@@ -198,7 +198,7 @@ always @(posedge clock) begin
                     reg_write_val <= 3'bxxx;
                     alu_func <= 4'bxxxx;
 					alu_spec_func <= 3'bxxx;
-                    alu_src <= 1'bx;
+                    alu_src <= 1'b0;
                     set_ctrl <= 2'b00;
                     mem_write <= 1'b0;
                     mem_read <=  1'b0;
@@ -277,7 +277,7 @@ always @(posedge clock) begin
             reg_write_val <= instruction[4:3];
             alu_func <= 4'bxxxx;
             alu_spec_func <= 3'bxxx;
-            alu_src <= 1'bx;
+            alu_src <= 1'b0;
             set_ctrl <= 2'b00;
             mem_write <= 0;
             mem_read <=  1;
@@ -292,7 +292,7 @@ always @(posedge clock) begin
             reg_write_val <= 3'bxxx;
             alu_func <= 4'bxxxx;
             alu_spec_func <= 3'bxxx;
-            alu_src <= 1'bx;
+            alu_src <= 1'b0;
             set_ctrl <= 2'b00;
             mem_write <= 1;
             mem_read <=  0;
@@ -307,7 +307,7 @@ always @(posedge clock) begin
             reg_write_val <= 3'bxxx;
             alu_func <= 4'bxxxx;
             alu_spec_func <= 3'bxxx;
-            alu_src <= 1'bx;
+            alu_src <= 1'b0;
             set_ctrl <= 2'b00;
             mem_write <= 0;
             mem_read <=  0;
@@ -320,7 +320,7 @@ always @(posedge clock) begin
         //JUMP
         `jmp_op: begin
             reg_write_val <= 3'bxxx;
-            alu_src <= 1'bx;
+            alu_src <= 1'b0;
             alu_func <= 4'bxxxx;
             alu_spec_func <= 3'bxxx;
             set_ctrl <= 2'b00;

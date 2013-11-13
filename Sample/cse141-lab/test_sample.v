@@ -14,7 +14,7 @@ wire [16:0] cycle_count;
 // Initialize all variables
 initial begin
 
-	clock = 0; 		// initial value of clock
+	clock = 1; 		// initial value of clock
 	
 	/* 
 	 * Check the sum operation 
