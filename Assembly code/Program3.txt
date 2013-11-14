@@ -1,3 +1,9 @@
+#Most Common Value -- Write a program to find the most common value in an
+#array of 64  bytes.  Assume all values are unsigned and less than 64.  The
+#array of  integers starts at location 128. Write two results. 
+#Put the most common value in memory location 126, and the number of times it 
+#appears in 127.  In the case of a tie, give the lower value. 
+
 # REGISTERS:
 # $imm - value in [$imm]
 # $s1 - current address in increment,
@@ -7,55 +13,71 @@
 
 MainProgram3:
     shg  	0, 1000			# $imm = 128	
-    stf   	$imm, $s1		# $s1 =$imm
-	shg 	0, 1100			# Array starts at 196
-	stf		$imm, $s2		# $22 = 192 (Array)
+    stf   	$imm, $s1		# $s1 =$imm (Values start here)
+	shg 	0, 1100			# $imm = 192 (Array starts here)
+	stf		$imm, $s2		# $s2 = 192 (Array)
+	slw 	1, 1001 	    # $branch = Increment (~-9)
+	shg 	1, 1111		    # $branch = Increment (~-9)
 
-	slw 		1, 1001 	# go to Increment
-	shg 		1, 1111		# go to Increment
 Increment:
-	ld 		$imm, $s1		# $imm = Mem[$s1]
-	stf		$t1, $s2		# $t1 = $s2
-	add 		$t1, $imm		# $t1 += $imm			
-	ld  		$t2, $t1		# $t2 = Mem[$t1]
-	inc 		$t2			# $t2++
-	st  		$t2, $t1		#  Mem[$t1] = $t2	
-	inc 		$s1			# $s1++
-	bl 		$s1, $s2		# Start counting if we reach end of array
+	stt		$t1, $s2		    # $t1 = $s2 (192)
+	ld 		$imm, $s1		    # $imm = Mem[$s1]
+	add 	$t1, $imm		    # $t1 += $imm			
+	ld  	$t2, $t1		    # $t2 = Mem[$t1]
+	inc 	$t2			        # $t2++
+	st  	$t2, $t1		    # Mem[$t1] = $t2	
+    swp     $imm, $s1           # swap s1,imm to increase s1
+	inc 	$imm			    # $imm++
+    swp     $imm, $s1           # swap back
 
-	slw   	0, 1111
-	shg		0, 0011			# $imm = 63
-	stf   	$imm, $s3		# $s3 = 63
-	stf   	$zero ,$s2		# $s2 = 0
-	stt  	$t1, $zero		# $t1 = 0
-	stt  	$t2, $zero		# $t2 = 0
+	bl 		$s1, $s2		    # Start counting if we reach end of array
+                                # address in $branch here should be this 
+                                # instruction number - increment instr #
+
+//imm - misc
+//T1 - current value
+//T2 - most common value # (stored in memory 126)
+//S1 - # of time most common value repeats (stored in 127)
+//S2 - The starting address of the result array
+//S3 - 64, for branching on the entries (should stop when t1 == 64)
+
+	slw   	0, 0000
+	shg		0, 0100			# $imm = 64
+	stf   	$imm, $s3		# $s3 = 64
+    stf     $zero, $t1        # $t1 = 192
+    stf     $zero, $t2
+    stf     $zero, $s1
 
 Count:
-	slw   	1, End		# $branch = End
-	shg    	1, End		# $branch = End
-stt		$imm, $s3		# $imm = $s3
-blt		$imm, $s2		# b if ($s2 > 63)
-ld  	$imm, $s2		# $imm = Mem[s1]
+	slw   	1, 1011		    # $branch = End (~+13)
+	shg    	1, 0000		    # $branch = End (~+13)
 
-slw 	1, 0011			# go to continue
-shg		1, 0000			
+    be		$t1, $s3        # branch if $t1 == 64
 
-bl 		$imm, $t2		# go To end
-stt 	$t2, $s2		# $t2 = $s2
-stt 	$t1, $imm		# $t1 = $imm
+    stt		$imm, $s2		# $imm = 192 
+    add     $imm, $t1       # $imm = 192 + (entry)
+
+    ld      $imm, $imm      # $imm = mem[imm]
+
+    slw 	1, 0011			# go to continue (~+3)
+
+    bl 		$imm, $s1		# branch if !(current entry repeats more than prev max)
+    stf 	$imm, $s1		# new max count = $imm 
+    stf 	$t2,  $t1	    # new max entry = $t2
 
 Continue:
-inc		$s2			#increment value
-inc 		$s1			#increment memory position
-slw		$imm, ___		# set to count
-shg		$imm, ___		#set to count
-jmp 		Count
+    inc		$t1			    #increment current entry
+    slw		$imm, 0111 		# set to count (~23)
+    shg		$imm, 0001	   	# set to count (~23)
+    jmp 	$imm
 
 end:
-	slw 		$imm,	14		# $imm = 126
-	shg		$imm, 7		# $imm = 126
-	st 		$imm, $s1		# Mem[126] = highest value
+	slw 	$imm, 1110		# $imm = 126
+	shg		$imm, 0111	    # $imm = 126
+
+	st 		$imm, $t2		# Mem[126] = highest value
 	inc		$imm			# $imm = 127
-	st 		$imm, $s2		# Mem[127] = value count
+    swp     $t2, $s1
+	st 		$imm, $t2		# Mem[127] = value count
 
 
