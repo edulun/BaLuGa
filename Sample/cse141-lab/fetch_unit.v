@@ -8,7 +8,7 @@ module fetch_unit(
 	input [7:0] jump_val,
 	input [7:0] branch_val,  // value stored in the $branch register
 	output reg [7:0] instruction_number,
-   output reg [16:0] cycle_counter
+   output [16:0] cycle_counter
 );
 
 reg [7:0] pc;
@@ -22,7 +22,8 @@ end
 always @(posedge clock)
 begin
 	instruction_number <= pc;
-	cycle_counter <= cycles + 1;
+	cycles <= cycles + 1;
+	//cycle_counter <= cycles + 1;
 
 	//Set program counter to 0 if reset = 1
    if(done_ctrl) $finish;
@@ -34,5 +35,7 @@ begin
 	else pc <= pc + 1'b1;
 
 end
+
+assign cycle_counter = cycles;
 	
 endmodule
