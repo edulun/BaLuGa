@@ -74,7 +74,7 @@ swp     $t1, $s3            # swap with counter
 seg     $t1                 # counter = 8 - counter
 0111 10 011
 sr     $imm, $t1           # shift by 8 - counter
-0110 01010
+0100 01010
 seg     $t1                 # counter = 8 - counter
 0111 10 011 24
 swp     $t1, $s3            # swap counter <-> low bits
@@ -100,7 +100,7 @@ swp     $imm, $s1
 swp     $imm, $s3
 1001 01 110 					
 inc		$imm	 			    # counter +=1
-1001 01 110						
+0111 01 000						
 swp     $imm, $s3
 1010 01 110
 
