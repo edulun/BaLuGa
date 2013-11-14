@@ -98,7 +98,8 @@ always @(*) begin
         end
         //SET TO
         `stt_op: begin
-            reg_write_val <= instruction[4:3];
+            reg_write_val [2] = 0;
+            reg_write_val [1:0] <= instruction[4:3];
             alu_func <= 4'b0101;
             alu_spec_func <= 3'bxxx;
             set_ctrl <= 2'b00;

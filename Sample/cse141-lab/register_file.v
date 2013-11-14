@@ -31,7 +31,7 @@ end
 
 always @ (*)
 begin
-    if(set_ctrl == 2'b1x) begin
+    if(set_ctrl[1] == 1) begin
         if (set_ctrl[0] == 0) read_val1 <= imm;
         else read_val1 <= branch;
     end
