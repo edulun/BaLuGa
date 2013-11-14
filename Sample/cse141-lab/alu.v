@@ -67,7 +67,7 @@ begin
 			case (spec_fun)
 				`inc_op:	res <= reg1 + 8'b1;
 				`and1_op: res <= reg1 & 8'b1;
-				`sub8_op: res <= reg1 - 8'b1000;	
+				`sub8_op: res <= 8'b1000 - reg1 ;	
                 `pkr_op: begin
                     res[7:5] <= 3'b000;
                     res[4] <= reg1[7:4] == 4'b1111;

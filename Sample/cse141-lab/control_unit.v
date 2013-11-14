@@ -12,7 +12,6 @@
  `define beq_op 	4'b1100		// branch on equal
  `define blt_op 	4'b1101		// branch on less than	
  `define jmp_op 	4'b1110		// jump
- //`define unk_op 	4'b1111	
 
  // Special operations
  `define inc_op 	3'b000		// increment
