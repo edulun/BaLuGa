@@ -10,8 +10,9 @@ module Instruction_rom_sample
         
             case(address)        
 				0:	instruction_out = 9'b1010_0_1111; // set_low $imm, 0
-				1:	instruction_out = 9'b1011_0_0000; // set_high $imm, 1
+				1:	instruction_out = 9'b1011_0_1111; // set_high $imm, 1
 				2:	instruction_out = 9'b0101_10_001; // set $t1 = $imm
+                /*
 				3:	instruction_out = 9'b1011_0_0001; // set_low $imm, 1
 				4:	instruction_out = 9'b0011_10_001; // add $imm, $imm
 				5:	instruction_out = 9'b0110_10_001; // set $imm = $t1

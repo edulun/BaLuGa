@@ -36,7 +36,8 @@ initial begin
 	res = 0;
 end
 
-always @(posedge clock) //SOMETHING HERE
+//always @(posedge clock) //SOMETHING HERE
+always @(*)
 begin
 	res = 0;
 	case(func)
@@ -48,8 +49,8 @@ begin
 
 		`sl_op:  res <= reg1 << reg2;
 		`sr_op: res <= reg1 >> reg2;
-		`stt_op: res <= reg1;
-		`stf_op: res <= reg2;
+		`stt_op: res <= reg2;
+		`stf_op: res <= reg1;
 		`be_op: begin
 			if (reg1 == reg2)	
 				br_out <= 1;
