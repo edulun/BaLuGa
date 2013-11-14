@@ -39,9 +39,9 @@ aon 	$imm	   			# $imm = $imm[0] & 0x1
 slw		1,0010 				# Set $branch = Continue (+2)
 1010 1 0010 
 shg		1,0000  				# Set $branch = Continue (+2)
-1011 10 0000
+1011 1 0000
 be      $imm, $zero			# If ($imm == 0) branch to Continue
-1100 01 000
+1100 01 000 
 
 _MainLoop
 
@@ -49,12 +49,12 @@ Addlow:
 
 stf   	$imm, $s2			# $imm = $s2 (Operand 2)
 0110 01101
-sll		$imm, $s3 			# Shift left by $s3(Counter) number of bits
+sl		$imm, $s3 			# Shift left by $s3(Counter) number of bits
 0011 01110
 add     $t1, $imm			# $t1 (Low result bits) += $imm (carryout in $imm)
 0000 10 001
 
-_AddLow
+_AddLow 15
 
 AddHigh:
 
@@ -68,15 +68,15 @@ inc     $t2                 # assign carryOut
 0111 11 000
 
 stt     $imm, $s2           # imm = operand 2
-0101 01 101
+0101 01 101 
 swp     $t1, $s3            # swap with counter
 1001 10 110
 seg     $t1                 # counter = 8 - counter
 0111 10 011
-slr     $imm, $t1           # shift by 8 - counter
-0100 01010
+sr     $imm, $t1           # shift by 8 - counter
+0110 01010
 seg     $t1                 # counter = 8 - counter
-0111 10 011
+0111 10 011 24
 swp     $t1, $s3            # swap counter <-> low bits
 1001 10 110
 add     $t2, $imm           # add to high bits
@@ -94,7 +94,7 @@ shg		0, 0000
 swp     $imm, $s1
 1001 01 100
 sr    	$imm, $s1 			# shift operand 1 right once
-0100 01 100
+0110 01 100
 swp     $imm, $s1
 1001 01 100						
 swp     $imm, $s3

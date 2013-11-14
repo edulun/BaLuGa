@@ -36,7 +36,7 @@ _MainLoop
 Addlow:
 
 stf   	$imm, $s2			# $imm = $s2 (Operand 2)
-sll		$imm, $s3 			# Shift left by $s3(Counter) number of bits
+sl		$imm, $s3 			# Shift left by $s3(Counter) number of bits
 add     $t1, $imm			# $t1 (Low result bits) += $imm (carryout in $imm)
 
 _AddLow
@@ -51,7 +51,7 @@ inc     $t2                 # assign carryOut
 stt     $imm, $s2           # imm = operand 2
 swp     $t1, $s3            # swap with counter
 seg     $t1                 # counter = 8 - counter
-slr     $imm, $t1           # shift by 8 - counter
+sr     $imm, $t1           # shift by 8 - counter
 seg     $t1                 # counter = 8 - counter
 swp     $t1, $s3            # swap counter <-> low bits
 add     $t2, $imm           # add to high bits
@@ -64,7 +64,7 @@ slw 	0, 0001		        # $imm = 0
 shg		0, 0000			    
 
 swp     $imm, $s1
-slr    	$imm, $s1 			# shift operand 1 right once
+sr    	$imm, $s1 			# shift operand 1 right once
 swp     $imm, $s1
 swp     $imm, $s3
 inc		$imm	 			    # counter +=1
