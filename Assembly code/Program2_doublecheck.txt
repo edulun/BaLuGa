@@ -25,17 +25,17 @@ Start:
     stt         $imm, $s2       # $s2 = jump address
 	0101 01 101
     slw         1, 0010          # branch = +2 (skip next instruction) 
-	1010 01 010
+	1010 1 0010
 
 CheckEntry:
 	ld 		    $imm, $t2	    # load next entry to $imm
-	0001 01 101
+	0001 01 011
     pkr         $imm            # check entry with pkr instrc
 	0111 01 100
     beq         $imm, $zero     # skip inc if not a succesful entry
 	1100 01 000
     inc         $t1             # succesful entry
-	0111 01 000
+	0111 10 000
 
 CheckAndMoveToNext:
 
