@@ -1,0 +1,95 @@
+# REGISTERS:
+# $imm - value in [$imm]
+# $s1 - current address in increment,
+# $s2 - starting address for array where entries are stored
+# $t1 - used for obtaining the number of times  $t1 has been found
+# $12 - holds the last position in the array
+
+MainProgram3:
+    shg  	0, 1000			# $imm = 128
+	1011 0 1000	
+    stf   	$imm, $s1		# $s1 =$imm
+	0110 00 100	
+	shg 	0, 1100			# Array starts at 196
+	1011 0 1100
+	stf		$imm, $s2		# $22 = 192 (Array)
+	0110 00 101
+	slw 		1, 1001 	# go to Increment
+	1010 1 1001
+	shg 		1, 1111		# go to Increment
+	1011 1 1111
+Increment:
+	ld 		$imm, $s1		# $imm = Mem[$s1]
+	0001 01 100 
+	stf		$t1, $s2		# $t1 = $s2
+	0110 10 101
+	add 	$t1, $imm		# $t1 += $imm	?CHECK THIS
+	0000 10 001
+	ld  	$t2, $s1		# $t2 = Mem[$t1] ?CHECK THIS
+	0001 11 100
+	inc 	$t2			# $t2++
+	0111 11 000	
+	st  	$t2, $s1		#  Mem[$t1] = $t2 ?CHECK THIS
+	0010 11 100
+	inc 	$t1			# $s1++ ? FIX THIS
+	0111 10 0000
+	bl 		$t1, $s2		# Start counting if we reach end of array
+	1101 10 100 
+
+	slw   	0, 1111
+	1010 0 1111
+	shg		0, 0011			# $imm = 63
+	1011 0 0011
+	stf   	$imm, $s3		# $s3 = 63
+	0110 00 110
+	stf   	$zero ,$s2		# $s2 = 0
+	0110 00 100
+	stt  	$t1, $zero		# $t1 = 0
+	0101 10 000
+	stt  	$t2, $zero		# $t2 = 0
+	0101 11 000
+
+Count:
+slw   	1, End		# $branch = End 
+1010 1 
+shg    	1, End		# $branch = End how does one branch to end?
+1011 1 
+stt		$imm, $s3		# $imm = $s3
+0101 01 110
+bl		$imm, $s2		# b if ($s2 > 63)
+1101 01 101
+ld  	$imm, $s2		# $imm = Mem[s1]
+0001 00 101
+slw 	1, 0011			# go to continue
+1010 1 0011
+shg		1, 0000
+1011 1 0000			
+
+bl 		$imm, $t2		# go To end ? How do you access t2?
+1011 01 
+stt 	$t2, $s2		# $t2 = $s2
+0101 11 101
+stt 	$t1, $imm		# $t1 = $imm
+0101 10 001
+
+Continue:
+inc		$s2			#increment value ? Should be t2 is s2???
+0111 11 000
+inc 	$s1			#increment memory position ?SHould be t1 is s1
+0111 10 000
+slw		$imm, ___		# set to count
+1010 01
+shg		$imm, ___		#set to count
+1011 01 
+jmp 		Count
+1110 
+
+End:
+	slw 		$imm,	14		# $imm = 126
+	
+	shg		$imm, 7		# $imm = 126
+	st 		$imm, $s1		# Mem[126] = highest value
+	inc		$imm			# $imm = 127
+	st 		$imm, $s2		# Mem[127] = value count
+
+
