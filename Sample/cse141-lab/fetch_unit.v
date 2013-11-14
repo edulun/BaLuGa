@@ -23,7 +23,6 @@ always @(posedge clock)
 begin
 	instruction_number <= pc;
 	cycles <= cycles + 1;
-	//cycle_counter <= cycles + 1;
 
 	//Set program counter to 0 if reset = 1
    if(done_ctrl) $finish;
