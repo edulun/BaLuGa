@@ -12,8 +12,7 @@ module instruction_rom_prog1
             0:  instruction_out = 9'b1011_0_0010;    // shg 0, 0010      # start at position 32
             1:  instruction_out = 9'b0101_01_100;    // stt $imm, $s1    # $s1 = initial memory pos
             2:  instruction_out = 9'b1011_0_0000;    // shg 0, 0000 
- // Shouldn't jump address be 6 instead of 7???
-            3:  instruction_out = 9'b1010_0_0111;    // slw 0, 0111      # jump address = CheckEntry
+            3:  instruction_out = 9'b1010_0_0111;    // slw 0, 0110      # jump address = CheckEntry
             4:  instruction_out = 9'b0101_01_101;    // stt $imm, $s2    # $s2 = jump address
             5:  instruction_out = 9'b1010_1_0010;    // slw 1, 0010      # branch = +2 (skip next instruction)
             // CheckEntry

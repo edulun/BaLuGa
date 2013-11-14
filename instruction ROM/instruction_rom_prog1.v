@@ -7,7 +7,6 @@ module instruction_rom_prog1
 
     reg [8:0]  instruction_out;
 
-    //TODO: NEED TO ADD PROGRAM CODE IN ROM
     always @ (address) begin
         case (address)
             0:  instruction_out = 9'b1010_0_0001;    // set_low  $imm, 0001
@@ -20,7 +19,7 @@ module instruction_rom_prog1
             // MainLoop (Instruction 8):
             7:  instruction_out = 9'b0101_01_100;    // set_to $imm, $s1 # $imm = $s1  (Operand 1)
             8:  instruction_out = 9'b0111_01_001;    // and1   $imm	   	 # $imm = $imm[0] & 0x1
-            9:  instruction_out = 9'b1010_1_0010;    // set_lw 1, 0010 	 # Set $branch = Continue (+2)
+            9:  instruction_out = 9'b1010_1_1111;    // set_lw 1, 1111 	 # Set $branch = Continue (+2)
            10:  instruction_out = 9'b1011_1_0000;    // set_high 1,0000  # Set $branch = Continue (+2)
            11:  instruction_out = 9'b1100_01_000;    // be  $imm, $zero  # If ($imm == 0) branch to Continue
            // Addlow:
