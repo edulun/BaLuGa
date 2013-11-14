@@ -26,11 +26,11 @@ Increment:
 	ld  	$t2, $t1		    # $t2 = Mem[$t1]
 	inc 	$t2			        # $t2++
 	st  	$t2, $t1		    # Mem[$t1] = $t2	
-    swp     $imm, $s1           # swap s1,imm to increase s1
+    stt     $imm, $s1           # swap s1,imm to increase s1
 	inc 	$imm			    # $imm++
-    swp     $imm, $s1           # swap back
+    stf     $imm, $s1           # swap back
 
-	bl 		$s1, $s2		    # Start counting if we reach end of array
+	bl 		$imm, $s2		    # Start counting if we reach end of array
                                 # address in $branch here should be this 
                                 # instruction number - increment instr #
 
