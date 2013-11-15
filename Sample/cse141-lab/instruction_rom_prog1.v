@@ -19,8 +19,8 @@ module instruction_rom_prog1
             // MainLoop (Instruction 8):
             7:  instruction_out = 9'b0101_01_100;    // set_to $imm, $s1 # $imm = $s1  (Operand 1)
             8:  instruction_out = 9'b0111_01_001;    // and1   $imm	   	 # $imm = $imm[0] & 0x1
-            9:  instruction_out = 9'b1010_1_1111;    // set_lw 1, 1111 	 # Set $branch = Continue (+2)
-           10:  instruction_out = 9'b1011_1_0000;    // set_high 1,0000  # Set $branch = Continue (+2)
+            9:  instruction_out = 9'b1010_1_0001;    // set_lw 1, 1111 	 # Set $branch = Continue (+2)
+           10:  instruction_out = 9'b1011_1_0001;    // set_high 1,0000  # Set $branch = Continue (+2)
            11:  instruction_out = 9'b1100_01_000;    // be  $imm, $zero  # If ($imm == 0) branch to Continue
            // Addlow:
            12:  instruction_out = 9'b0101_01_101;    // stf $imm, $s2    # $imm = $s2 (Operand 2)
@@ -49,15 +49,15 @@ module instruction_rom_prog1
            33:  instruction_out = 9'b1001_01_110;    // swp  $imm, $s3
            34:  instruction_out = 9'b0111_01_000;    // inc  $imm        # counter +=1
            35:  instruction_out = 9'b1001_01_110;    // swp  $imm, $s3
-           36:  instruction_out = 9'b1010_1_0011;    // slw  1, 0011
-           37:  instruction_out = 9'b1011_1_1100;    // shg  1, 1100
-           38:  instruction_out = 9'b1100_00_101;    // beq  $zero, $s2  # GO TO MAINLOOP
+           36:  instruction_out = 9'b1010_1_0001;    // slw  1, 0010
+           37:  instruction_out = 9'b1011_1_1110;    // shg  1, 1110
+           38:  instruction_out = 9'b1101_00_100;    // blt  $zero, $s2  # GO TO MAINLOOP
            // End:
            39:  instruction_out = 9'b1010_0_0011;    // slw  0, 3        # $Imm = 0x3
            40:  instruction_out = 9'b1011_0_0000;    // shg  0, 0        # $Imm = 0x3
-           41:  instruction_out = 9'b0010_10_001;    // st   $t1, $imm   # Mem[3] = $t1 
+           41:  instruction_out = 9'b0010_11_001;    // st   $t1, $imm   # Mem[3] = $t1 
            42:  instruction_out = 9'b0111_01_000;    // inc  $imm     	 # $imm = 4
-           43:  instruction_out = 9'b0010_11_001;    // st   $t2, $imm   # Mem[4] = $t2
+           43:  instruction_out = 9'b0010_10_001;    // st   $t2, $imm   # Mem[4] = $t2
            44:  instruction_out = 9'b0111_00_010;    // halt 
         endcase
     end
