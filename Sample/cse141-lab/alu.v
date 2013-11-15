@@ -36,34 +36,49 @@ initial begin
 	res = 0;
 end
 
-//always @(posedge clock) //SOMETHING HERE
 always @(*)
 begin
+    result <= 8'b0;
 	res = 0;
 	case(func)
         `add_op: begin
             result <= reg1 + reg2;
-            carry_out <= result[8];
             res <= result[7:0];
+            carry_out <= result[8];
         end
 
-		`sl_op:  res <= reg1 << reg2;
-		`sr_op: res <= reg1 >> reg2;
-		`stt_op: res <= reg2;
-		`stf_op: res <= reg1;
+        `sl_op: begin
+            res <= reg1 << reg2;
+            carry_out <= 0;
+        end
+        `sr_op: begin
+            res <= reg1 >> reg2;
+            carry_out <= 0;
+        end
+        `stt_op:begin
+            res <= reg2;
+            carry_out <= 0;
+        end
+        `stf_op:begin
+            res <= reg1;
+            carry_out <= 0;
+        end
 		`be_op: begin
+            carry_out <= 0;
 			if (reg1 == reg2)	
 				br_out <= 1;
 			else
 				br_out <= 0;
 		end
 		`blt_op: begin
+            carry_out <= 0;
 			if (reg1 < reg2)	
 				br_out <= 1;
 			else
 				br_out <= 0;
 		end
 		`spec_op: begin
+            carry_out <= 0;
 			case (spec_fun)
 				`inc_op:	res <= reg1 + 8'b1;
 				`and1_op: res <= reg1 & 8'b1;
@@ -80,10 +95,12 @@ begin
 		end
         //result = low bits from reg2 (imm)
 		`slw_op: begin
+            carry_out <= 0;
 			res[3:0] <= reg2[3:0];
 			res[7:4] <= reg1[7:4];
 		end
 		`shg_op: begin
+            carry_out <= 0;
 			res[3:0] <= reg1[3:0];
 			res[7:4] <= reg2[3:0];
 		end

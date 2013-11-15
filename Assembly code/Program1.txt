@@ -20,6 +20,9 @@ ld      $t1, $imm
 stf     $t1, $s2
 stt     $t1, $zero
 
+
+//70 ps
+
 _Start
 
 MainLoop (Instruction 8):
@@ -31,15 +34,23 @@ stl		1,0010 				# Set $branch = Continue (+2)
 sth		1,0000  				# Set $branch = Continue (+2)
 be      $imm, $zero			# If ($imm == 0) branch to Continue
 
+
+//120 ps
+
 _MainLoop
 
 Addlow:
 
 stf   	$imm, $s2			# $imm = $s2 (Operand 2)
 sl		$imm, $s3 			# Shift left by $s3(Counter) number of bits
-add     $t1, $imm			# $t1 (Low result bits) += $imm (carryout in $imm)
+swp     $imm, $branch        # swap for adding (to obtain carryout)
+stt     $imm, $zero         # $imm = 0
+add     $t1, $branch			# $t1 (Low result bits) += $imm (carryout in $imm)
+
 
 _AddLow
+
+//170 ps
 
 AddHigh:
 

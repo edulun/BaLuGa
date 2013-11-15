@@ -35,7 +35,7 @@ begin
         if (set_ctrl[0] == 0) read_val1 <= imm;
         else read_val1 <= branch;
     end
-    else begin
+else begin
         case (read_reg1)
             2'b00:	read_val1 <= zero;
             2'b01:	read_val1 <= imm;

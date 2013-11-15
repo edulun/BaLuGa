@@ -21,18 +21,25 @@ end
 
 always @(posedge clock)
 begin
-	instruction_number <= pc;
 	cycle_counter <= cycles + 1;
+	instruction_number <= pc;
 
 	//Set program counter to 0 if reset = 1
-   if(done_ctrl) $finish;
-	if(init_ctrl) pc <= 0;
+    if(done_ctrl) $finish;
+    if(init_ctrl) pc <= 0;
 	
 	//IF branch flag is set, set pc = addBranch
-	else if(branch_ctrl == 1) pc = pc + branch_val;
-	else if(jump_ctrl == 1) pc = jump_val;
-	else pc <= pc + 1'b1;
+
 
 end
+
+always @(negedge clock)
+    if(branch_ctrl == 1) pc = pc + branch_val;
+	else if(jump_ctrl == 1) pc = jump_val;
+	else pc <= pc + 1'b1;
+begin
+
+end
+
 	
 endmodule
