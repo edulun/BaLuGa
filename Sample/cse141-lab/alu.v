@@ -17,7 +17,6 @@
  `define sub8_op 	3'b011		// subtract 8
  `define pkr_op 	3'b100		// poker
 
-
 module alu (
 	input clock,
 	input [7:0] reg1,

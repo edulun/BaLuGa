@@ -28,7 +28,6 @@ initial begin
 	read_val2 = 0;
 end
 
-
 always @ (*)
 begin
     if(set_ctrl[1] == 1) begin
@@ -55,11 +54,7 @@ else begin
 	endcase
 
     branch_val <= branch;
-
-
 end
-
-	
 
 always @(negedge clock) begin
 	if(write_ctrl) begin
