@@ -15,34 +15,48 @@ MainProgram3:
     shg  	0, 1000			# $imm = 128
 	1011 0 1000		
     stf   	$imm, $s1		# $s1 =$imm (Values start here)
-	0110 00 100	
+	0110 01 100	
+
 	shg 	0, 1100			# $imm = 192 (Array starts here)
 	1011 0 1100
+
 	stf		$imm, $s2		# $s2 = 192 (Array)
 	0110 00 101
+	
 	slw 	1, 1001 	    # $branch = Increment (~-9)
 	1010 1 1001
+
 	shg 	1, 1111		    # $branch = Increment (~-9)
 	1011 1 1111
+
 Increment:
 	stt		$t1, $s2		    # $t1 = $s2 (192)
 	0101 10 101	
+
 	ld 		$imm, $s1		    # $imm = Mem[$s1]
 	0001 01 100 
+	
 	add 	$t1, $imm		    # $t1 += $imm	
 	0000 10 001
+
 	ld  	$t2, $t1		    # $t2 = Mem[$t1]
 	0001 11 010
+
 	inc 	$t2			        # $t2++
 	0111 11 000
+
 	st  	$t2, $t1		    # Mem[$t1] = $t2
 	0010 11 010
+
     swp     $imm, $s1           # swap s1,imm to increase s1
 	1001 01 100
+
 	inc 	$imm			    # $imm++
 	0111 01 000
+
     stf     $imm, $s1           # swap back
 	0110 01 100
+
 	bl 		$imm, $s2		    # Start counting if we reach end of array
     1101  00    101             # address in $branch here should be this 
                                 # instruction number - increment instr #
@@ -56,27 +70,35 @@ Increment:
 
 	slw   	0, 0000
 	1010 0 0000
+
 	shg		0, 0100			# $imm = 64
 	1011 0 0100
+
 	stf   	$imm, $s3		# $s3 = 64
 	0110 01 110
+
     stf     $zero, $t1        # $t1 = 192
 	0110 00 010
+
     stf     $zero, $t2
 	0110 00 011
+
     stf     $zero, $s1
 	0110 00 100
 
 Count:
 	slw   	1, 1011		    # $branch = End (~+13)
 	1010 1 1011
+
 	shg    	1, 0000		    # $branch = End (~+13)
 	1011 1 0000
+
     be		$t1, $s3        # branch if $t1 == 64
 	1100 10 110 
 
     stt		$imm, $s2		# $imm = 192 
 	0101 01 101
+
     add     $imm, $t1       # $imm = 192 + (entry)
 	0000 01 010
 
@@ -85,34 +107,45 @@ Count:
 
     slw 	1, 0011			# go to continue (~+3)
 	1010 1 0011
+
     bl 		$imm, $s1		# branch if !(current entry repeats more than prev max)
 	1101 01 100
+
     stf 	$imm, $s1		# new max count = $imm 
 	0110 01 100
+
     stf 	$t2,  $t1	    # new max entry = $t2
 	0110 11 001
 
 Continue:
     inc		$t1			    #increment current entry
 	0111 10 000
+
     slw		$imm, 0111 		# set to count (~23)
 	1010 0 0111
+
     shg		$imm, 0001	   	# set to count (~23)
 	1011 0 0001
+
     jmp 	$imm
 	1110 01 000
 
 end:
 	slw 	$imm, 1110		# $imm = 126
 	1010 0 1110
+
 	shg		$imm, 0111	    # $imm = 126
 	1011 0 0111
+
 	st 		$imm, $t2		# Mem[126] = highest value
 	0010 01 101
+	
 	inc		$imm			# $imm = 127
 	0111 01 000
+
     swp     $t2, $s1
 	1001 11 100
+
 	st 		$imm, $t2		# Mem[127] = value count
-	0010 01 101
+		
 

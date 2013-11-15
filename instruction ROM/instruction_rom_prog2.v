@@ -30,7 +30,7 @@ module instruction_rom_prog1
            // End:
            16:  instruction_out = 9'b1010_1_0101;    // slw 1, 0x0101    # set imm = memory where the count of
            17:  instruction_out = 9'b1011_1_0000;    // shg 1, 0x0000    # succesful entries will be stored.
-           18:  instruction_out = 9'b0010_11_111;    // st  $t2, $branch
+           18:  instruction_out = 9'b0010_10_111;    // st  $t1, $branch
            19:  instruction_out = 9'b0111_00_010;    // halt
            
         endcase
