@@ -20,6 +20,7 @@
  `define seg_op 	3'b011		// subtract 8
  `define pkr_op 	3'b100		// poker	
 
+
 module control_unit (
 	input clock,
     input [8:0] instruction,
@@ -36,6 +37,10 @@ module control_unit (
     output reg done_ctrl, 
     output reg jmp_ctrl
 );
+
+
+initial begin
+end
 
 reg [3:0] opcode;
 reg [2:0] spec_instr;
@@ -329,5 +334,6 @@ always @(*) begin
         end
     endcase
 end
-	
+
+		
 endmodule
