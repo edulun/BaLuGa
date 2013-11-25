@@ -61,3 +61,4 @@ set_global_assignment -name BDF_FILE Lab3.bdf
 set_global_assignment -name VERILOG_FILE fetch_unit.v
 set_global_assignment -name VERILOG_FILE mux_alu.v
 set_global_assignment -name VERILOG_FILE test_sample.v
+set_global_assignment -name BDF_FILE "../../Pipeline Schematic/PipelineSchematic.bdf"
