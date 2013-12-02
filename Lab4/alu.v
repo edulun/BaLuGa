@@ -24,9 +24,9 @@ module alu (
 	input [7:0] reg2,
 	input [3:0] func,
 	input [2:0] spec_fun,
+	output reg br_out,
 	output reg [7:0] res,
-   output reg carry_out,
-	output reg br_out
+    output reg carry_out
 );
 
 reg [8:0] result;

@@ -38,31 +38,30 @@ module pipe_id_mex (
     input ID_done_ctrl, 
     input ID_jmp_ctrl,
 
-    //Sent to memory/execute
-    output reg [7:0] MEX_reg_val1,
-    output reg [7:0] MEX_reg_val2,
-    output reg [7:0] MEX_branch_val,
-    output reg [7:0] MEX_jmp_val,
-    output reg [3:0] MEX_imm_val,
-
-    output reg [2:0] MEX_read_addr1,
-    output reg [2:0] MEX_read_addr2,
-    output reg [2:0] MEX_write_addr,
-
-    output reg [3:0] MEX_alu_func,
-    output reg [2:0] MEX_alu_spec_func,
-
-    output reg MEX_alu_src,
-
-    output reg MEX_mem_write, 
-    output reg MEX_mem_read, 
-
+    output reg MEX_branch_ctrl, 
+    output reg MEX_done_ctrl, 
+    output reg MEX_jmp_ctrl,
     output reg MEX_reg_write,
 
     //Sent back to instruction fetch
-    output reg MEX_branch_ctrl, 
-    output reg MEX_done_ctrl, 
-    output reg MEX_jmp_ctrl
+	output reg [7:0] MEX_branch_val,
+    output reg [7:0] MEX_jmp_val,
+    output reg [2:0] MEX_write_addr,
+    output reg [2:0] MEX_read_addr1,
+    output reg [2:0] MEX_read_addr2,
+    output reg MEX_alu_src,
+
+    //Sent to memory/execute
+    output reg [7:0] MEX_reg_val1,
+    output reg [7:0] MEX_reg_val2,
+    output reg [3:0] MEX_imm_val,
+    output reg [3:0] MEX_alu_func,
+    output reg [2:0] MEX_alu_spec_func,
+    
+
+
+    output reg MEX_mem_write, 
+    output reg MEX_mem_read 
 
 
 );

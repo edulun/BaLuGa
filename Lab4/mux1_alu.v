@@ -1,8 +1,10 @@
 module mux1_alu (
-	input [7:0] id_mex_reg1,
+
 	//input [7:0] mex_wb_reg1,
-    input [7:0] mex_wb_alu_res,
+   input [7:0] mex_wb_alu_res,
 	input fwd_unit_selector1,
+	input [7:0] id_mex_reg1,
+	
 	output [7:0] mux_alu_out
 );
 

@@ -1,17 +1,17 @@
 module pipe_mex_wb(
 	input clock,
-    input [7:0] mex_write_val,
     input [2:0] mex_write_addr,
+    input [7:0] mex_write_val,
+    input mex_carry_out,
     input [7:0] mex_data_val,
     input mex_mem_read,
-    input mex_carry_out,
     
-    output reg [7:0] wb_write_val,
-    output reg [2:0] wb_write_addr,
-    output reg [7:0] wb_data_val,
     output reg [2:0] mex_write_reg,
-    output reg wb_mem_read,
-    output reg wb_carry_out
+    output reg [2:0] wb_write_addr,
+    output reg [7:0] wb_write_val,
+    output reg [7:0] wb_data_val,
+    output reg wb_carry_out,
+    output reg wb_mem_read
 );
 
     //TODO:forward alu result back to alu if the prev write addr  is equal

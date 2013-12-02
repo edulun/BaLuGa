@@ -1,8 +1,9 @@
 module mux2_alu (
+    input [7:0] mex_wb_alu_res,
 	input [7:0] id_mex_reg2,
 	//input [7:0] mex_wb_reg2,
 	input [3:0] instr_imm,
-    input [7:0] mex_wb_alu_res,
+
 	input [1:0] fwd_unit_selector2,
 	output [7:0] mux2_alu_out
 );
