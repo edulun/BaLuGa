@@ -1,14 +1,14 @@
 module register_file (
 	input clock,
 	input write_ctrl,	
-	input carry_out,
-	input swap_ctrl,
-   input [1:0] set_ctrl,
 	input [2:0] write_reg,
 	input [7:0] write_val,
+	input carry_out,
 	input [1:0] read_reg1,	
 	input [2:0] read_reg2,
-   output reg [7:0] branch_val,
+	input swap_ctrl,
+    input [1:0] set_ctrl,
+    output reg [7:0] branch_val,
 	output reg [7:0] read_val1,
 	output reg [7:0] read_val2
 );
