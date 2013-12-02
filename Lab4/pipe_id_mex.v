@@ -3,7 +3,7 @@ module pipe_id_mex (
     input flush,
 
     //TODO: forward to register file if it is a setTO,setFrom, or swap 
-        //maybe add jump value to output
+    //maybe add jump value to output
     //using the previous write_addr as the current read_addr1 or read_addr2
 
     //Values obtained from register file
@@ -12,18 +12,18 @@ module pipe_id_mex (
 	input [7:0] ID_reg_val1,
     input [7:0] ID_reg_val2,
 	 
-
     //Value for immediate obtained from instruction
     input [3:0] ID_imm_val,
 
     //Register addresses from control unit
     input [2:0] ID_read_addr1,
     input [2:0] ID_read_addr2,
-    input [2:0] ID_write_addr,
 
     //ALU functions from control unit
     input [3:0] ID_alu_func,
     input [2:0] ID_alu_spec_func,
+
+    input [2:0] ID_write_addr,
 
     //Control flag for choosing between register/immediate (mux_alu)
     input ID_alu_src,
@@ -31,12 +31,12 @@ module pipe_id_mex (
     //Control flags for data memory - writing to register
     input ID_mem_write, 
     input ID_mem_read, 
+    input ID_branch_ctrl, 
     input ID_reg_write,
 
     //Control unit for branch/jump instructions 
-    input ID_branch_ctrl, 
-    input ID_jmp_ctrl,
     input ID_done_ctrl, 
+    input ID_jmp_ctrl,
 
     //Sent to memory/execute
     output reg [7:0] MEX_reg_val1,
