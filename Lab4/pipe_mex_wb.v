@@ -1,6 +1,5 @@
 module pipe_mex_wb(
 	input clock,
-    input flush,
     input [7:0] mex_write_val,
     input [2:0] mex_write_addr,
     input [7:0] mex_data_val,
@@ -26,20 +25,11 @@ reg mem_read;
 reg carry_out;
 
 always @(negedge clock) begin
-    if(flush) begin
-        write_val <= 8'bxxxxxxxx;
-        write_addr <= 3'bxxx;
-        data_val <= 8'bxxxxxxxx;
-        mem_read <= 1'bx;
-        carry_out <= 1'bx;
-    end
-    else begin
-        write_val <= mex_write_val;
-        write_addr <= mex_write_addr;
-        data_val <= mex_data_val;
-        mem_read <= mex_mem_read;
-        carry_out <= mex_carry_out;
-    end
+    write_val <= mex_write_val;
+    write_addr <= mex_write_addr;
+    data_val <= mex_data_val;
+    mem_read <= mex_mem_read;
+    carry_out <= mex_carry_out;
 end
 
 always @(posedge clock) begin
@@ -48,5 +38,6 @@ always @(posedge clock) begin
     wb_data_val <= data_val;
     wb_mem_read <= mem_read;
     wb_carry_out <= carry_out;
-    mex_write_reg <= write_reg;
+    mex_write_reg <= write_addr;
+	 end
 endmodule

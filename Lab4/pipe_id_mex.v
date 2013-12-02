@@ -7,10 +7,11 @@ module pipe_id_mex (
     //using the previous write_addr as the current read_addr1 or read_addr2
 
     //Values obtained from register file
-    input [7:0] ID_reg_val1,
-    input [7:0] ID_reg_val2,
     input [7:0] ID_branch_val,
-	 input [7:0] ID_jmp_val,
+    input [7:0] ID_jmp_val,
+	input [7:0] ID_reg_val1,
+    input [7:0] ID_reg_val2,
+	 
 
     //Value for immediate obtained from instruction
     input [3:0] ID_imm_val,
