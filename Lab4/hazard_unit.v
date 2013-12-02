@@ -10,7 +10,7 @@ module hazard_unit (
 
 initial 
 
-    always @ (posedge clock) begin
+    always @ (negedge clock) begin
         if (branch_ctrl) begin
             flush_ctrl <= 1;
         end
