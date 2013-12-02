@@ -8,7 +8,7 @@ module mux1_alu (
 
 reg [7:0] out;
 
-always @ (fwd_unit_selector1 or id_mex_reg1 or mex_wb_reg1 or fwd_unit_selector1) begin
+always @ (fwd_unit_selector1 or id_mex_reg1 or mex_wb_alu_res) begin
     // forward register 1 from ID/MEX pipe
 	if (fwd_unit_selector1 == 0) begin
 		out = id_mex_reg1;

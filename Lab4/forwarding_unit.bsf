@@ -68,9 +68,9 @@ applicable agreement for further details.
 	(port
 		(pt 240 32)
 		(output)
-		(text "fwd_mux1[1..0]" (rect 0 0 76 12)(font "Arial" ))
-		(text "fwd_mux1[1..0]" (rect 143 27 219 39)(font "Arial" ))
-		(line (pt 240 32)(pt 224 32)(line_width 3))
+		(text "fwd_mux1" (rect 0 0 50 12)(font "Arial" ))
+		(text "fwd_mux1" (rect 169 27 219 39)(font "Arial" ))
+		(line (pt 240 32)(pt 224 32)(line_width 1))
 	)
 	(port
 		(pt 240 48)

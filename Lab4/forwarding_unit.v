@@ -5,8 +5,8 @@ module forwarding_unit (
     input [2:0] mex_wb_reg2,
     input [2:0] mex_wb_wrt_reg,
     input [3:0] alu_func,
-    output [1:0] fwd_mux1,      // First ALU input
-    output [1:0] fwd_mux2       // Second ALU input
+    output fwd_mux1,            // First ALU mux selector
+    output [1:0] fwd_mux2       // Second ALU mux selector
 );
 
     reg [1:0] out1;
