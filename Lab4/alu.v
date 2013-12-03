@@ -32,8 +32,6 @@ module alu (
 reg [8:0] result;
    
 initial begin
-	br_out = 0;
-	res = 0;
 end
 
 always @(*)

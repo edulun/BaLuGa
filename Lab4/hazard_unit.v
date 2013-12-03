@@ -10,6 +10,8 @@ module hazard_unit (
 
 initial begin
 	cycle_count = 2'b0;
+    stall_ctrl = 0;
+    flush_ctrl = 0;
 end
 
     always @(negedge clock) begin

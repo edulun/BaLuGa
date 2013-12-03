@@ -20,9 +20,9 @@ applicable agreement for further details.
 */
 (header "symbol" (version "1.1"))
 (symbol
-	(rect 16 16 272 128)
+	(rect 16 16 272 160)
 	(text "forwarding_unit" (rect 5 0 65 12)(font "Arial" ))
-	(text "inst" (rect 8 96 20 108)(font "Arial" ))
+	(text "inst" (rect 8 128 20 140)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -47,9 +47,16 @@ applicable agreement for further details.
 	(port
 		(pt 0 80)
 		(input)
+		(text "id_mex_wrt_reg[2..0]" (rect 0 0 86 12)(font "Arial" ))
+		(text "id_mex_wrt_reg[2..0]" (rect 21 75 107 87)(font "Arial" ))
+		(line (pt 0 80)(pt 16 80)(line_width 3))
+	)
+	(port
+		(pt 0 96)
+		(input)
 		(text "alu_src" (rect 0 0 29 12)(font "Arial" ))
-		(text "alu_src" (rect 21 75 50 87)(font "Arial" ))
-		(line (pt 0 80)(pt 16 80)(line_width 1))
+		(text "alu_src" (rect 21 91 50 103)(font "Arial" ))
+		(line (pt 0 96)(pt 16 96)(line_width 1))
 	)
 	(port
 		(pt 256 32)
@@ -66,6 +73,6 @@ applicable agreement for further details.
 		(line (pt 256 48)(pt 240 48)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 240 96)(line_width 1))
+		(rectangle (rect 16 16 240 128)(line_width 1))
 	)
 )

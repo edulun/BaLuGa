@@ -23,9 +23,11 @@ reg [7:0] write_val;
 reg [2:0] write_addr;
 reg [7:0] data_val;
 reg mem_read;
+reg reg_write;
 reg carry_out;
 
 always @(negedge clock) begin
+    reg_write <= mex_reg_write;
     write_val <= mex_write_val;
     write_addr <= mex_write_addr;
     data_val <= mex_data_val;
@@ -34,6 +36,7 @@ always @(negedge clock) begin
 end
 
 always @(posedge clock) begin
+    wb_reg_write <= reg_write;
     wb_write_val <= write_val;
     wb_write_addr <= write_addr;
     wb_data_val <= data_val;

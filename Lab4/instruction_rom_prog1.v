@@ -1,5 +1,6 @@
 module instruction_rom_prog1
 (
+    //input clock,
     input [7:0] address,
     output [8:0] instruction
 );
@@ -8,93 +9,56 @@ module instruction_rom_prog1
 
     always @ (address) begin
         case (address)
-
-
-
-
-            // MainProgram3:
-            0:  instruction_out = 9'b1010_0_0000;    // slw	0, 1100      # $imm = 128
-            1:  instruction_out = 9'b1011_0_1000;    // shg	0, 1100      # $imm = 128
-            2:  instruction_out = 9'b0110_01_100;    // stf	$imm, $s1    # $s1 =$imm (Values start here)
-            3:  instruction_out = 9'b1011_0_1100;    // shg 0, 1100      # $imm = 192 (Array starts here) 
-            4:  instruction_out = 9'b0110_01_101;    // stf	$imm, $s2    # $s2 = 192 (Array)
-
-            //Initialize values
-
-            5:  instruction_out = 9'b1010_1_1111;    // slw	1, 1111      # $branch = 255
-            6:  instruction_out = 9'b1011_1_1111;    // shg	1, 1111      # $branch = 255
-
-            7:  instruction_out = 9'b0101_10_111;    // stt	10, 111      # $t1 = $branch (255)
-            8:  instruction_out = 9'b1010_1_1110;    // slw	1, 1110      # $branch = -2
-
-            //Loop until last entry
-            9:  instruction_out = 9'b0010_00_001;    // st $zero, $imm   #initialize to 0
-           10:  instruction_out = 9'b0111_01_000;    // inc $imm
-           11:  instruction_out = 9'b1101_01_010;    // bl $imm, $t1     # branch to -2
-
-            //main loop
-
-           12:  instruction_out = 9'b0101_10_000;    // stt $t1, $zero   # t1 = 0
-            
-
-
-           13:  instruction_out = 9'b1010_1_0111;    // slw	1, 0111      # $branch = Increment (~-9)
-           14:  instruction_out = 9'b1011_1_1111;    // shg	1, 1111      # $branch = Increment (~-9)
-
-            // Increment:
-           15:  instruction_out = 9'b0101_10_101;    // stt	$t1, $s2     # $t1 = $s2 (192)
-           16:  instruction_out = 9'b0001_01_100;    // ld  $imm, $s1    # $imm = Mem[$s1]
-           17:  instruction_out = 9'b0000_10_001;    // add	$t1, $imm    # $t1 += $imm
-           18:  instruction_out = 9'b0001_11_010;    // ld 	$t2, $t1     # $t2 = Mem[$t1]
-           19:  instruction_out = 9'b0111_11_000;    // inc	$t2          # $t2++
-           20:  instruction_out = 9'b0010_11_010;    // st 	$t2, $t1     # Mem[$t1] = $t2
-           21:  instruction_out = 9'b1001_01_100;    // swp $imm, $s1    # swap s1,imm to increase s1
-           22:  instruction_out = 9'b0111_01_000;    // inc	$imm         # $imm++
-           23:  instruction_out = 9'b0110_01_100;    // stf $imm, $s1    # swap back
-           24:  instruction_out = 9'b1101_01_101;    // bl  $imm, $s2    # Start counting if we reach end of array
-                                                     //                  # address in $branch here should be this 
-                                                     //                  # instruction number - increment instr #
-
-           // imm - misc
-           // T1 - current value
-           // T2 - most common value # (stored in memory 126)
-           // S1 - # of time most common value repeats (stored in 127)
-           // S2 - The starting address of the result array
-           // S3 - 64, for branching on the entries (should stop when t1 == 64)
-           25:  instruction_out = 9'b1010_0_0000;    // slw  0, 0000     # $imm = 64
-           26:  instruction_out = 9'b1011_0_0100;    // shg	 0, 0100     # $imm = 64           
-           27:  instruction_out = 9'b0110_01_110;    // stf	 $imm, $s3   # $s3 = 64 
-           28:  instruction_out = 9'b0110_00_010;    // stf  $zero, $t1  # $t1 = 0 
-           29:  instruction_out = 9'b0110_00_011;    // stf  $zero, $t2 
-           30:  instruction_out = 9'b0110_00_100;    // stf  $zero, $s1 
-
-           // Count:
-           31:  instruction_out = 9'b1010_1_1100;    // slw  1, 1010     # $branch = End (~+13) 
-           32:  instruction_out = 9'b1011_1_0000;    // shg  1, 0000     # $branch = End (~+13)
-           33:  instruction_out = 9'b1100_10_110;    // be   $t1, $s3    # branch if $t1 == 64
-           34:  instruction_out = 9'b0101_01_101;    // stt  $imm, $s2   # $imm = 192 
-           35:  instruction_out = 9'b0000_01_010;    // add  $imm, $t1   # $imm = 192 + (entry) 
-           36:  instruction_out = 9'b0001_01_001;    // ld   $imm, $imm  # $imm = mem[imm] 
-           37:  instruction_out = 9'b1010_1_0011;    // slw  1, 0011     # go to continue (~+3)
-           38:  instruction_out = 9'b1101_01_100;    // bl   $imm, $s1   # branch if !(current entry repeats more than prev max)
-           39:  instruction_out = 9'b0110_01_100;    // stf  $imm, $s1   # new max count = $imm
-           40:  instruction_out = 9'b0101_11_010;    // stt  $t2,  $t1   # new max entry = $t2
-
+            0:  instruction_out = 9'b1010_0_0001;    // set_low  $imm, 0001
+            1:  instruction_out = 9'b0001_10_001;    // load     $t1, $imm
+            2:  instruction_out = 9'b0110_10_100;    // set_from $t1, $s1
+            3:  instruction_out = 9'b0111_01_000;    // incr     $imm
+            4:  instruction_out = 9'b0001_10_001;    // load     $t1, $imm
+            5:  instruction_out = 9'b0110_10_101;    // set_from $t1, $s2
+            6:  instruction_out = 9'b0101_10_000;    // set_to   $t1, $zero
+            // MainLoop (Instruction 8):
+            7:  instruction_out = 9'b0101_01_100;    // set_to $imm, $s1 # $imm = $s1  (Operand 1)
+            8:  instruction_out = 9'b0111_01_001;    // and1   $imm	   	 # $imm = $imm[0] & 0x1
+            9:  instruction_out = 9'b1010_1_0001;    // set_lw 1, 1111 	 # Set $branch = Continue (+2)
+           10:  instruction_out = 9'b1011_1_0001;    // set_high 1,0000  # Set $branch = Continue (+2)
+           11:  instruction_out = 9'b1100_01_000;    // be  $imm, $zero  # If ($imm == 0) branch to Continue
+           // Addlow:
+           12:  instruction_out = 9'b0101_01_101;    // stf $imm, $s2    # $imm = $s2 (Operand 2)
+           13:  instruction_out = 9'b0011_01_110;    // sl  $imm, $s3 	 # Shift left by $s3(Counter) number of bits
+           14:  instruction_out = 9'b1001_01_111;    // swap branch imm
+           15:  instruction_out = 9'b0101_01_000;    // $imm = 0 set to imm 0   
+           16:  instruction_out = 9'b0000_10_111;    // add $t1, $imm    # $t1 (Low result bits) += $imm (carryout in $imm)
+           // AddHigh:
+           17:  instruction_out = 9'b1010_1_0010;    // slw	1, 0x2       # Set $branch = Continue (+2)
+           18:  instruction_out = 9'b1011_1_0000;    // set_high 1,0000  # Set $branch = Continue (+2)
+           19:  instruction_out = 9'b1100_01_000;    // be $imm, $zero   # no carryOut
+           20:  instruction_out = 9'b0111_11_000;    // inc $t2          # assign carryOut
+           21:  instruction_out = 9'b0101_01_101;    // stt $imm, $s2    # imm = operand 2
+           22:  instruction_out = 9'b1001_10_110;    // swp $t1, $s3     # swap with counter
+           23:  instruction_out = 9'b0111_10_011;    // sub8 $t1         # counter = 8 - counter
+           24:  instruction_out = 9'b0100_01_010;    // shif_r $imm, $t1 # shift by 8 - counter
+           25:  instruction_out = 9'b0111_10_011;    // sub8 $t1         # counter = 8 - counter
+           26:  instruction_out = 9'b1001_10_110;    // swap $t1, $s3    # swap counter <-> low bits
+           27:  instruction_out = 9'b0000_11_001;    // add  $t2, $imm   # add to high bits
            // Continue:
-           41:  instruction_out = 9'b0111_10_000;    // inc  $t1         # increment current entry
-           42:  instruction_out = 9'b1010_0_1111;    // slw  $imm, 0111  # set to count (~31)
-           43:  instruction_out = 9'b1011_0_0001;    // shg  $imm, 0001  # set to count (~31)
-           44:  instruction_out = 9'b1110_01_000;    // jmp  $imm
-
-           // end:
-           45:  instruction_out = 9'b1010_0_1110;    // slw  $imm, 1110  # $imm = 126
-           46:  instruction_out = 9'b1011_0_0111;    // shg  $imm, 0111  # $imm = 126
-           47:  instruction_out = 9'b0010_11_001;    // st   $t2, $imm   # Mem[126] = highest value
-           48:  instruction_out = 9'b0111_01_000;    // inc  $imm        # $imm = 127
-           49:  instruction_out = 9'b1001_11_100;    // swp  $t2, $s1
-           50:  instruction_out = 9'b0010_11_001;    // st   $imm, $t2   # Mem[127] = value count
-           51:  instruction_out = 9'b0111_00_010;
-
+           28:  instruction_out = 9'b1010_0_0001;    // slw  0, 0001     # $imm = 1
+           29:  instruction_out = 9'b1011_0_0000;    // shg  0, 0000     # $imm = 1
+           30:  instruction_out = 9'b1001_01_100;    // swp  $imm, $s1
+           31:  instruction_out = 9'b0100_01_100;    // sr   $imm, $s1   # shift operand 1 right once
+           32:  instruction_out = 9'b1001_01_100;    // swp  $imm, $s1
+           33:  instruction_out = 9'b1001_01_110;    // swp  $imm, $s3
+           34:  instruction_out = 9'b0111_01_000;    // inc  $imm        # counter +=1
+           35:  instruction_out = 9'b1001_01_110;    // swp  $imm, $s3
+           36:  instruction_out = 9'b1010_1_0001;    // slw  1, 0010
+           37:  instruction_out = 9'b1011_1_1110;    // shg  1, 1110
+           38:  instruction_out = 9'b1101_00_100;    // blt  $zero, $s2  # GO TO MAINLOOP
+           // End:
+           39:  instruction_out = 9'b1010_0_0011;    // slw  0, 3        # $Imm = 0x3
+           40:  instruction_out = 9'b1011_0_0000;    // shg  0, 0        # $Imm = 0x3
+           41:  instruction_out = 9'b0010_11_001;    // st   $t1, $imm   # Mem[3] = $t1 
+           42:  instruction_out = 9'b0111_01_000;    // inc  $imm     	 # $imm = 4
+           43:  instruction_out = 9'b0010_10_001;    // st   $t2, $imm   # Mem[4] = $t2
+           44:  instruction_out = 9'b0111_00_010;    // halt 
         endcase
     end
 

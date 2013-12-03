@@ -16,7 +16,7 @@ module pipe_id_mex (
     input [3:0] ID_imm_val,
 
     //Register addresses from control unit
-    input [2:0] ID_read_addr1,
+    input [1:0] ID_read_addr1,
     input [2:0] ID_read_addr2,
 
     //ALU functions from control unit
@@ -114,11 +114,14 @@ always @(negedge clock) begin
     else begin
         reg_val1 <= ID_reg_val1;
         reg_val2 <= ID_reg_val2;
-        read_addr1 <= ID_read_addr1;
+        read_addr1[2] <= 0;
+        read_addr1[1:0] <= ID_read_addr1;
         read_addr2 <= ID_read_addr2;
         branch_val <= ID_branch_val;
         jmp_val <= ID_jmp_val;
         write_addr <= ID_write_addr;
+
+        imm_val <= ID_imm_val;
 
         alu_func  <= ID_alu_func;
         alu_spec_func <= ID_alu_spec_func;

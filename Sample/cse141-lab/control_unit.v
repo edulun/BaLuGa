@@ -23,16 +23,16 @@
 module control_unit (
 	input clock,
     input [8:0] instruction,
+    output reg [1:0] set_ctrl,
+    output reg swap_ctrl, 
     output reg [3:0] alu_func,
     output reg [2:0] alu_spec_func,
     output reg [2:0] reg_write_val,
-    output reg [1:0] set_ctrl,
     output reg alu_src,
     output reg mem_write, 
     output reg mem_read, 
     output reg branch, 
     output reg reg_write,
-    output reg swap_ctrl, 
     output reg done_ctrl, 
     output reg jmp_ctrl
 );

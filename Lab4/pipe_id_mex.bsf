@@ -75,8 +75,8 @@ applicable agreement for further details.
 	(port
 		(pt 0 144)
 		(input)
-		(text "ID_read_addr1[2..0]" (rect 0 0 80 12)(font "Arial" ))
-		(text "ID_read_addr1[2..0]" (rect 21 139 101 151)(font "Arial" ))
+		(text "ID_read_addr1[1..0]" (rect 0 0 79 12)(font "Arial" ))
+		(text "ID_read_addr1[1..0]" (rect 21 139 100 151)(font "Arial" ))
 		(line (pt 0 144)(pt 16 144)(line_width 3))
 	)
 	(port

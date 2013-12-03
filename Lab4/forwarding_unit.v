@@ -2,6 +2,7 @@ module forwarding_unit (
     input [2:0] mex_wb_wrt_reg,
     input [2:0] id_mex_reg1,
     input [2:0] id_mex_reg2,
+    input [2:0] id_mex_wrt_reg,
     input alu_src,
     output fwd_mux1,            // First ALU mux selector
     output [1:0] fwd_mux2       // Second ALU mux selector
@@ -10,11 +11,17 @@ module forwarding_unit (
     reg [1:0] out1;
     reg [1:0] out2;
     
-    always @ (id_mex_reg1 or id_mex_reg2 or mex_wb_wrt_reg ) begin
+    always @ (id_mex_wrt_reg or id_mex_reg1 or id_mex_reg2 or mex_wb_wrt_reg ) begin
+        // use immediate value
+        if (alu_src) begin
+            out2 = 2'b10;
+            if (id_mex_wrt_reg == mex_wb_wrt_reg) out1 =2'b1;
+            else out1 = 2'b0;
+		end
         // Write register of previous instruction = current register 1
         // previous: load     $t1, $imm
         // current:  set from $t1, $s2   # $s2 = $t1
-        if (mex_wb_wrt_reg == id_mex_reg1) begin
+        else if (mex_wb_wrt_reg == id_mex_reg1) begin
             out1 = 2'b1;
             out2 = 2'b0;
         end
@@ -25,11 +32,6 @@ module forwarding_unit (
             out1 = 2'b0;
             out2 = 2'b1;
         end
-        // use immediate value
-        else if (alu_src) begin
-			out1 = 2'b0;
-			out2 = 2'b10;
-		end
         // No forwarding is needed
         else begin
             out1 = 2'b0;
