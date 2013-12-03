@@ -26,15 +26,14 @@ begin
 
 	//Set program counter to 0 if reset = 1
     if(done_ctrl) $finish;
-    if(init_ctrl) pc <= 0;
+    
 end
 
-always @(negedge clock)
+always @(negedge clock) begin
     if(branch_ctrl == 1) pc = pc + branch_val;
 	else if(jump_ctrl == 1) pc = jump_val;
+	else if(init_ctrl) pc <= 0;
 	else pc <= pc + 1'b1;
-begin
-
 end
 
 assign cycle_counter = cycles;

@@ -5,32 +5,26 @@ ptn_Child1=ChildFrames
 [ProjectWorkspace.Frames.ChildFrames]
 ptn_Child1=Document-0
 ptn_Child2=Document-1
-<<<<<<< HEAD
 ptn_Child3=Document-2
 ptn_Child4=Document-3
 ptn_Child5=Document-4
 ptn_Child6=Document-5
 ptn_Child7=Document-6
 ptn_Child8=Document-7
-=======
->>>>>>> 6a58c9f3b10f626e0f9ee3c858182cbca8f8e648
 [ProjectWorkspace.Frames.ChildFrames.Document-0]
 ptn_Child1=ViewFrame-0
 [ProjectWorkspace.Frames.ChildFrames.Document-0.ViewFrame-0]
-DocPathName=Lab3.bdf
-DocumentCLSID={7b19e8f2-2bbe-11d1-a082-0020affa5bde}
+DocPathName=alu.v
+DocumentCLSID={84678d98-dc76-11d0-a0d8-0020affa5bde}
 IsChildFrameDetached=False
-<<<<<<< HEAD
-IsActiveChildFrame=True
-=======
 IsActiveChildFrame=False
->>>>>>> 6a58c9f3b10f626e0f9ee3c858182cbca8f8e648
 ptn_Child1=StateMap
+[ProjectWorkspace.Frames.ChildFrames.Document-0.ViewFrame-0.StateMap]
+AFC_IN_REPORT=False
 [ProjectWorkspace.Frames.ChildFrames.Document-1]
 ptn_Child1=ViewFrame-0
 [ProjectWorkspace.Frames.ChildFrames.Document-1.ViewFrame-0]
-<<<<<<< HEAD
-DocPathName=datamem.v
+DocPathName=mux_reg_write_val.v
 DocumentCLSID={84678d98-dc76-11d0-a0d8-0020affa5bde}
 IsChildFrameDetached=False
 IsActiveChildFrame=False
@@ -50,17 +44,17 @@ AFC_IN_REPORT=False
 [ProjectWorkspace.Frames.ChildFrames.Document-3]
 ptn_Child1=ViewFrame-0
 [ProjectWorkspace.Frames.ChildFrames.Document-3.ViewFrame-0]
-DocPathName=Lab3.v
+DocPathName=fetch_unit.v
 DocumentCLSID={84678d98-dc76-11d0-a0d8-0020affa5bde}
 IsChildFrameDetached=False
-IsActiveChildFrame=False
+IsActiveChildFrame=True
 ptn_Child1=StateMap
 [ProjectWorkspace.Frames.ChildFrames.Document-3.ViewFrame-0.StateMap]
 AFC_IN_REPORT=False
 [ProjectWorkspace.Frames.ChildFrames.Document-4]
 ptn_Child1=ViewFrame-0
 [ProjectWorkspace.Frames.ChildFrames.Document-4.ViewFrame-0]
-DocPathName=instruction_rom_prog1.v
+DocPathName=control_unit.v
 DocumentCLSID={84678d98-dc76-11d0-a0d8-0020affa5bde}
 IsChildFrameDetached=False
 IsActiveChildFrame=False
@@ -70,37 +64,8 @@ AFC_IN_REPORT=False
 [ProjectWorkspace.Frames.ChildFrames.Document-5]
 ptn_Child1=ViewFrame-0
 [ProjectWorkspace.Frames.ChildFrames.Document-5.ViewFrame-0]
-DocPathName=fetch_unit.v
-DocumentCLSID={84678d98-dc76-11d0-a0d8-0020affa5bde}
-IsChildFrameDetached=False
-IsActiveChildFrame=False
-ptn_Child1=StateMap
-[ProjectWorkspace.Frames.ChildFrames.Document-5.ViewFrame-0.StateMap]
-AFC_IN_REPORT=False
-[ProjectWorkspace.Frames.ChildFrames.Document-6]
-ptn_Child1=ViewFrame-0
-[ProjectWorkspace.Frames.ChildFrames.Document-6.ViewFrame-0]
-DocPathName=mux_alu.v
-DocumentCLSID={84678d98-dc76-11d0-a0d8-0020affa5bde}
-IsChildFrameDetached=False
-IsActiveChildFrame=False
-ptn_Child1=StateMap
-[ProjectWorkspace.Frames.ChildFrames.Document-6.ViewFrame-0.StateMap]
-AFC_IN_REPORT=False
-[ProjectWorkspace.Frames.ChildFrames.Document-7]
-ptn_Child1=ViewFrame-0
-[ProjectWorkspace.Frames.ChildFrames.Document-7.ViewFrame-0]
-DocPathName=alu.v
-DocumentCLSID={84678d98-dc76-11d0-a0d8-0020affa5bde}
-IsChildFrameDetached=False
-IsActiveChildFrame=False
-ptn_Child1=StateMap
-[ProjectWorkspace.Frames.ChildFrames.Document-7.ViewFrame-0.StateMap]
-AFC_IN_REPORT=False
-=======
-DocPathName=../../Pipeline Schematic/PipelineSchematic.bdf
+DocPathName=Lab3.bdf
 DocumentCLSID={7b19e8f2-2bbe-11d1-a082-0020affa5bde}
 IsChildFrameDetached=False
-IsActiveChildFrame=True
+IsActiveChildFrame=False
 ptn_Child1=StateMap
->>>>>>> 6a58c9f3b10f626e0f9ee3c858182cbca8f8e648

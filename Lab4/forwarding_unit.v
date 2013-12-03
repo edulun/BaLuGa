@@ -15,7 +15,11 @@ module forwarding_unit (
         // use immediate value
         if (alu_src) begin
             out2 = 2'b10;
+            // write register of current instruction is equal to write register
+            // of previous instruction. Forward value to be written on previous
+            // write register
             if (id_mex_wrt_reg == mex_wb_wrt_reg) out1 =2'b1;
+            // different write registers. No forwarding necessary
             else out1 = 2'b0;
 		end
         // Write register of previous instruction = current register 1

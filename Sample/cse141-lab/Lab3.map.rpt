@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Lab3
-Thu Nov 14 14:08:22 2013
+Mon Dec 02 21:13:22 2013
 Quartus II Version 9.0 Build 235 06/17/2009 Service Pack 2 SJ Web Edition
 
 
@@ -9,7 +9,15 @@ Quartus II Version 9.0 Build 235 06/17/2009 Service Pack 2 SJ Web Edition
   1. Legal Notice
   2. Analysis & Synthesis Summary
   3. Analysis & Synthesis Settings
-  4. Analysis & Synthesis Messages
+  4. Analysis & Synthesis Source Files Read
+  5. Analysis & Synthesis Resource Usage Summary
+  6. Analysis & Synthesis Resource Utilization by Entity
+  7. User-Specified and Inferred Latches
+  8. General Register Statistics
+  9. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 10. Parameter Settings for User Entity Instance: single_port_ram_with_init:inst1
+ 11. Analysis & Synthesis Messages
+ 12. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -35,20 +43,20 @@ applicable agreement for further details.
 +-----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                      ;
 +------------------------------------+----------------------------------------------+
-; Analysis & Synthesis Status        ; Failed - Thu Nov 14 14:08:22 2013            ;
+; Analysis & Synthesis Status        ; Successful - Mon Dec 02 21:13:22 2013        ;
 ; Quartus II Version                 ; 9.0 Build 235 06/17/2009 SP 2 SJ Web Edition ;
 ; Revision Name                      ; Lab3                                         ;
 ; Top-level Entity Name              ; Lab3                                         ;
 ; Family                             ; Cyclone II                                   ;
-; Total logic elements               ; N/A until Partition Merge                    ;
-;     Total combinational functions  ; N/A until Partition Merge                    ;
-;     Dedicated logic registers      ; N/A until Partition Merge                    ;
-; Total registers                    ; N/A until Partition Merge                    ;
-; Total pins                         ; N/A until Partition Merge                    ;
-; Total virtual pins                 ; N/A until Partition Merge                    ;
-; Total memory bits                  ; N/A until Partition Merge                    ;
-; Embedded Multiplier 9-bit elements ; N/A until Partition Merge                    ;
-; Total PLLs                         ; N/A until Partition Merge                    ;
+; Total logic elements               ; 4,248                                        ;
+;     Total combinational functions  ; 2,659                                        ;
+;     Dedicated logic registers      ; 2,137                                        ;
+; Total registers                    ; 2137                                         ;
+; Total pins                         ; 67                                           ;
+; Total virtual pins                 ; 0                                            ;
+; Total memory bits                  ; 0                                            ;
+; Embedded Multiplier 9-bit elements ; 0                                            ;
+; Total PLLs                         ; 0                                            ;
 +------------------------------------+----------------------------------------------+
 
 
@@ -127,37 +135,396 @@ applicable agreement for further details.
 +--------------------------------------------------------------+--------------------+--------------------+
 
 
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                     ;
++----------------------------------+-----------------+------------------------------------+----------------------------------------------------------------------------------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                          ; File Name with Absolute Path                                                     ;
++----------------------------------+-----------------+------------------------------------+----------------------------------------------------------------------------------+
+; control_unit.v                   ; yes             ; User Verilog HDL File              ; C:/Users/Diego/Documents/GitHub/BaLuGa/Sample/cse141-lab/control_unit.v          ;
+; register_file.v                  ; yes             ; User Verilog HDL File              ; C:/Users/Diego/Documents/GitHub/BaLuGa/Sample/cse141-lab/register_file.v         ;
+; alu.v                            ; yes             ; User Verilog HDL File              ; C:/Users/Diego/Documents/GitHub/BaLuGa/Sample/cse141-lab/alu.v                   ;
+; instruction_rom_prog1.v          ; yes             ; User Verilog HDL File              ; C:/Users/Diego/Documents/GitHub/BaLuGa/Sample/cse141-lab/instruction_rom_prog1.v ;
+; mux_reg_write_val.v              ; yes             ; User Verilog HDL File              ; C:/Users/Diego/Documents/GitHub/BaLuGa/Sample/cse141-lab/mux_reg_write_val.v     ;
+; datamem.v                        ; yes             ; User Verilog HDL File              ; C:/Users/Diego/Documents/GitHub/BaLuGa/Sample/cse141-lab/datamem.v               ;
+; Lab3.bdf                         ; yes             ; User Block Diagram/Schematic File  ; C:/Users/Diego/Documents/GitHub/BaLuGa/Sample/cse141-lab/Lab3.bdf                ;
+; fetch_unit.v                     ; yes             ; User Verilog HDL File              ; C:/Users/Diego/Documents/GitHub/BaLuGa/Sample/cse141-lab/fetch_unit.v            ;
+; mux_alu.v                        ; yes             ; User Verilog HDL File              ; C:/Users/Diego/Documents/GitHub/BaLuGa/Sample/cse141-lab/mux_alu.v               ;
++----------------------------------+-----------------+------------------------------------+----------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary         ;
++---------------------------------------------+-------+
+; Resource                                    ; Usage ;
++---------------------------------------------+-------+
+; Estimated Total logic elements              ; 4,248 ;
+;                                             ;       ;
+; Total combinational functions               ; 2659  ;
+; Logic element usage by number of LUT inputs ;       ;
+;     -- 4 input functions                    ; 1661  ;
+;     -- 3 input functions                    ; 449   ;
+;     -- <=2 input functions                  ; 549   ;
+;                                             ;       ;
+; Logic elements by mode                      ;       ;
+;     -- normal mode                          ; 2580  ;
+;     -- arithmetic mode                      ; 79    ;
+;                                             ;       ;
+; Total registers                             ; 2137  ;
+;     -- Dedicated logic registers            ; 2137  ;
+;     -- I/O registers                        ; 0     ;
+;                                             ;       ;
+; I/O pins                                    ; 67    ;
+; Maximum fan-out node                        ; clock ;
+; Maximum fan-out                             ; 2137  ;
+; Total fan-out                               ; 15129 ;
+; Average fan-out                             ; 3.11  ;
++---------------------------------------------+-------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                     ;
++--------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------+--------------+
+; Compilation Hierarchy Node           ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                   ; Library Name ;
++--------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------+--------------+
+; |Lab3                                ; 2659 (1)          ; 2137 (0)     ; 0           ; 0            ; 0       ; 0         ; 67   ; 0            ; |Lab3                                 ; work         ;
+;    |alu:inst4|                       ; 245 (245)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Lab3|alu:inst4                       ; work         ;
+;    |control_unit:inst|               ; 45 (45)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Lab3|control_unit:inst               ; work         ;
+;    |fetch_unit:inst9|                ; 43 (43)           ; 33 (33)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Lab3|fetch_unit:inst9                ; work         ;
+;    |instruction_rom_prog1:inst10|    ; 62 (62)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Lab3|instruction_rom_prog1:inst10    ; work         ;
+;    |mux_alu:inst8|                   ; 12 (12)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Lab3|mux_alu:inst8                   ; work         ;
+;    |register_file:inst5|             ; 146 (146)         ; 56 (56)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Lab3|register_file:inst5             ; work         ;
+;    |single_port_ram_with_init:inst1| ; 2105 (2105)       ; 2048 (2048)  ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Lab3|single_port_ram_with_init:inst1 ; work         ;
++--------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                                                 ;
++-----------------------------------------------------+--------------------------------------+------------------------+
+; Latch Name                                          ; Latch Enable Signal                  ; Free of Timing Hazards ;
++-----------------------------------------------------+--------------------------------------+------------------------+
+; control_unit:inst|alu_func[3]                       ; control_unit:inst|Mux10              ; yes                    ;
+; control_unit:inst|alu_func[1]                       ; control_unit:inst|Mux10              ; yes                    ;
+; control_unit:inst|alu_func[2]                       ; control_unit:inst|Mux10              ; yes                    ;
+; instruction_rom_prog1:inst10|instruction_out[1]     ; instruction_rom_prog1:inst10|WideOr0 ; yes                    ;
+; instruction_rom_prog1:inst10|instruction_out[0]     ; instruction_rom_prog1:inst10|WideOr0 ; yes                    ;
+; instruction_rom_prog1:inst10|instruction_out[2]     ; instruction_rom_prog1:inst10|WideOr0 ; yes                    ;
+; control_unit:inst|alu_src                           ; control_unit:inst|Mux10              ; yes                    ;
+; control_unit:inst|set_ctrl[1]                       ; control_unit:inst|Mux10              ; yes                    ;
+; instruction_rom_prog1:inst10|instruction_out[3]     ; instruction_rom_prog1:inst10|WideOr0 ; yes                    ;
+; instruction_rom_prog1:inst10|instruction_out[4]     ; instruction_rom_prog1:inst10|WideOr0 ; yes                    ;
+; control_unit:inst|set_ctrl[0]                       ; control_unit:inst|Mux10              ; yes                    ;
+; control_unit:inst|alu_func[0]                       ; control_unit:inst|Mux10              ; yes                    ;
+; control_unit:inst|alu_spec_func[2]                  ; control_unit:inst|Mux10              ; yes                    ;
+; control_unit:inst|alu_spec_func[1]                  ; control_unit:inst|Mux10              ; yes                    ;
+; control_unit:inst|alu_spec_func[0]                  ; control_unit:inst|Mux10              ; yes                    ;
+; alu:inst4|branch_not_taken[15]                      ; alu:inst4|Selector16                 ; yes                    ;
+; alu:inst4|branch_not_taken[14]                      ; alu:inst4|Selector16                 ; yes                    ;
+; alu:inst4|branch_not_taken[13]                      ; alu:inst4|Selector16                 ; yes                    ;
+; alu:inst4|branch_not_taken[12]                      ; alu:inst4|Selector16                 ; yes                    ;
+; alu:inst4|branch_not_taken[11]                      ; alu:inst4|Selector16                 ; yes                    ;
+; alu:inst4|branch_not_taken[10]                      ; alu:inst4|Selector16                 ; yes                    ;
+; alu:inst4|branch_not_taken[9]                       ; alu:inst4|Selector16                 ; yes                    ;
+; alu:inst4|branch_not_taken[8]                       ; alu:inst4|Selector16                 ; yes                    ;
+; alu:inst4|branch_not_taken[7]                       ; alu:inst4|Selector16                 ; yes                    ;
+; alu:inst4|branch_not_taken[6]                       ; alu:inst4|Selector16                 ; yes                    ;
+; alu:inst4|branch_not_taken[5]                       ; alu:inst4|Selector16                 ; yes                    ;
+; alu:inst4|branch_not_taken[4]                       ; alu:inst4|Selector16                 ; yes                    ;
+; alu:inst4|branch_not_taken[3]                       ; alu:inst4|Selector16                 ; yes                    ;
+; alu:inst4|branch_not_taken[2]                       ; alu:inst4|Selector16                 ; yes                    ;
+; alu:inst4|branch_not_taken[1]                       ; alu:inst4|Selector16                 ; yes                    ;
+; alu:inst4|branch_not_taken[0]                       ; alu:inst4|Selector16                 ; yes                    ;
+; alu:inst4|branch_taken[15]                          ; alu:inst4|Selector33                 ; yes                    ;
+; alu:inst4|branch_taken[14]                          ; alu:inst4|Selector33                 ; yes                    ;
+; alu:inst4|branch_taken[13]                          ; alu:inst4|Selector33                 ; yes                    ;
+; alu:inst4|branch_taken[12]                          ; alu:inst4|Selector33                 ; yes                    ;
+; alu:inst4|branch_taken[11]                          ; alu:inst4|Selector33                 ; yes                    ;
+; alu:inst4|branch_taken[10]                          ; alu:inst4|Selector33                 ; yes                    ;
+; alu:inst4|branch_taken[9]                           ; alu:inst4|Selector33                 ; yes                    ;
+; alu:inst4|branch_taken[8]                           ; alu:inst4|Selector33                 ; yes                    ;
+; alu:inst4|branch_taken[7]                           ; alu:inst4|Selector33                 ; yes                    ;
+; alu:inst4|branch_taken[6]                           ; alu:inst4|Selector33                 ; yes                    ;
+; alu:inst4|branch_taken[5]                           ; alu:inst4|Selector33                 ; yes                    ;
+; alu:inst4|branch_taken[4]                           ; alu:inst4|Selector33                 ; yes                    ;
+; alu:inst4|branch_taken[3]                           ; alu:inst4|Selector33                 ; yes                    ;
+; alu:inst4|branch_taken[2]                           ; alu:inst4|Selector33                 ; yes                    ;
+; alu:inst4|branch_taken[1]                           ; alu:inst4|Selector33                 ; yes                    ;
+; alu:inst4|branch_taken[0]                           ; alu:inst4|Selector33                 ; yes                    ;
+; instruction_rom_prog1:inst10|instruction_out[8]     ; instruction_rom_prog1:inst10|WideOr0 ; yes                    ;
+; instruction_rom_prog1:inst10|instruction_out[7]     ; instruction_rom_prog1:inst10|WideOr0 ; yes                    ;
+; instruction_rom_prog1:inst10|instruction_out[6]     ; instruction_rom_prog1:inst10|WideOr0 ; yes                    ;
+; instruction_rom_prog1:inst10|instruction_out[5]     ; instruction_rom_prog1:inst10|WideOr0 ; yes                    ;
+; control_unit:inst|mem_read                          ; control_unit:inst|Mux10              ; yes                    ;
+; control_unit:inst|swap_ctrl                         ; control_unit:inst|Mux10              ; yes                    ;
+; control_unit:inst|reg_write_val[2]                  ; control_unit:inst|Mux10              ; yes                    ;
+; control_unit:inst|reg_write_val[1]                  ; control_unit:inst|Mux10              ; yes                    ;
+; control_unit:inst|reg_write_val[0]                  ; control_unit:inst|Mux10              ; yes                    ;
+; control_unit:inst|reg_write                         ; control_unit:inst|Mux10              ; yes                    ;
+; alu:inst4|carry_out                                 ; alu:inst4|WideOr0                    ; yes                    ;
+; control_unit:inst|mem_write                         ; control_unit:inst|Mux10              ; yes                    ;
+; control_unit:inst|branch                            ; control_unit:inst|Mux10              ; yes                    ;
+; alu:inst4|br_out                                    ; alu:inst4|WideOr3                    ; yes                    ;
+; control_unit:inst|jmp_ctrl                          ; control_unit:inst|Mux10              ; yes                    ;
+; Number of user-specified and inferred latches = 62  ;                                      ;                        ;
++-----------------------------------------------------+--------------------------------------+------------------------+
+Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 2137  ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 32    ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 2104  ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                       ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output             ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------+
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; Yes        ; |Lab3|fetch_unit:inst9|pc[6]           ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |Lab3|register_file:inst5|branch[7]    ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |Lab3|register_file:inst5|s3[0]        ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |Lab3|register_file:inst5|s2[4]        ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |Lab3|register_file:inst5|s1[4]        ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |Lab3|register_file:inst5|t2[7]        ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |Lab3|register_file:inst5|t1[2]        ;
+; 6:1                ; 8 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Lab3|register_file:inst5|imm[2]       ;
+; 8:1                ; 8 bits    ; 40 LEs        ; 32 LEs               ; 8 LEs                  ; No         ; |Lab3|register_file:inst5|Mux14        ;
+; 16:1               ; 2 bits    ; 20 LEs        ; 6 LEs                ; 14 LEs                 ; No         ; |Lab3|alu:inst4|Selector33             ;
+; 6:1                ; 8 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; No         ; |Lab3|register_file:inst5|read_val1[0] ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; No         ; |Lab3|control_unit:inst|Mux16          ;
+; 22:1               ; 2 bits    ; 28 LEs        ; 16 LEs               ; 12 LEs                 ; No         ; |Lab3|alu:inst4|Mux12                  ;
+; 23:1               ; 2 bits    ; 30 LEs        ; 18 LEs               ; 12 LEs                 ; No         ; |Lab3|alu:inst4|Mux8                   ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------+
+
+
++------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: single_port_ram_with_init:inst1 ;
++----------------+-------+-----------------------------------------------------+
+; Parameter Name ; Value ; Type                                                ;
++----------------+-------+-----------------------------------------------------+
+; ADDR_WIDTH     ; 8     ; Signed Integer                                      ;
++----------------+-------+-----------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
 +-------------------------------+
 ; Analysis & Synthesis Messages ;
 +-------------------------------+
 Info: *******************************************************************
 Info: Running Quartus II Analysis & Synthesis
     Info: Version 9.0 Build 235 06/17/2009 Service Pack 2 SJ Web Edition
-    Info: Processing started: Thu Nov 14 14:08:22 2013
+    Info: Processing started: Mon Dec 02 21:13:03 2013
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Lab3 -c Lab3
+Info: Found 1 design units, including 1 entities, in source file control_unit.v
+    Info: Found entity 1: control_unit
+Warning (10090): Verilog HDL syntax warning at Instruction_rom_sample.v(32): extra block comment delimiter characters /* within block comment
+Info: Found 1 design units, including 1 entities, in source file Instruction_rom_sample.v
+    Info: Found entity 1: Instruction_rom_sample
+Info: Found 1 design units, including 1 entities, in source file register_file.v
+    Info: Found entity 1: register_file
+Info: Found 1 design units, including 1 entities, in source file alu.v
+    Info: Found entity 1: alu
+Info: Found 1 design units, including 1 entities, in source file instruction_rom_prog1.v
+    Info: Found entity 1: instruction_rom_prog1
 Info: Found 1 design units, including 1 entities, in source file mux_reg_write_val.v
     Info: Found entity 1: mux_reg_write_val
 Info: Found 1 design units, including 1 entities, in source file datamem.v
     Info: Found entity 1: single_port_ram_with_init
-Info: Found 1 design units, including 1 entities, in source file Lab3.v
-    Info: Found entity 1: Lab3
-Error: Can't compile duplicate declarations of entity "Lab3" into library "work"
-    Error: Instance could be entity "Lab3" in file Lab3.v File: C:/Users/Diego/Documents/GitHub/BaLuGa/Sample/cse141-lab/Lab3.v Line: 19
-    Error: Instance could be entity "Lab3" in file Lab3.bdf
 Info: Found 1 design units, including 1 entities, in source file Lab3.bdf
-Warning (10090): Verilog HDL syntax warning at Instruction_rom_sample.v(32): extra block comment delimiter characters /* within block comment
-Info: Found 1 design units, including 1 entities, in source file Instruction_rom_sample.v
-    Info: Found entity 1: Instruction_rom_sample
+    Info: Found entity 1: Lab3
 Info: Found 1 design units, including 1 entities, in source file fetch_unit.v
     Info: Found entity 1: fetch_unit
 Info: Found 1 design units, including 1 entities, in source file mux_alu.v
     Info: Found entity 1: mux_alu
 Info: Found 1 design units, including 1 entities, in source file test_sample.v
     Info: Found entity 1: test_sample
-Error: Quartus II Analysis & Synthesis was unsuccessful. 3 errors, 1 warning
-    Error: Peak virtual memory: 212 megabytes
-    Error: Processing ended: Thu Nov 14 14:08:22 2013
-    Error: Elapsed time: 00:00:00
-    Error: Total CPU time (on all processors): 00:00:01
+Info: Elaborating entity "Lab3" for the top level hierarchy
+Info: Elaborating entity "alu" for hierarchy "alu:inst4"
+Warning (10230): Verilog HDL assignment warning at alu.v(75): truncated value with size 32 to match size of target (16)
+Warning (10230): Verilog HDL assignment warning at alu.v(79): truncated value with size 32 to match size of target (16)
+Warning (10230): Verilog HDL assignment warning at alu.v(86): truncated value with size 32 to match size of target (16)
+Warning (10230): Verilog HDL assignment warning at alu.v(90): truncated value with size 32 to match size of target (16)
+Warning (10270): Verilog HDL Case Statement warning at alu.v(95): incomplete case statement has no default case item
+Warning (10240): Verilog HDL Always Construct warning at alu.v(46): inferring latch(es) for variable "carry_out", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at alu.v(46): inferring latch(es) for variable "br_out", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at alu.v(46): inferring latch(es) for variable "branch_taken", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at alu.v(46): inferring latch(es) for variable "branch_not_taken", which holds its previous value in one or more paths through the always construct
+Info (10041): Inferred latch for "branch_not_taken[0]" at alu.v(46)
+Info (10041): Inferred latch for "branch_not_taken[1]" at alu.v(46)
+Info (10041): Inferred latch for "branch_not_taken[2]" at alu.v(46)
+Info (10041): Inferred latch for "branch_not_taken[3]" at alu.v(46)
+Info (10041): Inferred latch for "branch_not_taken[4]" at alu.v(46)
+Info (10041): Inferred latch for "branch_not_taken[5]" at alu.v(46)
+Info (10041): Inferred latch for "branch_not_taken[6]" at alu.v(46)
+Info (10041): Inferred latch for "branch_not_taken[7]" at alu.v(46)
+Info (10041): Inferred latch for "branch_not_taken[8]" at alu.v(46)
+Info (10041): Inferred latch for "branch_not_taken[9]" at alu.v(46)
+Info (10041): Inferred latch for "branch_not_taken[10]" at alu.v(46)
+Info (10041): Inferred latch for "branch_not_taken[11]" at alu.v(46)
+Info (10041): Inferred latch for "branch_not_taken[12]" at alu.v(46)
+Info (10041): Inferred latch for "branch_not_taken[13]" at alu.v(46)
+Info (10041): Inferred latch for "branch_not_taken[14]" at alu.v(46)
+Info (10041): Inferred latch for "branch_not_taken[15]" at alu.v(46)
+Info (10041): Inferred latch for "branch_taken[0]" at alu.v(46)
+Info (10041): Inferred latch for "branch_taken[1]" at alu.v(46)
+Info (10041): Inferred latch for "branch_taken[2]" at alu.v(46)
+Info (10041): Inferred latch for "branch_taken[3]" at alu.v(46)
+Info (10041): Inferred latch for "branch_taken[4]" at alu.v(46)
+Info (10041): Inferred latch for "branch_taken[5]" at alu.v(46)
+Info (10041): Inferred latch for "branch_taken[6]" at alu.v(46)
+Info (10041): Inferred latch for "branch_taken[7]" at alu.v(46)
+Info (10041): Inferred latch for "branch_taken[8]" at alu.v(46)
+Info (10041): Inferred latch for "branch_taken[9]" at alu.v(46)
+Info (10041): Inferred latch for "branch_taken[10]" at alu.v(46)
+Info (10041): Inferred latch for "branch_taken[11]" at alu.v(46)
+Info (10041): Inferred latch for "branch_taken[12]" at alu.v(46)
+Info (10041): Inferred latch for "branch_taken[13]" at alu.v(46)
+Info (10041): Inferred latch for "branch_taken[14]" at alu.v(46)
+Info (10041): Inferred latch for "branch_taken[15]" at alu.v(46)
+Info (10041): Inferred latch for "br_out" at alu.v(46)
+Info (10041): Inferred latch for "carry_out" at alu.v(46)
+Info: Elaborating entity "control_unit" for hierarchy "control_unit:inst"
+Warning (10270): Verilog HDL Case Statement warning at control_unit.v(126): incomplete case statement has no default case item
+Warning (10270): Verilog HDL Case Statement warning at control_unit.v(47): incomplete case statement has no default case item
+Warning (10240): Verilog HDL Always Construct warning at control_unit.v(44): inferring latch(es) for variable "reg_write_val", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at control_unit.v(44): inferring latch(es) for variable "alu_src", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at control_unit.v(44): inferring latch(es) for variable "alu_func", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at control_unit.v(44): inferring latch(es) for variable "alu_spec_func", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at control_unit.v(44): inferring latch(es) for variable "set_ctrl", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at control_unit.v(44): inferring latch(es) for variable "mem_write", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at control_unit.v(44): inferring latch(es) for variable "mem_read", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at control_unit.v(44): inferring latch(es) for variable "branch", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at control_unit.v(44): inferring latch(es) for variable "reg_write", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at control_unit.v(44): inferring latch(es) for variable "swap_ctrl", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at control_unit.v(44): inferring latch(es) for variable "done_ctrl", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at control_unit.v(44): inferring latch(es) for variable "jmp_ctrl", which holds its previous value in one or more paths through the always construct
+Info (10041): Inferred latch for "jmp_ctrl" at control_unit.v(44)
+Info (10041): Inferred latch for "done_ctrl" at control_unit.v(44)
+Info (10041): Inferred latch for "swap_ctrl" at control_unit.v(44)
+Info (10041): Inferred latch for "reg_write" at control_unit.v(44)
+Info (10041): Inferred latch for "branch" at control_unit.v(44)
+Info (10041): Inferred latch for "mem_read" at control_unit.v(44)
+Info (10041): Inferred latch for "mem_write" at control_unit.v(44)
+Info (10041): Inferred latch for "set_ctrl[0]" at control_unit.v(44)
+Info (10041): Inferred latch for "set_ctrl[1]" at control_unit.v(44)
+Info (10041): Inferred latch for "alu_spec_func[0]" at control_unit.v(44)
+Info (10041): Inferred latch for "alu_spec_func[1]" at control_unit.v(44)
+Info (10041): Inferred latch for "alu_spec_func[2]" at control_unit.v(44)
+Info (10041): Inferred latch for "alu_func[0]" at control_unit.v(44)
+Info (10041): Inferred latch for "alu_func[1]" at control_unit.v(44)
+Info (10041): Inferred latch for "alu_func[2]" at control_unit.v(44)
+Info (10041): Inferred latch for "alu_func[3]" at control_unit.v(44)
+Info (10041): Inferred latch for "alu_src" at control_unit.v(44)
+Info (10041): Inferred latch for "reg_write_val[0]" at control_unit.v(44)
+Info (10041): Inferred latch for "reg_write_val[1]" at control_unit.v(44)
+Info (10041): Inferred latch for "reg_write_val[2]" at control_unit.v(44)
+Info: Elaborating entity "instruction_rom_prog1" for hierarchy "instruction_rom_prog1:inst10"
+Warning (10270): Verilog HDL Case Statement warning at instruction_rom_prog1.v(11): incomplete case statement has no default case item
+Warning (10240): Verilog HDL Always Construct warning at instruction_rom_prog1.v(10): inferring latch(es) for variable "instruction_out", which holds its previous value in one or more paths through the always construct
+Info (10041): Inferred latch for "instruction_out[0]" at instruction_rom_prog1.v(10)
+Info (10041): Inferred latch for "instruction_out[1]" at instruction_rom_prog1.v(10)
+Info (10041): Inferred latch for "instruction_out[2]" at instruction_rom_prog1.v(10)
+Info (10041): Inferred latch for "instruction_out[3]" at instruction_rom_prog1.v(10)
+Info (10041): Inferred latch for "instruction_out[4]" at instruction_rom_prog1.v(10)
+Info (10041): Inferred latch for "instruction_out[5]" at instruction_rom_prog1.v(10)
+Info (10041): Inferred latch for "instruction_out[6]" at instruction_rom_prog1.v(10)
+Info (10041): Inferred latch for "instruction_out[7]" at instruction_rom_prog1.v(10)
+Info (10041): Inferred latch for "instruction_out[8]" at instruction_rom_prog1.v(10)
+Info: Elaborating entity "fetch_unit" for hierarchy "fetch_unit:inst9"
+Warning (10230): Verilog HDL assignment warning at fetch_unit.v(25): truncated value with size 32 to match size of target (17)
+Warning (10175): Verilog HDL warning at fetch_unit.v(28): ignoring unsupported system task
+Info: Elaborating entity "register_file" for hierarchy "register_file:inst5"
+Info: Elaborating entity "mux_reg_write_val" for hierarchy "mux_reg_write_val:inst6"
+Info: Elaborating entity "single_port_ram_with_init" for hierarchy "single_port_ram_with_init:inst1"
+Info: Elaborating entity "mux_alu" for hierarchy "mux_alu:inst8"
+Info: Found 1 instances of uninferred RAM logic
+    Info: RAM logic "single_port_ram_with_init:inst1|ram" is uninferred due to asynchronous read logic
+Warning: Memory Initialization File or Hexadecimal (Intel-Format) File "Lab3.ram0_single_port_ram_with_init_8f510eeb.hdl.mif" contains "don't care" values -- overwriting them with 0s
+Info: Duplicate LATCH primitives merged into single LATCH primitive
+    Info: Duplicate LATCH primitive "control_unit:inst|set_ctrl[1]" merged with LATCH primitive "control_unit:inst|alu_src"
+Warning: Latch control_unit:inst|alu_func[3] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal instruction_rom_prog1:inst10|instruction_out[8]
+Warning: Latch control_unit:inst|alu_func[1] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal instruction_rom_prog1:inst10|instruction_out[6]
+Warning: Latch control_unit:inst|alu_func[2] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal instruction_rom_prog1:inst10|instruction_out[7]
+Warning: Latch instruction_rom_prog1:inst10|instruction_out[1] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal fetch_unit:inst9|instruction_number[7]
+Warning: Latch instruction_rom_prog1:inst10|instruction_out[0] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal fetch_unit:inst9|instruction_number[7]
+Warning: Latch instruction_rom_prog1:inst10|instruction_out[2] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal fetch_unit:inst9|instruction_number[7]
+Warning: Latch control_unit:inst|alu_src has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal instruction_rom_prog1:inst10|instruction_out[8]
+Warning: Latch instruction_rom_prog1:inst10|instruction_out[3] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal fetch_unit:inst9|instruction_number[7]
+Warning: Latch instruction_rom_prog1:inst10|instruction_out[4] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal fetch_unit:inst9|instruction_number[7]
+Warning: Latch control_unit:inst|set_ctrl[0] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal instruction_rom_prog1:inst10|instruction_out[8]
+Warning: Latch control_unit:inst|alu_func[0] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal instruction_rom_prog1:inst10|instruction_out[5]
+Warning: Latch control_unit:inst|alu_spec_func[2] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal instruction_rom_prog1:inst10|instruction_out[2]
+Warning: Latch control_unit:inst|alu_spec_func[1] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal instruction_rom_prog1:inst10|instruction_out[1]
+Warning: Latch control_unit:inst|alu_spec_func[0] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal instruction_rom_prog1:inst10|instruction_out[0]
+Warning: Latch instruction_rom_prog1:inst10|instruction_out[8] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal fetch_unit:inst9|instruction_number[7]
+Warning: Latch instruction_rom_prog1:inst10|instruction_out[7] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal fetch_unit:inst9|instruction_number[7]
+Warning: Latch instruction_rom_prog1:inst10|instruction_out[6] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal fetch_unit:inst9|instruction_number[7]
+Warning: Latch instruction_rom_prog1:inst10|instruction_out[5] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal fetch_unit:inst9|instruction_number[7]
+Warning: Latch control_unit:inst|mem_read has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal instruction_rom_prog1:inst10|instruction_out[8]
+Warning: Latch control_unit:inst|swap_ctrl has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal instruction_rom_prog1:inst10|instruction_out[8]
+Warning: Latch control_unit:inst|reg_write_val[2] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal instruction_rom_prog1:inst10|instruction_out[6]
+Warning: Latch control_unit:inst|reg_write_val[1] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal instruction_rom_prog1:inst10|instruction_out[8]
+Warning: Latch control_unit:inst|reg_write_val[0] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal instruction_rom_prog1:inst10|instruction_out[8]
+Warning: Latch control_unit:inst|reg_write has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal instruction_rom_prog1:inst10|instruction_out[8]
+Warning: Latch alu:inst4|carry_out has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal control_unit:inst|alu_func[3]
+Warning: Latch control_unit:inst|mem_write has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal instruction_rom_prog1:inst10|instruction_out[8]
+Warning: Latch control_unit:inst|branch has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal instruction_rom_prog1:inst10|instruction_out[8]
+Warning: Latch alu:inst4|br_out has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal control_unit:inst|alu_func[3]
+Warning: Latch control_unit:inst|jmp_ctrl has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal instruction_rom_prog1:inst10|instruction_out[8]
+Info: Generated suppressed messages file C:/Users/Diego/Documents/GitHub/BaLuGa/Sample/cse141-lab/Lab3.map.smsg
+Info: Implemented 4331 device resources after synthesis - the final resource count might be different
+    Info: Implemented 2 input pins
+    Info: Implemented 65 output pins
+    Info: Implemented 4264 logic cells
+Info: Quartus II Analysis & Synthesis was successful. 0 errors, 87 warnings
+    Info: Peak virtual memory: 224 megabytes
+    Info: Processing ended: Mon Dec 02 21:13:22 2013
+    Info: Elapsed time: 00:00:19
+    Info: Total CPU time (on all processors): 00:00:19
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in C:/Users/Diego/Documents/GitHub/BaLuGa/Sample/cse141-lab/Lab3.map.smsg.
 
 
