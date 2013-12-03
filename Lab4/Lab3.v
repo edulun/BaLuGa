@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
-// CREATED		"Mon Dec 02 17:56:44 2013"
+// CREATED		"Mon Dec 02 18:10:32 2013"
 
 module Lab3(
 	clock,
@@ -135,7 +135,7 @@ register_file	b2v_inst12(
 	.read_reg1(ID_instruction[4:3]),
 	.read_reg2(ID_instruction[2:0]),
 	.set_ctrl(SYNTHESIZED_WIRE_13),
-	.write_reg(SYNTHESIZED_WIRE_62),
+	.write_reg(SYNTHESIZED_WIRE_63),
 	.write_val(SYNTHESIZED_WIRE_67),
 	.branch_val(SYNTHESIZED_WIRE_44),
 	.read_val1(SYNTHESIZED_WIRE_71),
@@ -176,13 +176,13 @@ pipe_mex_wb	b2v_inst33(
 	.mex_carry_out(SYNTHESIZED_WIRE_28),
 	.mex_mem_read(SYNTHESIZED_WIRE_64),
 	.mex_data_val(SYNTHESIZED_WIRE_30),
-	.mex_write_addr(SYNTHESIZED_WIRE_63),
+	.mex_write_addr(SYNTHESIZED_WIRE_62),
 	.mex_write_val(SYNTHESIZED_WIRE_32),
 	.wb_reg_write(SYNTHESIZED_WIRE_10),
 	.wb_carry_out(SYNTHESIZED_WIRE_11),
 	.wb_mem_read(SYNTHESIZED_WIRE_20),
 	.wb_data_val(SYNTHESIZED_WIRE_22),
-	.wb_write_addr(SYNTHESIZED_WIRE_62),
+	.wb_write_addr(SYNTHESIZED_WIRE_63),
 	.wb_write_val(SYNTHESIZED_WIRE_21));
 
 
@@ -230,7 +230,7 @@ pipe_id_mex	b2v_inst37(
 	.MEX_read_addr2(SYNTHESIZED_WIRE_3),
 	.MEX_reg_val1(SYNTHESIZED_WIRE_50),
 	.MEX_reg_val2(SYNTHESIZED_WIRE_53),
-	.MEX_write_addr(SYNTHESIZED_WIRE_63));
+	.MEX_write_addr(SYNTHESIZED_WIRE_62));
 
 
 mux1_alu	b2v_inst4(
