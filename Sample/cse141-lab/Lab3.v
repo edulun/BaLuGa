@@ -14,12 +14,14 @@
 
 // PROGRAM		"Quartus II"
 // VERSION		"Version 9.0 Build 235 06/17/2009 Service Pack 2 SJ Web Edition"
-// CREATED ON	"Thu Nov 14 14:35:54 2013"
+// CREATED ON	"Mon Dec 02 20:06:04 2013"
 
 module Lab3(
 	clock,
 	init,
 	alu_result,
+	bran_not_taken,
+	bran_taken,
 	cycle_count,
 	pc_out
 );
@@ -28,6 +30,8 @@ module Lab3(
 input	clock;
 input	init;
 output	[7:0] alu_result;
+output	[15:0] bran_not_taken;
+output	[15:0] bran_taken;
 output	[16:0] cycle_count;
 output	[7:0] pc_out;
 
@@ -104,6 +108,8 @@ alu	b2v_inst4(
 	.spec_fun(SYNTHESIZED_WIRE_9),
 	.carry_out(SYNTHESIZED_WIRE_11),
 	.br_out(SYNTHESIZED_WIRE_5),
+	.num_bran_not_taken(bran_not_taken),
+	.num_bran_taken(bran_taken),
 	.res(SYNTHESIZED_WIRE_16));
 
 

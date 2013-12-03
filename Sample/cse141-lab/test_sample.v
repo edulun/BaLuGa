@@ -6,6 +6,8 @@ reg init;
 
 wire [7:0] alu_result;
 wire [7:0] pc_out;
+wire [15:0] bran_taken;
+wire [15:0] bran_not_taken;
 //wire mem_write_ctrl;
 //wire mem_read_ctrl;
 //wire [8:0] instruction;
@@ -15,6 +17,7 @@ wire [16:0] cycle_count;
 initial begin
 
 	clock = 1; 		// initial value of clock
+	
 	
 	/* 
 	 * Check the sum operation 
@@ -125,6 +128,8 @@ alu	b2v_inst4(
 	.spec_fun(SYNTHESIZED_WIRE_9),
 	.carry_out(SYNTHESIZED_WIRE_11),
 	.br_out(SYNTHESIZED_WIRE_5),
+	.num_bran_not_taken(bran_not_taken),
+	.num_bran_taken(bran_taken),
 	.res(SYNTHESIZED_WIRE_16));
 
 

@@ -1,0 +1,732 @@
+TimeQuest Timing Analyzer report for Lab3
+Tue Nov 12 13:43:04 2013
+Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. TimeQuest Timing Analyzer Summary
+  3. Parallel Compilation
+  4. Clocks
+  5. Slow Model Fmax Summary
+  6. Slow Model Setup Summary
+  7. Slow Model Hold Summary
+  8. Slow Model Recovery Summary
+  9. Slow Model Removal Summary
+ 10. Slow Model Minimum Pulse Width Summary
+ 11. Slow Model Setup: 'address[0]'
+ 12. Slow Model Hold: 'address[0]'
+ 13. Slow Model Minimum Pulse Width: 'address[0]'
+ 14. Setup Times
+ 15. Hold Times
+ 16. Clock to Output Times
+ 17. Minimum Clock to Output Times
+ 18. Fast Model Setup Summary
+ 19. Fast Model Hold Summary
+ 20. Fast Model Recovery Summary
+ 21. Fast Model Removal Summary
+ 22. Fast Model Minimum Pulse Width Summary
+ 23. Fast Model Setup: 'address[0]'
+ 24. Fast Model Hold: 'address[0]'
+ 25. Fast Model Minimum Pulse Width: 'address[0]'
+ 26. Setup Times
+ 27. Hold Times
+ 28. Clock to Output Times
+ 29. Minimum Clock to Output Times
+ 30. Multicorner Timing Analysis Summary
+ 31. Setup Times
+ 32. Hold Times
+ 33. Clock to Output Times
+ 34. Minimum Clock to Output Times
+ 35. Setup Transfers
+ 36. Hold Transfers
+ 37. Report TCCS
+ 38. Report RSKM
+ 39. Unconstrained Paths
+ 40. TimeQuest Timing Analyzer Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++----------------------------------------------------------------------------------------+
+; TimeQuest Timing Analyzer Summary                                                      ;
++--------------------+-------------------------------------------------------------------+
+; Quartus II Version ; Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition ;
+; Revision Name      ; Lab3                                                              ;
+; Device Family      ; Cyclone II                                                        ;
+; Device Name        ; EP2C35F672C6                                                      ;
+; Timing Models      ; Final                                                             ;
+; Delay Model        ; Combined                                                          ;
+; Rise/Fall Delays   ; Unavailable                                                       ;
++--------------------+-------------------------------------------------------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 8           ;
+; Maximum allowed            ; 4           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 1           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processors 2-8         ;   0.0%      ;
++----------------------------+-------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clocks                                                                                                                                                                                 ;
++------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+----------------+
+; Clock Name ; Type ; Period ; Frequency  ; Rise  ; Fall  ; Duty Cycle ; Divide by ; Multiply by ; Phase ; Offset ; Edge List ; Edge Shift ; Inverted ; Master ; Source ; Targets        ;
++------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+----------------+
+; address[0] ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { address[0] } ;
++------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+----------------+
+
+
++-------------------------------------------------------------------------------------------------------------+
+; Slow Model Fmax Summary                                                                                     ;
++--------------+-----------------+------------+---------------------------------------------------------------+
+; Fmax         ; Restricted Fmax ; Clock Name ; Note                                                          ;
++--------------+-----------------+------------+---------------------------------------------------------------+
+; 125000.0 MHz ; 450.05 MHz      ; address[0] ; limit due to minimum period restriction (max I/O toggle rate) ;
++--------------+-----------------+------------+---------------------------------------------------------------+
+This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
+
+
++------------------------------------+
+; Slow Model Setup Summary           ;
++------------+-------+---------------+
+; Clock      ; Slack ; End Point TNS ;
++------------+-------+---------------+
+; address[0] ; 0.496 ; 0.000         ;
++------------+-------+---------------+
+
+
++-------------------------------------+
+; Slow Model Hold Summary             ;
++------------+--------+---------------+
+; Clock      ; Slack  ; End Point TNS ;
++------------+--------+---------------+
+; address[0] ; -0.912 ; -5.311        ;
++------------+--------+---------------+
+
+
+-------------------------------
+; Slow Model Recovery Summary ;
+-------------------------------
+No paths to report.
+
+
+------------------------------
+; Slow Model Removal Summary ;
+------------------------------
+No paths to report.
+
+
++----------------------------------------+
+; Slow Model Minimum Pulse Width Summary ;
++------------+--------+------------------+
+; Clock      ; Slack  ; End Point TNS    ;
++------------+--------+------------------+
+; address[0] ; -1.222 ; -1.222           ;
++------------+--------+------------------+
+
+
++---------------------------------------------------------------------------------------------------------------+
+; Slow Model Setup: 'address[0]'                                                                                ;
++-------+------------+--------------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node  ; To Node            ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+------------+--------------------+--------------+-------------+--------------+------------+------------+
+; 0.496 ; address[0] ; reg1[0]            ; address[0]   ; address[0]  ; 0.500        ; 4.717      ; 3.892      ;
+; 0.703 ; address[0] ; instruction_out[3] ; address[0]   ; address[0]  ; 0.500        ; 4.717      ; 3.828      ;
+; 0.703 ; address[0] ; instruction_out[5] ; address[0]   ; address[0]  ; 0.500        ; 4.718      ; 3.832      ;
+; 0.712 ; address[0] ; instruction_out[4] ; address[0]   ; address[0]  ; 0.500        ; 4.717      ; 3.819      ;
+; 0.715 ; address[0] ; instruction_out[6] ; address[0]   ; address[0]  ; 0.500        ; 4.718      ; 3.817      ;
+; 0.729 ; address[0] ; instruction_out[0] ; address[0]   ; address[0]  ; 0.500        ; 4.717      ; 3.805      ;
+; 0.996 ; address[0] ; reg1[0]            ; address[0]   ; address[0]  ; 1.000        ; 4.717      ; 3.892      ;
+; 1.203 ; address[0] ; instruction_out[3] ; address[0]   ; address[0]  ; 1.000        ; 4.717      ; 3.828      ;
+; 1.203 ; address[0] ; instruction_out[5] ; address[0]   ; address[0]  ; 1.000        ; 4.718      ; 3.832      ;
+; 1.212 ; address[0] ; instruction_out[4] ; address[0]   ; address[0]  ; 1.000        ; 4.717      ; 3.819      ;
+; 1.215 ; address[0] ; instruction_out[6] ; address[0]   ; address[0]  ; 1.000        ; 4.718      ; 3.817      ;
+; 1.229 ; address[0] ; instruction_out[0] ; address[0]   ; address[0]  ; 1.000        ; 4.717      ; 3.805      ;
++-------+------------+--------------------+--------------+-------------+--------------+------------+------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Slow Model Hold: 'address[0]'                                                                                  ;
++--------+------------+--------------------+--------------+-------------+--------------+------------+------------+
+; Slack  ; From Node  ; To Node            ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++--------+------------+--------------------+--------------+-------------+--------------+------------+------------+
+; -0.912 ; address[0] ; instruction_out[0] ; address[0]   ; address[0]  ; 0.000        ; 4.717      ; 3.805      ;
+; -0.901 ; address[0] ; instruction_out[6] ; address[0]   ; address[0]  ; 0.000        ; 4.718      ; 3.817      ;
+; -0.898 ; address[0] ; instruction_out[4] ; address[0]   ; address[0]  ; 0.000        ; 4.717      ; 3.819      ;
+; -0.889 ; address[0] ; instruction_out[3] ; address[0]   ; address[0]  ; 0.000        ; 4.717      ; 3.828      ;
+; -0.886 ; address[0] ; instruction_out[5] ; address[0]   ; address[0]  ; 0.000        ; 4.718      ; 3.832      ;
+; -0.825 ; address[0] ; reg1[0]            ; address[0]   ; address[0]  ; 0.000        ; 4.717      ; 3.892      ;
+; -0.412 ; address[0] ; instruction_out[0] ; address[0]   ; address[0]  ; -0.500       ; 4.717      ; 3.805      ;
+; -0.401 ; address[0] ; instruction_out[6] ; address[0]   ; address[0]  ; -0.500       ; 4.718      ; 3.817      ;
+; -0.398 ; address[0] ; instruction_out[4] ; address[0]   ; address[0]  ; -0.500       ; 4.717      ; 3.819      ;
+; -0.389 ; address[0] ; instruction_out[3] ; address[0]   ; address[0]  ; -0.500       ; 4.717      ; 3.828      ;
+; -0.386 ; address[0] ; instruction_out[5] ; address[0]   ; address[0]  ; -0.500       ; 4.718      ; 3.832      ;
+; -0.325 ; address[0] ; reg1[0]            ; address[0]   ; address[0]  ; -0.500       ; 4.717      ; 3.892      ;
++--------+------------+--------------------+--------------+-------------+--------------+------------+------------+
+
+
++-----------------------------------------------------------------------------------------------------------------+
+; Slow Model Minimum Pulse Width: 'address[0]'                                                                    ;
++--------+--------------+----------------+------------------+------------+------------+---------------------------+
+; Slack  ; Actual Width ; Required Width ; Type             ; Clock      ; Clock Edge ; Target                    ;
++--------+--------------+----------------+------------------+------------+------------+---------------------------+
+; -1.222 ; 1.000        ; 2.222          ; Port Rate        ; address[0] ; Rise       ; address[0]                ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Rise       ; WideOr0~1|combout         ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Rise       ; WideOr0~1|combout         ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Rise       ; WideOr0~1|datad           ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Rise       ; WideOr0~1|datad           ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Fall       ; WideOr0~2clkctrl|inclk[0] ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Fall       ; WideOr0~2clkctrl|inclk[0] ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Fall       ; WideOr0~2clkctrl|outclk   ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Fall       ; WideOr0~2clkctrl|outclk   ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Fall       ; WideOr0~2|combout         ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Fall       ; WideOr0~2|combout         ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Rise       ; WideOr0~2|datad           ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Rise       ; WideOr0~2|datad           ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Rise       ; address[0]|combout        ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Rise       ; address[0]|combout        ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Rise       ; instruction_out[0]        ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Rise       ; instruction_out[0]        ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Fall       ; instruction_out[0]|datad  ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Fall       ; instruction_out[0]|datad  ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Rise       ; instruction_out[1]        ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Rise       ; instruction_out[1]        ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Fall       ; instruction_out[1]|datad  ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Fall       ; instruction_out[1]|datad  ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Rise       ; instruction_out[3]        ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Rise       ; instruction_out[3]        ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Fall       ; instruction_out[3]|datad  ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Fall       ; instruction_out[3]|datad  ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Rise       ; instruction_out[4]        ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Rise       ; instruction_out[4]        ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Fall       ; instruction_out[4]|datad  ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Fall       ; instruction_out[4]|datad  ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Rise       ; instruction_out[5]        ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Rise       ; instruction_out[5]        ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Fall       ; instruction_out[5]|datad  ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Fall       ; instruction_out[5]|datad  ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Rise       ; instruction_out[6]        ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Rise       ; instruction_out[6]        ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Fall       ; instruction_out[6]|datad  ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Fall       ; instruction_out[6]|datad  ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Rise       ; reg1[0]                   ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Rise       ; reg1[0]                   ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Fall       ; reg1[0]|datad             ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Fall       ; reg1[0]|datad             ;
++--------+--------------+----------------+------------------+------------+------------+---------------------------+
+
+
++-------------------------------------------------------------------------+
+; Setup Times                                                             ;
++-------------+------------+-------+-------+------------+-----------------+
+; Data Port   ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++-------------+------------+-------+-------+------------+-----------------+
+; address[*]  ; address[0] ; 6.042 ; 6.042 ; Rise       ; address[0]      ;
+;  address[0] ; address[0] ; 0.004 ; 0.004 ; Rise       ; address[0]      ;
+;  address[1] ; address[0] ; 3.457 ; 3.457 ; Rise       ; address[0]      ;
+;  address[2] ; address[0] ; 3.443 ; 3.443 ; Rise       ; address[0]      ;
+;  address[3] ; address[0] ; 3.681 ; 3.681 ; Rise       ; address[0]      ;
+;  address[4] ; address[0] ; 1.708 ; 1.708 ; Rise       ; address[0]      ;
+;  address[5] ; address[0] ; 1.810 ; 1.810 ; Rise       ; address[0]      ;
+;  address[6] ; address[0] ; 6.042 ; 6.042 ; Rise       ; address[0]      ;
+;  address[7] ; address[0] ; 5.750 ; 5.750 ; Rise       ; address[0]      ;
++-------------+------------+-------+-------+------------+-----------------+
+
+
++---------------------------------------------------------------------------+
+; Hold Times                                                                ;
++-------------+------------+--------+--------+------------+-----------------+
+; Data Port   ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
++-------------+------------+--------+--------+------------+-----------------+
+; address[*]  ; address[0] ; 0.912  ; 0.912  ; Rise       ; address[0]      ;
+;  address[0] ; address[0] ; 0.912  ; 0.912  ; Rise       ; address[0]      ;
+;  address[1] ; address[0] ; -2.081 ; -2.081 ; Rise       ; address[0]      ;
+;  address[2] ; address[0] ; -1.782 ; -1.782 ; Rise       ; address[0]      ;
+;  address[3] ; address[0] ; -2.009 ; -2.009 ; Rise       ; address[0]      ;
+;  address[4] ; address[0] ; -0.592 ; -0.592 ; Rise       ; address[0]      ;
+;  address[5] ; address[0] ; -0.694 ; -0.694 ; Rise       ; address[0]      ;
+;  address[6] ; address[0] ; -4.926 ; -4.926 ; Rise       ; address[0]      ;
+;  address[7] ; address[0] ; -4.634 ; -4.634 ; Rise       ; address[0]      ;
++-------------+------------+--------+--------+------------+-----------------+
+
+
++-----------------------------------------------------------------------------+
+; Clock to Output Times                                                       ;
++-----------------+------------+-------+-------+------------+-----------------+
+; Data Port       ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++-----------------+------------+-------+-------+------------+-----------------+
+; instruction[*]  ; address[0] ; 8.259 ; 8.259 ; Rise       ; address[0]      ;
+;  instruction[0] ; address[0] ; 8.051 ; 8.051 ; Rise       ; address[0]      ;
+;  instruction[1] ; address[0] ; 8.210 ; 8.210 ; Rise       ; address[0]      ;
+;  instruction[3] ; address[0] ; 8.259 ; 8.259 ; Rise       ; address[0]      ;
+;  instruction[4] ; address[0] ; 8.124 ; 8.124 ; Rise       ; address[0]      ;
+;  instruction[5] ; address[0] ; 8.032 ; 8.032 ; Rise       ; address[0]      ;
+;  instruction[6] ; address[0] ; 8.049 ; 8.049 ; Rise       ; address[0]      ;
+;  instruction[8] ; address[0] ; 8.049 ; 8.049 ; Rise       ; address[0]      ;
+; reg_val1[*]     ; address[0] ; 8.094 ; 8.094 ; Rise       ; address[0]      ;
+;  reg_val1[0]    ; address[0] ; 8.082 ; 8.082 ; Rise       ; address[0]      ;
+;  reg_val1[1]    ; address[0] ; 8.094 ; 8.094 ; Rise       ; address[0]      ;
+; reg_val2[*]     ; address[0] ; 8.270 ; 8.270 ; Rise       ; address[0]      ;
+;  reg_val2[0]    ; address[0] ; 8.051 ; 8.051 ; Rise       ; address[0]      ;
+;  reg_val2[1]    ; address[0] ; 8.270 ; 8.270 ; Rise       ; address[0]      ;
++-----------------+------------+-------+-------+------------+-----------------+
+
+
++-----------------------------------------------------------------------------+
+; Minimum Clock to Output Times                                               ;
++-----------------+------------+-------+-------+------------+-----------------+
+; Data Port       ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++-----------------+------------+-------+-------+------------+-----------------+
+; instruction[*]  ; address[0] ; 8.032 ; 8.032 ; Rise       ; address[0]      ;
+;  instruction[0] ; address[0] ; 8.051 ; 8.051 ; Rise       ; address[0]      ;
+;  instruction[1] ; address[0] ; 8.210 ; 8.210 ; Rise       ; address[0]      ;
+;  instruction[3] ; address[0] ; 8.259 ; 8.259 ; Rise       ; address[0]      ;
+;  instruction[4] ; address[0] ; 8.124 ; 8.124 ; Rise       ; address[0]      ;
+;  instruction[5] ; address[0] ; 8.032 ; 8.032 ; Rise       ; address[0]      ;
+;  instruction[6] ; address[0] ; 8.049 ; 8.049 ; Rise       ; address[0]      ;
+;  instruction[8] ; address[0] ; 8.049 ; 8.049 ; Rise       ; address[0]      ;
+; reg_val1[*]     ; address[0] ; 8.082 ; 8.082 ; Rise       ; address[0]      ;
+;  reg_val1[0]    ; address[0] ; 8.082 ; 8.082 ; Rise       ; address[0]      ;
+;  reg_val1[1]    ; address[0] ; 8.094 ; 8.094 ; Rise       ; address[0]      ;
+; reg_val2[*]     ; address[0] ; 8.051 ; 8.051 ; Rise       ; address[0]      ;
+;  reg_val2[0]    ; address[0] ; 8.051 ; 8.051 ; Rise       ; address[0]      ;
+;  reg_val2[1]    ; address[0] ; 8.270 ; 8.270 ; Rise       ; address[0]      ;
++-----------------+------------+-------+-------+------------+-----------------+
+
+
++------------------------------------+
+; Fast Model Setup Summary           ;
++------------+-------+---------------+
+; Clock      ; Slack ; End Point TNS ;
++------------+-------+---------------+
+; address[0] ; 0.815 ; 0.000         ;
++------------+-------+---------------+
+
+
++-------------------------------------+
+; Fast Model Hold Summary             ;
++------------+--------+---------------+
+; Clock      ; Slack  ; End Point TNS ;
++------------+--------+---------------+
+; address[0] ; -0.697 ; -4.110        ;
++------------+--------+---------------+
+
+
+-------------------------------
+; Fast Model Recovery Summary ;
+-------------------------------
+No paths to report.
+
+
+------------------------------
+; Fast Model Removal Summary ;
+------------------------------
+No paths to report.
+
+
++----------------------------------------+
+; Fast Model Minimum Pulse Width Summary ;
++------------+--------+------------------+
+; Clock      ; Slack  ; End Point TNS    ;
++------------+--------+------------------+
+; address[0] ; -1.222 ; -1.222           ;
++------------+--------+------------------+
+
+
++---------------------------------------------------------------------------------------------------------------+
+; Fast Model Setup: 'address[0]'                                                                                ;
++-------+------------+--------------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node  ; To Node            ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+------------+--------------------+--------------+-------------+--------------+------------+------------+
+; 0.815 ; address[0] ; reg1[0]            ; address[0]   ; address[0]  ; 0.500        ; 2.519      ; 1.857      ;
+; 0.911 ; address[0] ; instruction_out[6] ; address[0]   ; address[0]  ; 0.500        ; 2.520      ; 1.834      ;
+; 0.913 ; address[0] ; instruction_out[3] ; address[0]   ; address[0]  ; 0.500        ; 2.520      ; 1.831      ;
+; 0.913 ; address[0] ; instruction_out[5] ; address[0]   ; address[0]  ; 0.500        ; 2.520      ; 1.834      ;
+; 0.914 ; address[0] ; instruction_out[4] ; address[0]   ; address[0]  ; 0.500        ; 2.519      ; 1.829      ;
+; 0.924 ; address[0] ; instruction_out[0] ; address[0]   ; address[0]  ; 0.500        ; 2.520      ; 1.823      ;
+; 1.315 ; address[0] ; reg1[0]            ; address[0]   ; address[0]  ; 1.000        ; 2.519      ; 1.857      ;
+; 1.411 ; address[0] ; instruction_out[6] ; address[0]   ; address[0]  ; 1.000        ; 2.520      ; 1.834      ;
+; 1.413 ; address[0] ; instruction_out[3] ; address[0]   ; address[0]  ; 1.000        ; 2.520      ; 1.831      ;
+; 1.413 ; address[0] ; instruction_out[5] ; address[0]   ; address[0]  ; 1.000        ; 2.520      ; 1.834      ;
+; 1.414 ; address[0] ; instruction_out[4] ; address[0]   ; address[0]  ; 1.000        ; 2.519      ; 1.829      ;
+; 1.424 ; address[0] ; instruction_out[0] ; address[0]   ; address[0]  ; 1.000        ; 2.520      ; 1.823      ;
++-------+------------+--------------------+--------------+-------------+--------------+------------+------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Fast Model Hold: 'address[0]'                                                                                  ;
++--------+------------+--------------------+--------------+-------------+--------------+------------+------------+
+; Slack  ; From Node  ; To Node            ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++--------+------------+--------------------+--------------+-------------+--------------+------------+------------+
+; -0.697 ; address[0] ; instruction_out[0] ; address[0]   ; address[0]  ; 0.000        ; 2.520      ; 1.823      ;
+; -0.690 ; address[0] ; instruction_out[4] ; address[0]   ; address[0]  ; 0.000        ; 2.519      ; 1.829      ;
+; -0.689 ; address[0] ; instruction_out[3] ; address[0]   ; address[0]  ; 0.000        ; 2.520      ; 1.831      ;
+; -0.686 ; address[0] ; instruction_out[5] ; address[0]   ; address[0]  ; 0.000        ; 2.520      ; 1.834      ;
+; -0.686 ; address[0] ; instruction_out[6] ; address[0]   ; address[0]  ; 0.000        ; 2.520      ; 1.834      ;
+; -0.662 ; address[0] ; reg1[0]            ; address[0]   ; address[0]  ; 0.000        ; 2.519      ; 1.857      ;
+; -0.197 ; address[0] ; instruction_out[0] ; address[0]   ; address[0]  ; -0.500       ; 2.520      ; 1.823      ;
+; -0.190 ; address[0] ; instruction_out[4] ; address[0]   ; address[0]  ; -0.500       ; 2.519      ; 1.829      ;
+; -0.189 ; address[0] ; instruction_out[3] ; address[0]   ; address[0]  ; -0.500       ; 2.520      ; 1.831      ;
+; -0.186 ; address[0] ; instruction_out[5] ; address[0]   ; address[0]  ; -0.500       ; 2.520      ; 1.834      ;
+; -0.186 ; address[0] ; instruction_out[6] ; address[0]   ; address[0]  ; -0.500       ; 2.520      ; 1.834      ;
+; -0.162 ; address[0] ; reg1[0]            ; address[0]   ; address[0]  ; -0.500       ; 2.519      ; 1.857      ;
++--------+------------+--------------------+--------------+-------------+--------------+------------+------------+
+
+
++-----------------------------------------------------------------------------------------------------------------+
+; Fast Model Minimum Pulse Width: 'address[0]'                                                                    ;
++--------+--------------+----------------+------------------+------------+------------+---------------------------+
+; Slack  ; Actual Width ; Required Width ; Type             ; Clock      ; Clock Edge ; Target                    ;
++--------+--------------+----------------+------------------+------------+------------+---------------------------+
+; -1.222 ; 1.000        ; 2.222          ; Port Rate        ; address[0] ; Rise       ; address[0]                ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Rise       ; WideOr0~1|combout         ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Rise       ; WideOr0~1|combout         ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Rise       ; WideOr0~1|datad           ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Rise       ; WideOr0~1|datad           ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Fall       ; WideOr0~2clkctrl|inclk[0] ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Fall       ; WideOr0~2clkctrl|inclk[0] ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Fall       ; WideOr0~2clkctrl|outclk   ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Fall       ; WideOr0~2clkctrl|outclk   ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Fall       ; WideOr0~2|combout         ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Fall       ; WideOr0~2|combout         ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Rise       ; WideOr0~2|datad           ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Rise       ; WideOr0~2|datad           ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Rise       ; address[0]|combout        ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Rise       ; address[0]|combout        ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Rise       ; instruction_out[0]        ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Rise       ; instruction_out[0]        ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Fall       ; instruction_out[0]|datad  ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Fall       ; instruction_out[0]|datad  ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Rise       ; instruction_out[1]        ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Rise       ; instruction_out[1]        ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Fall       ; instruction_out[1]|datad  ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Fall       ; instruction_out[1]|datad  ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Rise       ; instruction_out[3]        ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Rise       ; instruction_out[3]        ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Fall       ; instruction_out[3]|datad  ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Fall       ; instruction_out[3]|datad  ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Rise       ; instruction_out[4]        ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Rise       ; instruction_out[4]        ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Fall       ; instruction_out[4]|datad  ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Fall       ; instruction_out[4]|datad  ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Rise       ; instruction_out[5]        ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Rise       ; instruction_out[5]        ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Fall       ; instruction_out[5]|datad  ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Fall       ; instruction_out[5]|datad  ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Rise       ; instruction_out[6]        ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Rise       ; instruction_out[6]        ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Fall       ; instruction_out[6]|datad  ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Fall       ; instruction_out[6]|datad  ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Rise       ; reg1[0]                   ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Rise       ; reg1[0]                   ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; address[0] ; Fall       ; reg1[0]|datad             ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; address[0] ; Fall       ; reg1[0]|datad             ;
++--------+--------------+----------------+------------------+------------+------------+---------------------------+
+
+
++---------------------------------------------------------------------------+
+; Setup Times                                                               ;
++-------------+------------+--------+--------+------------+-----------------+
+; Data Port   ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
++-------------+------------+--------+--------+------------+-----------------+
+; address[*]  ; address[0] ; 3.172  ; 3.172  ; Rise       ; address[0]      ;
+;  address[0] ; address[0] ; -0.315 ; -0.315 ; Rise       ; address[0]      ;
+;  address[1] ; address[0] ; 1.908  ; 1.908  ; Rise       ; address[0]      ;
+;  address[2] ; address[0] ; 1.879  ; 1.879  ; Rise       ; address[0]      ;
+;  address[3] ; address[0] ; 1.984  ; 1.984  ; Rise       ; address[0]      ;
+;  address[4] ; address[0] ; 0.515  ; 0.515  ; Rise       ; address[0]      ;
+;  address[5] ; address[0] ; 0.592  ; 0.592  ; Rise       ; address[0]      ;
+;  address[6] ; address[0] ; 3.172  ; 3.172  ; Rise       ; address[0]      ;
+;  address[7] ; address[0] ; 3.020  ; 3.020  ; Rise       ; address[0]      ;
++-------------+------------+--------+--------+------------+-----------------+
+
+
++---------------------------------------------------------------------------+
+; Hold Times                                                                ;
++-------------+------------+--------+--------+------------+-----------------+
+; Data Port   ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
++-------------+------------+--------+--------+------------+-----------------+
+; address[*]  ; address[0] ; 0.697  ; 0.697  ; Rise       ; address[0]      ;
+;  address[0] ; address[0] ; 0.697  ; 0.697  ; Rise       ; address[0]      ;
+;  address[1] ; address[0] ; -1.297 ; -1.297 ; Rise       ; address[0]      ;
+;  address[2] ; address[0] ; -1.181 ; -1.181 ; Rise       ; address[0]      ;
+;  address[3] ; address[0] ; -1.276 ; -1.276 ; Rise       ; address[0]      ;
+;  address[4] ; address[0] ; -0.057 ; -0.057 ; Rise       ; address[0]      ;
+;  address[5] ; address[0] ; -0.134 ; -0.134 ; Rise       ; address[0]      ;
+;  address[6] ; address[0] ; -2.714 ; -2.714 ; Rise       ; address[0]      ;
+;  address[7] ; address[0] ; -2.562 ; -2.562 ; Rise       ; address[0]      ;
++-------------+------------+--------+--------+------------+-----------------+
+
+
++-----------------------------------------------------------------------------+
+; Clock to Output Times                                                       ;
++-----------------+------------+-------+-------+------------+-----------------+
+; Data Port       ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++-----------------+------------+-------+-------+------------+-----------------+
+; instruction[*]  ; address[0] ; 4.347 ; 4.347 ; Rise       ; address[0]      ;
+;  instruction[0] ; address[0] ; 4.247 ; 4.247 ; Rise       ; address[0]      ;
+;  instruction[1] ; address[0] ; 4.314 ; 4.314 ; Rise       ; address[0]      ;
+;  instruction[3] ; address[0] ; 4.347 ; 4.347 ; Rise       ; address[0]      ;
+;  instruction[4] ; address[0] ; 4.300 ; 4.300 ; Rise       ; address[0]      ;
+;  instruction[5] ; address[0] ; 4.227 ; 4.227 ; Rise       ; address[0]      ;
+;  instruction[6] ; address[0] ; 4.246 ; 4.246 ; Rise       ; address[0]      ;
+;  instruction[8] ; address[0] ; 4.246 ; 4.246 ; Rise       ; address[0]      ;
+; reg_val1[*]     ; address[0] ; 4.270 ; 4.270 ; Rise       ; address[0]      ;
+;  reg_val1[0]    ; address[0] ; 4.259 ; 4.259 ; Rise       ; address[0]      ;
+;  reg_val1[1]    ; address[0] ; 4.270 ; 4.270 ; Rise       ; address[0]      ;
+; reg_val2[*]     ; address[0] ; 4.374 ; 4.374 ; Rise       ; address[0]      ;
+;  reg_val2[0]    ; address[0] ; 4.247 ; 4.247 ; Rise       ; address[0]      ;
+;  reg_val2[1]    ; address[0] ; 4.374 ; 4.374 ; Rise       ; address[0]      ;
++-----------------+------------+-------+-------+------------+-----------------+
+
+
++-----------------------------------------------------------------------------+
+; Minimum Clock to Output Times                                               ;
++-----------------+------------+-------+-------+------------+-----------------+
+; Data Port       ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++-----------------+------------+-------+-------+------------+-----------------+
+; instruction[*]  ; address[0] ; 4.227 ; 4.227 ; Rise       ; address[0]      ;
+;  instruction[0] ; address[0] ; 4.247 ; 4.247 ; Rise       ; address[0]      ;
+;  instruction[1] ; address[0] ; 4.314 ; 4.314 ; Rise       ; address[0]      ;
+;  instruction[3] ; address[0] ; 4.347 ; 4.347 ; Rise       ; address[0]      ;
+;  instruction[4] ; address[0] ; 4.300 ; 4.300 ; Rise       ; address[0]      ;
+;  instruction[5] ; address[0] ; 4.227 ; 4.227 ; Rise       ; address[0]      ;
+;  instruction[6] ; address[0] ; 4.246 ; 4.246 ; Rise       ; address[0]      ;
+;  instruction[8] ; address[0] ; 4.246 ; 4.246 ; Rise       ; address[0]      ;
+; reg_val1[*]     ; address[0] ; 4.259 ; 4.259 ; Rise       ; address[0]      ;
+;  reg_val1[0]    ; address[0] ; 4.259 ; 4.259 ; Rise       ; address[0]      ;
+;  reg_val1[1]    ; address[0] ; 4.270 ; 4.270 ; Rise       ; address[0]      ;
+; reg_val2[*]     ; address[0] ; 4.247 ; 4.247 ; Rise       ; address[0]      ;
+;  reg_val2[0]    ; address[0] ; 4.247 ; 4.247 ; Rise       ; address[0]      ;
+;  reg_val2[1]    ; address[0] ; 4.374 ; 4.374 ; Rise       ; address[0]      ;
++-----------------+------------+-------+-------+------------+-----------------+
+
+
++------------------------------------------------------------------------------+
+; Multicorner Timing Analysis Summary                                          ;
++------------------+-------+--------+----------+---------+---------------------+
+; Clock            ; Setup ; Hold   ; Recovery ; Removal ; Minimum Pulse Width ;
++------------------+-------+--------+----------+---------+---------------------+
+; Worst-case Slack ; 0.496 ; -0.912 ; N/A      ; N/A     ; -1.222              ;
+;  address[0]      ; 0.496 ; -0.912 ; N/A      ; N/A     ; -1.222              ;
+; Design-wide TNS  ; 0.0   ; -5.311 ; 0.0      ; 0.0     ; -1.222              ;
+;  address[0]      ; 0.000 ; -5.311 ; N/A      ; N/A     ; -1.222              ;
++------------------+-------+--------+----------+---------+---------------------+
+
+
++-------------------------------------------------------------------------+
+; Setup Times                                                             ;
++-------------+------------+-------+-------+------------+-----------------+
+; Data Port   ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++-------------+------------+-------+-------+------------+-----------------+
+; address[*]  ; address[0] ; 6.042 ; 6.042 ; Rise       ; address[0]      ;
+;  address[0] ; address[0] ; 0.004 ; 0.004 ; Rise       ; address[0]      ;
+;  address[1] ; address[0] ; 3.457 ; 3.457 ; Rise       ; address[0]      ;
+;  address[2] ; address[0] ; 3.443 ; 3.443 ; Rise       ; address[0]      ;
+;  address[3] ; address[0] ; 3.681 ; 3.681 ; Rise       ; address[0]      ;
+;  address[4] ; address[0] ; 1.708 ; 1.708 ; Rise       ; address[0]      ;
+;  address[5] ; address[0] ; 1.810 ; 1.810 ; Rise       ; address[0]      ;
+;  address[6] ; address[0] ; 6.042 ; 6.042 ; Rise       ; address[0]      ;
+;  address[7] ; address[0] ; 5.750 ; 5.750 ; Rise       ; address[0]      ;
++-------------+------------+-------+-------+------------+-----------------+
+
+
++---------------------------------------------------------------------------+
+; Hold Times                                                                ;
++-------------+------------+--------+--------+------------+-----------------+
+; Data Port   ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
++-------------+------------+--------+--------+------------+-----------------+
+; address[*]  ; address[0] ; 0.912  ; 0.912  ; Rise       ; address[0]      ;
+;  address[0] ; address[0] ; 0.912  ; 0.912  ; Rise       ; address[0]      ;
+;  address[1] ; address[0] ; -1.297 ; -1.297 ; Rise       ; address[0]      ;
+;  address[2] ; address[0] ; -1.181 ; -1.181 ; Rise       ; address[0]      ;
+;  address[3] ; address[0] ; -1.276 ; -1.276 ; Rise       ; address[0]      ;
+;  address[4] ; address[0] ; -0.057 ; -0.057 ; Rise       ; address[0]      ;
+;  address[5] ; address[0] ; -0.134 ; -0.134 ; Rise       ; address[0]      ;
+;  address[6] ; address[0] ; -2.714 ; -2.714 ; Rise       ; address[0]      ;
+;  address[7] ; address[0] ; -2.562 ; -2.562 ; Rise       ; address[0]      ;
++-------------+------------+--------+--------+------------+-----------------+
+
+
++-----------------------------------------------------------------------------+
+; Clock to Output Times                                                       ;
++-----------------+------------+-------+-------+------------+-----------------+
+; Data Port       ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++-----------------+------------+-------+-------+------------+-----------------+
+; instruction[*]  ; address[0] ; 8.259 ; 8.259 ; Rise       ; address[0]      ;
+;  instruction[0] ; address[0] ; 8.051 ; 8.051 ; Rise       ; address[0]      ;
+;  instruction[1] ; address[0] ; 8.210 ; 8.210 ; Rise       ; address[0]      ;
+;  instruction[3] ; address[0] ; 8.259 ; 8.259 ; Rise       ; address[0]      ;
+;  instruction[4] ; address[0] ; 8.124 ; 8.124 ; Rise       ; address[0]      ;
+;  instruction[5] ; address[0] ; 8.032 ; 8.032 ; Rise       ; address[0]      ;
+;  instruction[6] ; address[0] ; 8.049 ; 8.049 ; Rise       ; address[0]      ;
+;  instruction[8] ; address[0] ; 8.049 ; 8.049 ; Rise       ; address[0]      ;
+; reg_val1[*]     ; address[0] ; 8.094 ; 8.094 ; Rise       ; address[0]      ;
+;  reg_val1[0]    ; address[0] ; 8.082 ; 8.082 ; Rise       ; address[0]      ;
+;  reg_val1[1]    ; address[0] ; 8.094 ; 8.094 ; Rise       ; address[0]      ;
+; reg_val2[*]     ; address[0] ; 8.270 ; 8.270 ; Rise       ; address[0]      ;
+;  reg_val2[0]    ; address[0] ; 8.051 ; 8.051 ; Rise       ; address[0]      ;
+;  reg_val2[1]    ; address[0] ; 8.270 ; 8.270 ; Rise       ; address[0]      ;
++-----------------+------------+-------+-------+------------+-----------------+
+
+
++-----------------------------------------------------------------------------+
+; Minimum Clock to Output Times                                               ;
++-----------------+------------+-------+-------+------------+-----------------+
+; Data Port       ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++-----------------+------------+-------+-------+------------+-----------------+
+; instruction[*]  ; address[0] ; 4.227 ; 4.227 ; Rise       ; address[0]      ;
+;  instruction[0] ; address[0] ; 4.247 ; 4.247 ; Rise       ; address[0]      ;
+;  instruction[1] ; address[0] ; 4.314 ; 4.314 ; Rise       ; address[0]      ;
+;  instruction[3] ; address[0] ; 4.347 ; 4.347 ; Rise       ; address[0]      ;
+;  instruction[4] ; address[0] ; 4.300 ; 4.300 ; Rise       ; address[0]      ;
+;  instruction[5] ; address[0] ; 4.227 ; 4.227 ; Rise       ; address[0]      ;
+;  instruction[6] ; address[0] ; 4.246 ; 4.246 ; Rise       ; address[0]      ;
+;  instruction[8] ; address[0] ; 4.246 ; 4.246 ; Rise       ; address[0]      ;
+; reg_val1[*]     ; address[0] ; 4.259 ; 4.259 ; Rise       ; address[0]      ;
+;  reg_val1[0]    ; address[0] ; 4.259 ; 4.259 ; Rise       ; address[0]      ;
+;  reg_val1[1]    ; address[0] ; 4.270 ; 4.270 ; Rise       ; address[0]      ;
+; reg_val2[*]     ; address[0] ; 4.247 ; 4.247 ; Rise       ; address[0]      ;
+;  reg_val2[0]    ; address[0] ; 4.247 ; 4.247 ; Rise       ; address[0]      ;
+;  reg_val2[1]    ; address[0] ; 4.374 ; 4.374 ; Rise       ; address[0]      ;
++-----------------+------------+-------+-------+------------+-----------------+
+
+
++---------------------------------------------------------------------+
+; Setup Transfers                                                     ;
++------------+------------+----------+----------+----------+----------+
+; From Clock ; To Clock   ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++------------+------------+----------+----------+----------+----------+
+; address[0] ; address[0] ; 6        ; 6        ; 0        ; 0        ;
++------------+------------+----------+----------+----------+----------+
+Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
+
+
++---------------------------------------------------------------------+
+; Hold Transfers                                                      ;
++------------+------------+----------+----------+----------+----------+
+; From Clock ; To Clock   ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++------------+------------+----------+----------+----------+----------+
+; address[0] ; address[0] ; 6        ; 6        ; 0        ; 0        ;
++------------+------------+----------+----------+----------+----------+
+Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
+
+
+---------------
+; Report TCCS ;
+---------------
+No dedicated SERDES Transmitter circuitry present in device or used in design
+
+
+---------------
+; Report RSKM ;
+---------------
+No dedicated SERDES Receiver circuitry present in device or used in design
+
+
++------------------------------------------------+
+; Unconstrained Paths                            ;
++---------------------------------+-------+------+
+; Property                        ; Setup ; Hold ;
++---------------------------------+-------+------+
+; Illegal Clocks                  ; 0     ; 0    ;
+; Unconstrained Clocks            ; 0     ; 0    ;
+; Unconstrained Input Ports       ; 7     ; 7    ;
+; Unconstrained Input Port Paths  ; 45    ; 45   ;
+; Unconstrained Output Ports      ; 11    ; 11   ;
+; Unconstrained Output Port Paths ; 11    ; 11   ;
++---------------------------------+-------+------+
+
+
++------------------------------------+
+; TimeQuest Timing Analyzer Messages ;
++------------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 64-Bit TimeQuest Timing Analyzer
+    Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+    Info: Processing started: Tue Nov 12 13:43:03 2013
+Info: Command: quartus_sta Lab3 -c Lab3
+Info: qsta_default_script.tcl version: #1
+Info (11104): Parallel Compilation has detected 8 hyper-threaded processors. However, the extra hyper-threaded processors will not be used by default. Parallel Compilation will use 4 of the 4 physical processors detected instead.
+Info (21077): Low junction temperature is 0 degrees C
+Info (21077): High junction temperature is 85 degrees C
+Warning (335093): TimeQuest Timing Analyzer is analyzing 7 combinational loops as latches.
+Critical Warning (332012): Synopsys Design Constraints File file not found: 'Lab3.sdc'. A Synopsys Design Constraints File is required by the TimeQuest Timing Analyzer to get proper timing constraints. Without it, the Compiler will not properly optimize the design.
+Info (332142): No user constrained base clocks found in the design. Calling "derive_clocks -period 1.0"
+Info (332105): Deriving Clocks
+    Info (332105): create_clock -period 1.000 -name address[0] address[0]
+Info: Found TIMEQUEST_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
+Info: Analyzing Slow Model
+Info (332146): Worst-case setup slack is 0.496
+    Info (332119):     Slack End Point TNS Clock 
+    Info (332119): ========= ============= =====================
+    Info (332119):     0.496         0.000 address[0] 
+Critical Warning (332148): Timing requirements not met
+Info (332146): Worst-case hold slack is -0.912
+    Info (332119):     Slack End Point TNS Clock 
+    Info (332119): ========= ============= =====================
+    Info (332119):    -0.912        -5.311 address[0] 
+Info (332140): No Recovery paths to report
+Info (332140): No Removal paths to report
+Info (332146): Worst-case minimum pulse width slack is -1.222
+    Info (332119):     Slack End Point TNS Clock 
+    Info (332119): ========= ============= =====================
+    Info (332119):    -1.222        -1.222 address[0] 
+Info (332001): The selected device family is not supported by the report_metastability command.
+Info: Analyzing Fast Model
+Info (332146): Worst-case setup slack is 0.815
+    Info (332119):     Slack End Point TNS Clock 
+    Info (332119): ========= ============= =====================
+    Info (332119):     0.815         0.000 address[0] 
+Critical Warning (332148): Timing requirements not met
+Info (332146): Worst-case hold slack is -0.697
+    Info (332119):     Slack End Point TNS Clock 
+    Info (332119): ========= ============= =====================
+    Info (332119):    -0.697        -4.110 address[0] 
+Info (332140): No Recovery paths to report
+Info (332140): No Removal paths to report
+Info (332146): Worst-case minimum pulse width slack is -1.222
+    Info (332119):     Slack End Point TNS Clock 
+    Info (332119): ========= ============= =====================
+    Info (332119):    -1.222        -1.222 address[0] 
+Info (332001): The selected device family is not supported by the report_metastability command.
+Info (332102): Design is not fully constrained for setup requirements
+Info (332102): Design is not fully constrained for hold requirements
+Info: Quartus II 64-Bit TimeQuest Timing Analyzer was successful. 0 errors, 4 warnings
+    Info: Peak virtual memory: 491 megabytes
+    Info: Processing ended: Tue Nov 12 13:43:04 2013
+    Info: Elapsed time: 00:00:01
+    Info: Total CPU time (on all processors): 00:00:01
+
+

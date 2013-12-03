@@ -17,7 +17,6 @@
  `define sub8_op 	3'b011		// subtract 8
  `define pkr_op 	3'b100		// poker
 
-
 module alu (
 	input clock,
 	input [7:0] reg1,
@@ -26,14 +25,20 @@ module alu (
 	input [2:0] spec_fun,
 	output reg [7:0] res,
    output reg carry_out,
+    output reg [15:0] num_bran_taken,
+    output reg [15:0] num_bran_not_taken,
 	output reg br_out
 );
 
 reg [8:0] result;
+//reg [15:0] branch_taken;
+//reg [15:0] branch_not_taken;
    
 initial begin
 	br_out = 0;
 	res = 0;
+	num_bran_taken = 16'b0;
+	num_bran_not_taken = 16'b0;
 end
 
 always @(*)
@@ -65,17 +70,25 @@ begin
         end
 		`be_op: begin
             carry_out <= 0;
-			if (reg1 == reg2)	
+			if (reg1 == reg2) begin
 				br_out <= 1;
-			else
+				//num_bran_taken <= num_bran_taken + 1;
+			end
+			else begin
 				br_out <= 0;
+				//num_bran_not_taken <= num_bran_not_taken + 1;
+			end
 		end
 		`blt_op: begin
             carry_out <= 0;
-			if (reg1 < reg2)	
+			if (reg1 < reg2) begin	
 				br_out <= 1;
-			else
+				//num_bran_taken <= num_bran_taken + 1;
+			end
+			else begin
 				br_out <= 0;
+				//num_bran_not_taken <= num_bran_not_taken + 1;
+			end
 		end
 		`spec_op: begin
             carry_out <= 0;
@@ -108,7 +121,10 @@ begin
             res <= 8'bxxxxxxxx;
         end
 	endcase
+	
 end
-
+	
+	//assign num_bran_taken = branch_taken;
+	//assign num_bran_not_taken = branch_not_taken;
 		
 endmodule

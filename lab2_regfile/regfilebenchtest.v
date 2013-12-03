@@ -111,6 +111,8 @@ initial begin
     //swap  $t1, $t2
     //val1 = 44, val2 = 32
 	#10 
+    write_ctrl = 1;
+    write_reg = 3'd3;
     read_reg1 = 2'd2;  
     read_reg2 = 3'd3;      
     swap_ctrl = 1;  
