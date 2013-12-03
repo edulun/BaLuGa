@@ -1,6 +1,6 @@
 module hazard_unit (
     input clock,
-    input swap_ctrl,
+    input [3:0] swap_ctrl,
     input branch_ctrl,
     output reg flush_ctrl,
     output reg stall_ctrl
@@ -17,7 +17,7 @@ end
             flush_ctrl <= 1;
         end
         else flush_ctrl <= 0;
-        if (swap_ctrl) begin
+        if (swap_ctrl == 4'b1001) begin
             case (cycle_count)
                 0: begin 
                     stall_ctrl <= 1;

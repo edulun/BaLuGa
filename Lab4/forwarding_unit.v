@@ -1,6 +1,4 @@
 module forwarding_unit (
-	input [2:0] mex_wb_reg1,
-    input [2:0] mex_wb_reg2,
     input [2:0] mex_wb_wrt_reg,
     input [2:0] id_mex_reg1,
     input [2:0] id_mex_reg2,
@@ -12,7 +10,7 @@ module forwarding_unit (
     reg [1:0] out1;
     reg [1:0] out2;
     
-    always @ (id_mex_reg1 or id_mex_reg2 or mex_wb_reg1 or mex_wb_reg2) begin
+    always @ (id_mex_reg1 or id_mex_reg2 or mex_wb_wrt_reg ) begin
         // Write register of previous instruction = current register 1
         // previous: load     $t1, $imm
         // current:  set from $t1, $s2   # $s2 = $t1

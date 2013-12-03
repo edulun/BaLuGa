@@ -1,7 +1,9 @@
 module mux_reg_write_val (
+
 	input selector,				// mem read from control
-	input [7:0] mem_val,		// value extracted from memory ram
 	input [7:0] alu_result,		// result from alu operation
+	input [7:0] mem_val,		// value extracted from memory ram
+
 	output [7:0] mux_reg_out
 );
 
