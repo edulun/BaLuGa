@@ -37,7 +37,9 @@ module instruction_rom_prog1
            22:  instruction_out = 9'b1001_10_110;    // swp $t1, $s3     # swap with counter
            23:  instruction_out = 9'b0111_10_011;    // sub8 $t1         # counter = 8 - counter
            24:  instruction_out = 9'b0100_01_010;    // shif_r $imm, $t1 # shift by 8 - counter
+           ///????? problem here
            25:  instruction_out = 9'b0111_10_011;    // sub8 $t1         # counter = 8 - counter
+
            26:  instruction_out = 9'b1001_10_110;    // swap $t1, $s3    # swap counter <-> low bits
            27:  instruction_out = 9'b0000_11_001;    // add  $t2, $imm   # add to high bits
            // Continue:
@@ -45,10 +47,10 @@ module instruction_rom_prog1
            29:  instruction_out = 9'b1011_0_0000;    // shg  0, 0000     # $imm = 1
            30:  instruction_out = 9'b1001_01_100;    // swp  $imm, $s1
            31:  instruction_out = 9'b0100_01_100;    // sr   $imm, $s1   # shift operand 1 right once
-           32:  instruction_out = 9'b1001_01_100;    // swp  $imm, $s1
-           33:  instruction_out = 9'b1001_01_110;    // swp  $imm, $s3
+           32:  instruction_out = 9'b0110_01_100;    // stt  $imm, $s1 //CHANGED
+           33:  instruction_out = 9'b0101_01_110;    // stf  $imm, $s3 //CHANGED 
            34:  instruction_out = 9'b0111_01_000;    // inc  $imm        # counter +=1
-           35:  instruction_out = 9'b1001_01_110;    // swp  $imm, $s3
+           35:  instruction_out = 9'b0110_01_110;    // stt  $imm, $s3 //CHANGED
            36:  instruction_out = 9'b1010_1_0001;    // slw  1, 0010
            37:  instruction_out = 9'b1011_1_1110;    // shg  1, 1110
            38:  instruction_out = 9'b1101_00_100;    // blt  $zero, $s2  # GO TO MAINLOOP

@@ -10,16 +10,11 @@ module pipe_if_id (
 reg [8:0] instruction;
 
 always @(negedge clock) begin
-    if(flush) begin
-        instruction <= 9'bxxxxxxxxx;
-    end
-    else begin
-        if(!stall) instruction <= IF_instruction;
-    end
+    instruction <= IF_instruction;
 end
 
 always @(posedge clock) begin
-    if(stall) ID_instruction <= 9'bxxxxxxxxx;
+    if(stall|| flush) ID_instruction <= 9'bxxxxxxxxx;
     else ID_instruction <= instruction;
 end
 endmodule

@@ -88,77 +88,79 @@ reg done_ctrl;
 reg jmp_ctrl;
 
 always @(negedge clock) begin
-    if(flush) begin
-        reg_val1 <= 8'bxxxxxxxx;
-        reg_val2 <= 8'bxxxxxxxx;
-        read_addr1 <= 3'bxxx;
-        read_addr2 <= 3'bxxx;
-        branch_val <= 8'bxxxxxxxx;
-        jmp_val <= 8'bxxxxxxxx;
-        imm_val <= 4'bxxxx;
-        read_addr1 <= 3'bxxx;
-        read_addr2 <= 3'bxxx;
-        write_addr <= 3'bxxx;
+    reg_val1 <= ID_reg_val1;
+    reg_val2 <= ID_reg_val2;
+    read_addr1[2] <= 0;
+    read_addr1[1:0] <= ID_read_addr1;
+    read_addr2 <= ID_read_addr2;
+    branch_val <= ID_branch_val;
+    jmp_val <= ID_jmp_val;
+    write_addr <= ID_write_addr;
 
-        alu_func  <= 4'bxxxx;
-        alu_spec_func <= 3'bxx;
+    imm_val <= ID_imm_val;
 
-        alu_src <= 1'bx;
-        mem_write <= 1'bx;
-        mem_read  <= 1'bx;
-        reg_write <= 1'bx;
-        branch_ctrl  <= 1'bx;
-        done_ctrl <= 1'bx;
-        jmp_ctrl <= 1'bx;
-    end
-    else begin
-        reg_val1 <= ID_reg_val1;
-        reg_val2 <= ID_reg_val2;
-        read_addr1[2] <= 0;
-        read_addr1[1:0] <= ID_read_addr1;
-        read_addr2 <= ID_read_addr2;
-        branch_val <= ID_branch_val;
-        jmp_val <= ID_jmp_val;
-        write_addr <= ID_write_addr;
+    alu_func  <= ID_alu_func;
+    alu_spec_func <= ID_alu_spec_func;
 
-        imm_val <= ID_imm_val;
-
-        alu_func  <= ID_alu_func;
-        alu_spec_func <= ID_alu_spec_func;
-
-        alu_src <= ID_alu_src;
-        mem_write <= ID_mem_write;
-        mem_read  <= ID_mem_read;
-        reg_write <= ID_reg_write;
-        branch_ctrl  <= ID_branch_ctrl;
-        done_ctrl <= ID_done_ctrl;
-        jmp_ctrl <= ID_jmp_ctrl;
-    end
+    alu_src <= ID_alu_src;
+    mem_write <= ID_mem_write;
+    mem_read  <= ID_mem_read;
+    reg_write <= ID_reg_write;
+    branch_ctrl  <= ID_branch_ctrl;
+    done_ctrl <= ID_done_ctrl;
+    jmp_ctrl <= ID_jmp_ctrl;
 end
 
 always @(posedge clock) begin
-    MEX_reg_val1 <= reg_val1;
-    MEX_reg_val2 <= reg_val2;
-    MEX_branch_val <= branch_val;
-    MEX_jmp_val <= jmp_val;
-    MEX_imm_val <= imm_val;
+    if(flush) begin
+        MEX_reg_val1 <= 8'bxxxxxxxx;
+        MEX_reg_val2 <= 8'bxxxxxxxx;
+        MEX_branch_val <= 8'bxxxxxxxx;
+        MEX_jmp_val <= 8'bxxxxxxxx;
+        MEX_imm_val <= 8'bxxxxxxxx;
 
-    MEX_read_addr1 <= read_addr1;
-    MEX_read_addr2 <= read_addr2;
-    MEX_write_addr <= write_addr;
+        MEX_read_addr1 <= 3'bxxx;
+        MEX_read_addr2 <= 3'bxxx;
+        MEX_write_addr <= 3'bxxx;
 
-    MEX_alu_func  <= alu_func;
-    MEX_alu_spec_func <= alu_spec_func;
+        MEX_alu_func  <= 4'bxxxx;
+        MEX_alu_spec_func <= 3'bxxx;
 
-    MEX_alu_src <= alu_src;
+        MEX_alu_src <= 2'bxx;
 
-    MEX_mem_write <= mem_write;
-    MEX_mem_read  <= mem_read;
+        MEX_mem_write <= 1'bx;
+        MEX_mem_read  <= 1'bx;
 
-    MEX_reg_write <= reg_write;
+        MEX_reg_write <= 1'bx;
 
-    MEX_branch_ctrl  <= branch_ctrl;
-    MEX_done_ctrl <= done_ctrl;
-    MEX_jmp_ctrl <= jmp_ctrl;
+        MEX_branch_ctrl  <= 1'bx;
+        MEX_done_ctrl <= 1'bx;
+        MEX_jmp_ctrl <= 1'bx;
+    end
+    else begin
+        MEX_reg_val1 <= reg_val1;
+        MEX_reg_val2 <= reg_val2;
+        MEX_branch_val <= branch_val;
+        MEX_jmp_val <= jmp_val;
+        MEX_imm_val <= imm_val;
+
+        MEX_read_addr1 <= read_addr1;
+        MEX_read_addr2 <= read_addr2;
+        MEX_write_addr <= write_addr;
+
+        MEX_alu_func  <= alu_func;
+        MEX_alu_spec_func <= alu_spec_func;
+
+        MEX_alu_src <= alu_src;
+
+        MEX_mem_write <= mem_write;
+        MEX_mem_read  <= mem_read;
+
+        MEX_reg_write <= reg_write;
+
+        MEX_branch_ctrl  <= branch_ctrl;
+        MEX_done_ctrl <= done_ctrl;
+        MEX_jmp_ctrl <= jmp_ctrl;
+    end
 end
 endmodule

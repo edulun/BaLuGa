@@ -1,8 +1,10 @@
 module hazard_unit (
     input clock,
+    input [2:0] wb_write_reg,
     input [3:0] swap_ctrl,
     input branch_ctrl,
     output reg flush_ctrl,
+    output reg branch_flag,
     output reg stall_ctrl
 );
 
@@ -13,29 +15,26 @@ initial begin
     stall_ctrl = 0;
     flush_ctrl = 0;
 end
+    always @(wb_write_reg) begin
+        if (wb_write_reg == 3'b111) branch_flag <= 1;
+        else branch_flag <= 0;
+    end
 
+    //always @(posedge clock) flush_ctrl <= 0;
     always @(negedge clock) begin
-        if (branch_ctrl) begin
-            flush_ctrl <= 1;
-        end
+        if (branch_ctrl) flush_ctrl <= 1;
         else flush_ctrl <= 0;
         if (swap_ctrl == 4'b1001) begin
-            case (cycle_count)
-                0: begin 
-                    stall_ctrl <= 1;
-                    cycle_count <= cycle_count + 1;
-                end
-                1: begin
-                    stall_ctrl <= 1;
-                    cycle_count <= cycle_count + 1;
-                end
-                default: begin
-                    stall_ctrl <= 0;
-                    cycle_count <= 0;
-                end
-           endcase
+            if(cycle_count < 2) begin 
+                stall_ctrl <= 1; 
+                cycle_count <= cycle_count +1;
+            end
+            else begin
+                stall_ctrl <= 0;
+                cycle_count <= 0;
+            end
        end
-    end 
+    end
 
 endmodule
 

@@ -13,27 +13,33 @@ module fetch_unit(
 );
 
 reg [7:0] pc;
+reg [7:0] bt_pc;
+reg [7:0] branch_value;
 reg [16:0] cycles;
 
 initial begin 
+    bt_pc = -2;
     pc = 0;
     cycles = 0;
 end
 
 always @(posedge clock)
 begin
+    branch_value <= branch_val;
     cycles <= cycles + 1;
-    instruction_number <= pc;
-	//Set program counter to 0 if reset = 1
+    bt_pc <= pc - 2;
+    if(stall == 1) instruction_number <= pc -1;
+    else instruction_number <= pc;
     if(done_ctrl) $finish;
 
 end
 
 always @(negedge clock) begin
-   if(branch_ctrl == 1) pc = pc + branch_val;
-	else if(jump_ctrl == 1) pc = jump_val;
+	if(stall == 1) pc <= pc;
+    else if(branch_ctrl == 1) pc = bt_pc + branch_value;
+    else if(jump_ctrl == 1) pc = jump_val;
 	else if(init_ctrl) pc <= 0;
-	else if(stall == 0) pc <= pc + 1'b1;
+    else pc <= pc +1'b1;
 end
 
 assign cycle_counter = cycles;

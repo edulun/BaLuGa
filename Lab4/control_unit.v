@@ -332,6 +332,21 @@ always @(*) begin
             done_ctrl <= 0;
             jmp_ctrl <= 1;
         end
+        default: begin
+            reg_write_val <= 3'bxxx;
+            alu_src <= 1'bx;
+            alu_func <= 4'bxxxx;
+            alu_spec_func <= 3'bxxx;
+            set_ctrl <= 2'bxx;
+            mem_write <= 1'bx;
+            mem_read <= 1'bx;
+            branch <= 1'bx;
+            reg_write <= 1'bx;
+            swap_ctrl <= 1'bx;
+            done_ctrl <= 1'bx;
+            jmp_ctrl <= 1'bx;
+        end
+
     endcase
 end
 
