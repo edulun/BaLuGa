@@ -15,8 +15,9 @@ module instruction_rom_prog1
             3:  instruction_out = 9'b0110_01_100;    // stf $imm, $s1    # s1 = 96
             4:  instruction_out = 9'b1010_0_1000;    // slw 0, 1000      # jump address = CheckEntry
             5:  instruction_out = 9'b1011_0_0000;    // shg 0, 0000      # s1 = 96
-            6:  instruction_out = 9'b0110_01_101;    // stf $imm, $s2    # $s2 = jump address
-            7:  instruction_out = 9'b1010_1_0010;    // slw 1, 0010      # branch = +2 (skip next instruction)
+            6:  instruction_out = 9'b1010_1_0010;    // slw 1, 0010      # branch = +2 (skip next instruction)
+            7:  instruction_out = 9'b0110_01_101;    // stf $imm, $s2    # $s2 = jump address
+
             // CheckEntry
             8:  instruction_out = 9'b0001_01_011;    // ld $imm, $t2     # load next entry to $imm
             9:  instruction_out = 9'b0111_01_100;    // pkr $imm         # check entry with pkr instrc

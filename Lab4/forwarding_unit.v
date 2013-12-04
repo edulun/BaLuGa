@@ -25,21 +25,15 @@ module forwarding_unit (
         // Write register of previous instruction = current register 1
         // previous: load     $t1, $imm
         // current:  set from $t1, $s2   # $s2 = $t1
-        else if (mex_wb_wrt_reg == id_mex_reg1) begin
-            out1 = 2'b1;
-            out2 = 2'b0;
-        end
-        // Write register of previous instruction = current register 2
-        // previous: set low  $imm, $1
-        // current:  load     $t1, $imm
-        else if (mex_wb_wrt_reg == id_mex_reg2) begin
-            out1 = 2'b0;
-            out2 = 2'b1;
-        end
-        // No forwarding is needed
         else begin
-            out1 = 2'b0;
-            out2 = 2'b0;
+            if (mex_wb_wrt_reg == id_mex_reg1) out1 = 2'b1;
+            else  out1 = 2'b0;
+            // Write register of previous instruction = current register 2
+            // previous: set low  $imm, $1
+            // current:  load     $t1, $imm
+            if (mex_wb_wrt_reg == id_mex_reg2) out2 = 2'b1;
+            else out2 = 2'b0;
+            // No forwarding is needed
         end
     end
     

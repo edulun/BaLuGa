@@ -1,2 +1,3 @@
-Warning (10268): Verilog HDL information at control_unit.v(47): always construct contains both blocking and non-blocking assignments
+Warning (10268): Verilog HDL information at control_unit.v(49): always construct contains both blocking and non-blocking assignments
 Warning (10268): Verilog HDL information at alu.v(39): always construct contains both blocking and non-blocking assignments
+Warning (10268): Verilog HDL information at fetch_unit.v(37): always construct contains both blocking and non-blocking assignments
