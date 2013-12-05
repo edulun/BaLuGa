@@ -61,8 +61,8 @@ module instruction_rom_prog1
            // S1 - # of time most common value repeats (stored in 127)
            // S2 - The starting address of the result array
            // S3 - 64, for branching on the entries (should stop when t1 == 64)
-           25:  instruction_out = 9'b1010_0_0000;    // slw  0, 0000     # $imm = 64
-           26:  instruction_out = 9'b1011_0_0100;    // shg	 0, 0100     # $imm = 64           
+           25:  instruction_out = 9'b1010_0_1111;    // slw  0, 0000     # $imm = 64
+           26:  instruction_out = 9'b1011_0_0011;    // shg	 0, 0100     # $imm = 64           
            27:  instruction_out = 9'b0110_01_110;    // stf	 $imm, $s3   # $s3 = 64 
            28:  instruction_out = 9'b0110_00_010;    // stf  $zero, $t1  # $t1 = 0 
            29:  instruction_out = 9'b0110_00_011;    // stf  $zero, $t2 

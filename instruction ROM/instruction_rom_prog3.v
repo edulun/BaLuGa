@@ -21,8 +21,8 @@ module instruction_rom_prog1
 
             //Initialize values
 
-            5:  instruction_out = 9'b1010_1_1111;    // slw	1, 1111      # $branch = 255
-            6:  instruction_out = 9'b1011_1_1111;    // shg	1, 1111      # $branch = 255
+            5:  instruction_out = 9'b1011_1_1111;    // shg	1, 1111      # $branch = 255
+            6:  instruction_out = 9'b1010_1_1111;    // slw	1, 1111      # $branch = 255
 
             7:  instruction_out = 9'b0101_10_111;    // stt	10, 111      # $t1 = $branch (255)
             8:  instruction_out = 9'b1010_1_1110;    // slw	1, 1110      # $branch = -2
@@ -61,8 +61,8 @@ module instruction_rom_prog1
            // S1 - # of time most common value repeats (stored in 127)
            // S2 - The starting address of the result array
            // S3 - 64, for branching on the entries (should stop when t1 == 64)
-           25:  instruction_out = 9'b1010_0_0000;    // slw  0, 0000     # $imm = 64
-           26:  instruction_out = 9'b1011_0_0100;    // shg	 0, 0100     # $imm = 64           
+           25:  instruction_out = 9'b1010_0_1111;    // slw  0, 0000     # $imm = 64
+           26:  instruction_out = 9'b1011_0_0011;    // shg	 0, 0100     # $imm = 64           
            27:  instruction_out = 9'b0110_01_110;    // stf	 $imm, $s3   # $s3 = 64 
            28:  instruction_out = 9'b0110_00_010;    // stf  $zero, $t1  # $t1 = 0 
            29:  instruction_out = 9'b0110_00_011;    // stf  $zero, $t2 
@@ -81,9 +81,9 @@ module instruction_rom_prog1
            40:  instruction_out = 9'b0101_11_010;    // stt  $t2,  $t1   # new max entry = $t2
 
            // Continue:
-           41:  instruction_out = 9'b0111_10_000;    // inc  $t1         # increment current entry
-           42:  instruction_out = 9'b1010_0_1111;    // slw  $imm, 0111  # set to count (~31)
-           43:  instruction_out = 9'b1011_0_0001;    // shg  $imm, 0001  # set to count (~31)
+           41:  instruction_out = 9'b1010_0_1111;    // slw  $imm, 0111  # set to count (~31)
+           42:  instruction_out = 9'b1011_0_0001;    // shg  $imm, 0001  # set to count (~31)
+           43:  instruction_out = 9'b0111_10_000;    // inc  $t1         # increment current entry
            44:  instruction_out = 9'b1110_01_000;    // jmp  $imm
 
            // end:
@@ -101,5 +101,8 @@ module instruction_rom_prog1
     assign instruction = instruction_out;
 
 endmodule
+
+
+
 
 
